@@ -1,8 +1,8 @@
 {
-  "name": "lambda-boilerplate",
-  "projectName": "cms-fronts::lambda-boilerplate",
-  "description": "Common boilerplate for lambda deployed on RiffRaff",
-  "repository": "https://github.com/guardian/lambda-boilerplate",
+  "name": "alexa-skills-lambda",
+  "projectName": "content-api::alexa-skills-lambda",
+  "description": "Alexa skills for the Guardian",
+  "repository": "https://github.com/guardian/alexa-skills-lambda",
   "version": "1.0.0",
   "private": true,
   "license": "Apache-2.0",
