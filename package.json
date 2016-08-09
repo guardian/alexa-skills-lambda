@@ -1,0 +1,33 @@
+{
+  "name": "lambda-boilerplate",
+  "projectName": "cms-fronts::lambda-boilerplate",
+  "description": "Common boilerplate for lambda deployed on RiffRaff",
+  "repository": "https://github.com/guardian/lambda-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "main": "src/index.js",
+  "scripts": {
+    "posttest": "gulp lint",
+    "test": "gulp compile && tap test",
+    "deploy": "gulp deploy"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.4.6",
+    "babel-preset-es2015-rollup": "1.1.0",
+    "exec-chainable": "0.0.3",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-yaml": "^1.0.1",
+    "gulp-zip": "^3.2.0",
+    "node-riffraff-artefact": "^1.7.2",
+    "rollup": "^0.34.1",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^3.1.0",
+    "rollup-plugin-node-resolve": "^1.7.1",
+    "tap": "^6.1.1"
+  },
+  "peerDependencies": {
+    "aws-sdk": "2.x"
+  }
+}

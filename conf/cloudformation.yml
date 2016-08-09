@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Lambda boilerplate
+Parameters:
+    Stack:
+        Description: Stack name
+        Type: String
+        Default: content-api
+    App:
+        Description: Application name
+        Type: String
+        Default: alexa-skills
+    Stage:
+        Description: Stage name
+        Type: String
+        AllowedValues:
+            - CODE
+            - PROD
+        Default: CODE
+    DeployBucket:
+        Description: Bucket where RiffRaff uploads artifacts on deploy
+        Type: String
+        Default: content-api-dist/content-api-alexa
+Resources:
+    ExecutionRole:
+        Type: AWS::IAM::Role
+        Properties:
+            AssumeRolePolicyDocument:
+                Statement:
+                    - Effect: Allow
+                      Principal:
+                        Service:
+                            - lambda.amazonaws.com
+                      Action: "sts:AssumeRole"
+            Path: /
+            Policies:
+                - PolicyName: logs
+                  PolicyDocument:
+                    Statement:
+                        Effect: Allow
+                        Action:
+                            - "logs:CreateLogGroup"
+                            - "logs:CreateLogStream"
+                            - "logs:PutLogEvents"
+                        Resource: "arn:aws:logs:*:*:*"
+                - PolicyName: lambda
+                  PolicyDocument:
+                    Statement:
+                        Effect: Allow
+                        Action:
+                            - "lambda:InvokeFunction"
+                        Resource: "*"
+    Lambda:
+        Type: AWS::Lambda::Function
+        Properties:
+            Code:
+                S3Bucket:
+                    Ref: DeployBucket
+                S3Key:
+                    "Fn::Join":
+                        - "/"
+                        -
+                            - Ref: Stage
+                            - artifact.zip
+            Description: Boilerplate
+            Handler: index.handler
+            MemorySize: 128
+            Role:
+                "Fn::GetAtt": ["ExecutionRole", "Arn"]
+            Runtime: nodejs4.3
+            Timeout: 60
