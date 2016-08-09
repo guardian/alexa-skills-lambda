@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Lambda boilerplate
+Description: Alexa skills for the Guardian
 Parameters:
     Stack:
         Description: Stack name
@@ -19,7 +19,7 @@ Parameters:
     DeployBucket:
         Description: Bucket where RiffRaff uploads artifacts on deploy
         Type: String
-        Default: content-api-dist/content-api-alexa
+        Default: content-api-dist
 Resources:
     ExecutionRole:
         Type: AWS::IAM::Role
@@ -59,6 +59,7 @@ Resources:
                     "Fn::Join":
                         - "/"
                         -
+                            - content-api-alexa
                             - Ref: Stage
                             - artifact.zip
             Description: Boilerplate
