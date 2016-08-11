@@ -1,0 +1,38 @@
+{
+  "intents": [
+    {
+      "intent": "GetHeadlinesIntent"
+    },
+    {
+      "intent": "GetReviewIntent",
+      "slots": [
+        {
+          "name": "review_types",
+          "type": "REVIEW_TYPES"
+        },
+        {
+          "name": "review_search_item",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "GetOpinionIntent",
+      "slots": [
+        {
+          "name": "search_item",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

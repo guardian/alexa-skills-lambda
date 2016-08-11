@@ -8,11 +8,15 @@
   "license": "Apache-2.0",
   "main": "src/index.js",
   "scripts": {
-    "posttest": "gulp lint",
-    "test": "gulp compile && tap test",
-    "deploy": "gulp deploy"
+    "presecrets": "mkdir -p tmp",
+    "secrets": "./bin/get-secrets.sh > tmp/config.json",
+    "predeploy": "npm run secrets",
+    "deploy": "gulp deploy",
+    "pretest": "npm run secrets",
+    "test": "gulp compile && tap test"
   },
   "devDependencies": {
+    "alexa-sdk": "^1.0.3",
     "aws-sdk": "^2.4.6",
     "babel-plugin-external-helpers": "^6.8.0",
     "babel-preset-es2015": "^6.13.2",
@@ -26,10 +30,14 @@
     "rollup": "^0.34.7",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^3.1.0",
+    "rollup-plugin-json": "^2.0.1",
     "rollup-plugin-node-resolve": "^1.7.1",
     "tap": "^6.1.1"
   },
   "peerDependencies": {
     "aws-sdk": "2.x"
+  },
+  "dependencies": {
+    "simple-get-promise": "^1.0.2"
   }
 }
