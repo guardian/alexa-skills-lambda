@@ -1,0 +1,31 @@
+GetHeadlinesIntent headlines
+GetHeadlinesIntent give me the headlines
+GetHeadlinesIntent tell me the headlines
+GetHeadlinesIntent read me the headlines
+
+GetOpinionIntent for a latest opinion
+GetOpinionIntent for an opinion on {donald trump|search_item}
+GetOpinionIntent give an opinion on {donald trump|search_item}
+GetOpinionIntent read an opinion on {donald trump|search_item}
+GetOpinionIntent tell an opinion on {donald trump|search_item}
+
+GetReviewIntent for a review
+GetReviewIntent give me a review
+GetReviewIntent read me a review
+GetReviewIntent tell me a review
+
+GetReviewIntent for a {review_types} review
+GetReviewIntent give me a {review_types} review
+GetReviewIntent read me a {review_types} review
+GetReviewIntent tell me a {review_types} review
+
+GetReviewIntent for a review for {sausage party|review_search_item}
+GetReviewIntent for a review of {sausage party|review_search_item}
+GetReviewIntent give me a review of {sausage party|review_search_item}
+GetReviewIntent read me a review of {sausage party|review_search_item}
+GetReviewIntent tell me a review of {sausage party|review_search_item}
+
+GetReviewIntent give me a {review_types} review of {sausage party|review_search_item}
+GetReviewIntent read me a {review_types} review of {sausage party|review_search_item}
+GetReviewIntent tell me a {review_types} review of {sausage party|review_search_item}
+
