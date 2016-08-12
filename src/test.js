@@ -18,7 +18,7 @@ lambda({
         "locale": "en-US",
         "timestamp": "2016-08-08T14:18:45Z",
         "intent": {
-            "name": "GetReviewIntent",
+            "name": "LaunchRequest",
             "slots": {}
         }
     },
