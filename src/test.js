@@ -6,7 +6,12 @@ lambda({
         "application": {
             "applicationId": ""
         },
-        "attributes": {},
+        "attributes": { 
+         "lastIntent": 'GetReview',
+         "reviewsRead": 2,
+         "lastSearchTerm": 'batman',
+         "lastReviewType": 'film' 
+        },
         "user": {
             "userId": ""
         },
@@ -18,11 +23,11 @@ lambda({
         "locale": "en-US",
         "timestamp": "2016-08-08T14:18:45Z",
         "intent": {
-            "name": "LaunchRequest",
+            "name": "AMAZON.YesIntent",
             "slots": {}
-        }
-    },
-    "version": "1.0"
+        },
+        "version": "1.0"
+    }
 }, {
     succeed: function (response) {
         console.log(response)
