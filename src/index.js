@@ -31,6 +31,7 @@ var handlers = {
     'GetHeadlines': function () {
         this.event.session.attributes.lastIntent = 'GetHeadlines'
 
+        // Check the location - US, UK, AU or International?
         var capi_query = helpers.capi_query('uk','show-editors-picks=true&show-fields=standfirst,byline,headline&tag=type/article,tone/news,-tone/minutebyminute');
 
         get(capi_query)
@@ -39,7 +40,7 @@ var handlers = {
 
                 if(json.response.editorsPicks && json.response.editorsPicks.length > 1) {
                     var headlines_speech = speech.acknowledgement + speech.headlines.top
-                    //headlines_speech += sound.transition
+
                     headlines_speech += json.response.editorsPicks[0].fields.headline + sound.break + json.response.editorsPicks[0].fields.standfirst.replace(/<(?:.|\n)*?>/gm, '').replace('\u2022', '.')
                     headlines_speech += sound.transition
                     headlines_speech += json.response.editorsPicks[1].fields.headline + sound.break + json.response.editorsPicks[1].fields.standfirst.replace(/<(?:.|\n)*?>/gm, '').replace('\u2022', '.')
