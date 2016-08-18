@@ -1,0 +1,37 @@
+{
+	"session": {
+		"sessionId": "",
+		"application": {
+			"applicationId": ""
+		},
+		"attributes": {
+			"lastIntent": "GetHeadlines",
+			"positionalContent": [
+				"education/2016/aug/18/a-level-results-show-another-drop-in-a-and-a-grade-students",
+				"politics/2016/aug/18/former-ministers-attack-massive-damp-squib-childhood-obesity-plan",
+				"world/2016/aug/18/boy-in-the-ambulance-image-emerges-syrian-child-aleppo-rubble"
+			],
+			"moreOffset": 0
+		},
+		"user": {
+			"userId": ""
+		},
+		"new": false
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "",
+		"locale": "en-US",
+		"timestamp": "2016-08-18T12:18:23Z",
+		"intent": {
+			"name": "ReadContentAtPositionIntent",
+			"slots": {
+				"position": {
+					"name": "position",
+					"value": "second"
+				}
+			}
+		}
+	},
+	"version": "1.0"
+}

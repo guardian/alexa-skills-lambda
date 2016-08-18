@@ -5,8 +5,10 @@ const speech = {
 	},
 	headlines: {
 		top: 'the top three stories are: ',
+		more: 'the next three stories are: ',
 		notfound: 'Sorry, I could not find you any headlines.',
-		reprompt: 'Would you like me to read the first, second or third story?'
+		question: 'Would you like me to read the first, second or third story or would you like more headlines?',
+		reprompt: 'Sorry, Would you like me to read the first, second or third story or would you like more headlines?'
 	},
 	opinions: {
 		latest: '',
@@ -24,7 +26,9 @@ const speech = {
 	},
 	core: {
 		stop: 'Goodbye for now.',
-		cancel: 'Goodbye for now.'
+		cancel: 'Goodbye for now.',
+		didNotUnderstand: 'Sorry, I didn\'t catch that',
+		readPositionalAtContent: 'Could you repeat that please?'
 	},
 	acknowledgement: randomMessage([
 		'Sure, ',

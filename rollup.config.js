@@ -7,7 +7,9 @@ export default {
 	entry: 'src/index.js',
 	plugins: [
         json(),
-		babel(),
+		babel({
+			exclude: ['node_modules/**']
+		}),
 		nodeResolve({
 			jsnext: true
 		}),

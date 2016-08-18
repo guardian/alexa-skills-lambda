@@ -1,0 +1,28 @@
+{
+	"session": {
+		"sessionId": "",
+		"application": {
+			"applicationId": ""
+		},
+		"attributes": {
+			"lastIntent": "GetHeadlines",
+			"positionalContent": [],
+			"moreOffset": 3
+		},
+		"user": {
+			"userId": ""
+		},
+		"new": false
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "",
+		"locale": "en-US",
+		"timestamp": "2016-08-18T12:18:23Z",
+		"intent": {
+			"name": "MoreIntent",
+			"slots": { }
+		}
+	},
+	"version": "1.0"
+}

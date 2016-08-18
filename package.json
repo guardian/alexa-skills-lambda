@@ -38,6 +38,7 @@
     "aws-sdk": "2.x"
   },
   "dependencies": {
-    "simple-get-promise": "^1.0.2"
+    "simple-get-promise": "^1.0.2",
+    "striptags": "^2.1.1"
   }
 }
