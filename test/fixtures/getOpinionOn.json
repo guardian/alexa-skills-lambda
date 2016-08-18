@@ -1,0 +1,30 @@
+{
+	"session": {
+		"sessionId": "",
+		"application": {
+			"applicationId": ""
+		},
+		"attributes": {
+		},
+		"user": {
+			"userId": ""
+		},
+		"new": true
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "",
+		"locale": "en-US",
+		"timestamp": "2016-08-08T14:18:45Z",
+		"intent": {
+			"name": "GetOpinionIntent",
+			"slots": {
+				"search_term": {
+					"name": "search_term",
+					"value": "brexit"
+				}
+			}
+		},
+		"version": "1.0"
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"session": {
+		"sessionId": "",
+		"application": {
+			"applicationId": ""
+		},
+		"attributes": {
+		},
+		"user": {
+			"userId": ""
+		},
+		"new": true
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "",
+		"locale": "en-US",
+		"timestamp": "2016-08-08T14:18:45Z",
+		"intent": {
+			"name": "GetReviewIntent",
+			"slots": {
+				"review_types": {
+					"name": "review_types",
+					"value": "book"
+				},
+				"search_term": {
+					"name": "AMAZON.YesIntent",
+					"slots": {}
+				}
+			}
+		},
+		"version": "1.0"
+	}
+}

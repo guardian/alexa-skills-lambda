@@ -3,3 +3,4 @@ node_modules
 src/config.json
 .DS_Store
 */.DS_Store
+.idea
