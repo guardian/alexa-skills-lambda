@@ -14,14 +14,13 @@ module.exports = function (position) {
 		get(capiQuery)
 			.then(asJson)
 			.then((json) => {
-				var articleBody = striptags(json.response.content.fields.body);
-				this.emit(':ask', articleBody + sound.break + speech.core.readPositionalAtContent);
+				this.emit(':ask', readArticle(json));
 			})
 			.catch(function (error) {
 				this.emit(':ask', speech.core.didNotUnderstand);
 			})
 	};
-	
+
 	switch(position) {
 		case 'first':
 		case '1st':
@@ -41,3 +40,13 @@ module.exports = function (position) {
 
 };
 
+var readArticle = (json) => {
+	var articleBody = striptags(json.response.content.fields.body);
+
+	return speech.acknowledgement +
+		speech.positionalContent.articleBy + json.response.content.fields.byline +
+		speech.positionalContent.timeToReadPref + (json.response.content.fields.wordcount / 3.5 / 60).toFixed(0) +
+		speech.positionalContent.timeToReadSuff + sound.break +
+		articleBody + sound.break + speech.positionalContent.followup;
+
+};

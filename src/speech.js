@@ -27,8 +27,13 @@ const speech = {
 	core: {
 		stop: 'Goodbye for now.',
 		cancel: 'Goodbye for now.',
-		didNotUnderstand: 'Sorry, I didn\'t catch that',
-		readPositionalAtContent: 'Could you repeat that please?'
+		didNotUnderstand: 'Sorry, I didn\'t catch that'
+	},
+	positionalContent: {
+		followup: 'Would you like to hear the headlines again, or more headlines?',
+		articleBy: 'This article is written by ',
+		timeToReadPref: ' and it will take roughly ',
+		timeToReadSuff: ' minutes to read'
 	},
 	acknowledgement: randomMessage([
 		'Sure, ',

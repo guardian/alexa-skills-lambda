@@ -15,7 +15,6 @@ module.exports = function (isNewIntentFlag) {
 	attributes.lastIntent = 'GetHeadlines';
 	attributes.positionalContent = [];
 
-
 	if (typeof attributes.moreOffset !== 'undefined') {
 		if (isNewIntent) attributes.moreOffset = 0;
 		else attributes.moreOffset += PAGE_SIZE;
@@ -31,7 +30,6 @@ module.exports = function (isNewIntentFlag) {
 		.then(asJson)
 		.then((json) => {
 			if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset + PAGE_SIZE) {
-
 				var headlinesSpeech = speech.acknowledgement + ((isNewIntent) ? speech.headlines.top : speech.headlines.more);
 
 				json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).forEach(editorsPick => {

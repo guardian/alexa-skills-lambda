@@ -64,11 +64,13 @@ tap.test('Test the get {type} review on {something} intent', test => {
 );
 
 tap.test('Test numeric position after headlines', test => {
-		test.plan(1);
+		test.plan(3);
 		lambda(
 			posAfterHeadJson, {
 				succeed: function (response) {
-					test.ok(response.response.outputSpeech.ssml.indexOf("\<speak\> Two former health ministers") == 0);
+					test.ok(response.response.outputSpeech.ssml.indexOf("Two former health ministers") != -1);
+					test.ok(response.response.outputSpeech.ssml.indexOf("written by") != -1);
+					test.ok(response.response.outputSpeech.ssml.indexOf("minutes to read") != -1);
 					test.end()
 				},
 				fail: function (error) {
