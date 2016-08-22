@@ -38,25 +38,25 @@ var handlers = {
     'GetHeadlinesIntent': function() {
         this.emit('GetHeadlines');
     },
-	"GetHeadlines": getHeadlines,
+    "GetHeadlines": getHeadlines,
 
     'ReadContentAtPositionIntent': function() {
         const slots = this.event.request.intent.slots;
         const position = slots.position ? slots.position.value : null;
         this.emit('ReadContentAtPosition', position );
     },
-	"ReadContentAtPosition": readContentAtPosition,
+    "ReadContentAtPosition": readContentAtPosition,
 
-	'MoreIntent': function() {
-		// repeat last intent action with increased offSet
-		this.emit(this.event.session.attributes.lastIntent, false);
-	},
+    'MoreIntent': function() {
+        // repeat last intent action with increased offSet
+        this.emit(this.event.session.attributes.lastIntent, false);
+    },
     'GetOpinionIntent': function() {
         const slots = this.event.request.intent.slots;
         const searchTerm = slots.search_term ? slots.search_term.value : null;
         this.emit('GetOpinion', searchTerm );
     },
-	"GetOpinion": getOpinion,
+    "GetOpinion": getOpinion,
 
     'GetReviewIntent': function() {
         const slots = this.event.request.intent.slots;
@@ -64,7 +64,7 @@ var handlers = {
         const searchTerm = slots.search_term ? slots.search_term.value : null;
         this.emit('GetReview',{ review_type : reviewType , search_term : searchTerm } );
     },
-	"GetReview": getReview,
+    "GetReview": getReview,
 
     'AMAZON.HelpIntent': function() {
         this.event.session.attributes.lastIntent = 'Help';
@@ -78,7 +78,7 @@ var handlers = {
         this.emit(':tell', speech.core.stop)
     },
     'AMAZON.YesIntent': function() {
-		return yes
+        return yes
     },
     'AMAZON.NoIntent': function() {
         this.emit(':tell', speech.core.stop)
