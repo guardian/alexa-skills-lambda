@@ -10,7 +10,7 @@ module.exports = function (position) {
 
     var readContentAtPosition = (position) => {
         const contentId = this.event.session.attributes.positionalContent[position];
-        const capiQuery = helpers.capiQuery(contentId, '&show-fields=body');
+        const capiQuery = helpers.capiQuery(contentId, '&show-fields=body,byline,wordcount');
         get(capiQuery)
             .then(asJson)
             .then((json) => {
