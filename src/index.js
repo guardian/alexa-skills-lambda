@@ -28,14 +28,14 @@ exports.handler = function (event, context, callback) {
 };
 
 var handlers = {
-    'LaunchRequest': function () {
+    'LaunchRequest': function() {
         this.emit('Launch');
     },
     'Launch': function(){
         this.event.session.attributes.lastIntent = 'Launch';
         this.emit(':ask', speech.launch.welcome, speech.launch.reprompt);
     },
-    'GetHeadlinesIntent': function () {
+    'GetHeadlinesIntent': function() {
         this.emit('GetHeadlines');
     },
 	"GetHeadlines": getHeadlines,
@@ -45,16 +45,20 @@ var handlers = {
         const position = slots.position ? slots.position.value : null;
         this.emit('ReadContentAtPosition', position );
     },
-	'ReadContentAtPosition': readContentAtPosition,
+	"ReadContentAtPosition": readContentAtPosition,
 
-    'GetOpinionIntent': function () {
+	'MoreIntent': function() {
+		// repeat last intent action with increased offSet
+		this.emit(this.event.session.attributes.lastIntent, false);
+	},
+    'GetOpinionIntent': function() {
         const slots = this.event.request.intent.slots;
         const searchTerm = slots.search_term ? slots.search_term.value : null;
         this.emit('GetOpinion', searchTerm );
     },
 	"GetOpinion": getOpinion,
 
-    'GetReviewIntent': function () {
+    'GetReviewIntent': function() {
         const slots = this.event.request.intent.slots;
         const reviewType = slots.review_types ? slots.review_types.value : null;
         const searchTerm = slots.search_term ? slots.search_term.value : null;
@@ -62,21 +66,21 @@ var handlers = {
     },
 	"GetReview": getReview,
 
-    'AMAZON.HelpIntent': function () {
+    'AMAZON.HelpIntent': function() {
         this.event.session.attributes.lastIntent = 'Help';
 
         this.emit(':ask', speech.help.explainer, speech.help.reprompt)
     },
-    'AMAZON.CancelIntent': function () {
+    'AMAZON.CancelIntent': function() {
         this.emit(':tell', speech.core.cancel)
     },
-    'AMAZON.StopIntent': function () {
+    'AMAZON.StopIntent': function() {
         this.emit(':tell', speech.core.stop)
     },
-    'AMAZON.YesIntent': function () {
+    'AMAZON.YesIntent': function() {
 		return yes
     },
-    'AMAZON.NoIntent': function () {
+    'AMAZON.NoIntent': function() {
         this.emit(':tell', speech.core.stop)
     }
 };
