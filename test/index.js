@@ -11,12 +11,13 @@ const speech = require('../src/speech').speech;
 var lambda = require('../src/index').handler;
 
 tap.test('Test get headlines intent', test => {
-	test.plan(2);
+	test.plan(3);
 	lambda(
 		headLinesJson, {
 			succeed: function (response) {
 				test.equal(response.sessionAttributes.lastIntent, "GetHeadlines");
 				test.equal(response.sessionAttributes.positionalContent.length, 3);
+				test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
 				test.end()
 			},
 			fail: function (error) {
