@@ -49,7 +49,7 @@ var handlers = {
 
     'MoreIntent': function() {
         // repeat last intent action with increased offSet
-        this.emit(this.event.session.attributes.lastIntent, false);
+        this.emit(this.event.session.attributes.lastIntent);
     },
     'GetOpinionIntent': function() {
         const slots = this.event.request.intent.slots;

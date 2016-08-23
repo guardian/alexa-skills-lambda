@@ -1,10 +1,12 @@
 const tap = require('tap');
 
 const headLinesJson = require('./fixtures/getHeadlines.json');
+const headLineSectionJson = require('./fixtures/getHeadlinesForSection.json');
 const opinionJson = require('./fixtures/getOpinionOn.json');
 const reviewJson = require('./fixtures/getReview.json');
 const posAfterHeadJson = require('./fixtures/positionalContentAfterHeadlines.json');
 const moreAfterHeadlines = require('./fixtures/moreAfterHeadlines.json');
+const moreAfterTechHeadlines = require('./fixtures/moreAfterTechHeadlines.json');
 
 const speech = require('../src/speech').speech;
 
@@ -24,7 +26,25 @@ tap.test('Test get headlines intent', test => {
 				test.fail()
 			}
 		});
-}
+	}
+);
+
+tap.test('Test get headlines intent with a specific section', test => {
+	test.plan(4);
+	lambda(
+		headLineSectionJson, {
+			succeed: function (response) {
+				test.equal(response.sessionAttributes.lastIntent, "GetHeadlines");
+				test.equal(response.sessionAttributes.positionalContent.length, 3);
+				test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+				test.equal(response.sessionAttributes.sectionType, 'travel');
+				test.end()
+			},
+			fail: function (error) {
+				test.fail()
+			}
+		});
+	}
 );
 
 tap.test('Test the get opinion intent', test => {
@@ -84,11 +104,29 @@ tap.test('Test numeric position after headlines', test => {
 );
 
 tap.test('Test more intent after headlines', test => {
-		test.plan(1);
+		test.plan(2);
 		lambda(
 			moreAfterHeadlines, {
 				succeed: function (response) {
+					test.ok(response.response.outputSpeech.ssml.indexOf("the next three stories are") != -1);
 					test.equal(response.sessionAttributes.moreOffset, 6);
+					test.end();
+				},
+				fail: function (error) {
+					test.fail()
+				}
+			});
+	}
+);
+
+tap.test('Test more intent after tech headlines', test => {
+		test.plan(2);
+		lambda(
+			moreAfterTechHeadlines, {
+				succeed: function (response) {
+					console.log(response);
+					test.ok(response.response.outputSpeech.ssml.indexOf("the next three technology stories are") != -1);
+					test.equal(response.sessionAttributes.moreOffset, 3);
 					test.end();
 				},
 				fail: function (error) {

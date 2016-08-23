@@ -47,7 +47,7 @@ var readArticle = (json) => {
     return randomMsg(speech.acknowledgement) +
         speech.positionalContent.articleBy + json.response.content.fields.byline +
         speech.positionalContent.timeToReadPref + (json.response.content.fields.wordcount / 3.5 / 60).toFixed(0) +
-        speech.positionalContent.timeToReadSuff + sound.break +
+        speech.positionalContent.timeToReadSuff + sound.strongBreak +
         articleBody + sound.break + speech.positionalContent.followup;
 
 };

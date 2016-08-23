@@ -33,7 +33,7 @@ const speech = {
         followup: 'Would you like to hear the headlines again, or more headlines?',
         articleBy: 'This article is written by ',
         timeToReadPref: ' and it will take roughly ',
-        timeToReadSuff: ' minutes to read'
+        timeToReadSuff: ' minutes to read.'
     },
     acknowledgement: [
         'Sure, ',
@@ -44,7 +44,8 @@ const speech = {
 
 const sound = {
     transition: '<break time="1s"/>',
-    break: '<break strength="medium"/>'
+    break: '<break strength="medium"/>',
+	strongBreak: '<break strength="x-strong"/>'
 };
 
 exports.speech = speech;

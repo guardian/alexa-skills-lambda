@@ -1,0 +1,29 @@
+{
+	"session": {
+		"sessionId": "",
+		"application": {
+			"applicationId": ""
+		},
+		"attributes": {
+			"moreOffset": 0,
+			"lastIntent": "GetHeadlines",
+			"positionalContent": [],
+			"sectionType": "technology"
+		},
+		"user": {
+			"userId": ""
+		},
+		"new": false
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "",
+		"locale": "en-US",
+		"timestamp": "2016-08-24T11:32:23Z",
+		"intent": {
+			"name": "MoreIntent",
+			"slots": {}
+		}
+	},
+	"version": "1.0"
+}
