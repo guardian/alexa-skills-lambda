@@ -6,6 +6,8 @@ const reviewJson = require('./fixtures/getReview.json');
 const posAfterHeadJson = require('./fixtures/positionalContentAfterHeadlines.json');
 const moreAfterHeadlines = require('./fixtures/moreAfterHeadlines.json');
 
+const speech = require('../src/speech').speech;
+
 var lambda = require('../src/index').handler;
 
 tap.test('Test get headlines intent', test => {
@@ -86,7 +88,7 @@ tap.test('Test more intent after headlines', test => {
 			moreAfterHeadlines, {
 				succeed: function (response) {
 					test.equal(response.sessionAttributes.moreOffset, 6);
-					test.end()
+					test.end();
 				},
 				fail: function (error) {
 					test.fail()

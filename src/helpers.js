@@ -8,3 +8,7 @@ exports.capiQuery = function(endpoint, filter, q) {
     var fullQuery = capiHost + endpoint + '?' + filter + query + key;
     return fullQuery
 };
+
+exports.randomMessage = function(messages) {
+	return messages[Math.floor(Math.random()*messages.length)]
+};

@@ -35,21 +35,17 @@ const speech = {
         timeToReadPref: ' and it will take roughly ',
         timeToReadSuff: ' minutes to read'
     },
-    acknowledgement: randomMessage([
+    acknowledgement: [
         'Sure, ',
         'Certainly, ',
         'Absolutely, '
-    ])
+    ]
 };
 
 const sound = {
     transition: '<break time="1s"/>',
     break: '<break strength="medium"/>'
 };
-
-function randomMessage(messages) {
-    return messages[Math.floor(Math.random()*messages.length)]
-}
 
 exports.speech = speech;
 exports.sound = sound;

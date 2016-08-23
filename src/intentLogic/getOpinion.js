@@ -3,6 +3,7 @@ const asJson = require('simple-get-promise').asJson;
 
 const helpers = require('../helpers');
 const speech = require('../speech').speech;
+const randomMsg = require('../helpers').randomMessage;
 
 module.exports = function (search_term) {
     this.event.session.attributes.lastIntent = 'GetOpinion';
@@ -14,7 +15,7 @@ module.exports = function (search_term) {
         .then(asJson)
         .then(json => {
             if (json.response.results && json.response.results.length > 1) {
-                var opinion_speech = speech.acknowledgement + speech.opinions.latest;
+                var opinion_speech = randomMsg(speech.acknowledgement) + speech.opinions.latest;
                 opinion_speech += json.response.results[0].fields.headline + ' by ' + json.response.results[0].fields.byline + '. ' + json.response.results[0].blocks.body[0].bodyTextSummary;
                 this.emit(':ask', opinion_speech, speech.opinions.reprompt)
             } else {
