@@ -4,6 +4,7 @@ const asJson = require('simple-get-promise').asJson;
 const helpers = require('../helpers');
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
+const randomMsg = require('../helpers').randomMessage;
 
 const PAGE_SIZE = 3;
 
@@ -30,7 +31,7 @@ module.exports = function (isNewIntentFlag) {
         .then(asJson)
         .then((json) => {
             if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset + PAGE_SIZE) {
-                var headlinesSpeech = speech.acknowledgement + ((isNewIntent) ? speech.headlines.top : speech.headlines.more);
+                var headlinesSpeech = randomMsg(speech.acknowledgement) + ((isNewIntent) ? speech.headlines.top : speech.headlines.more);
 
                 json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).forEach(editorsPick => {
                     headlinesSpeech += editorsPick.fields.headline + sound.transition;

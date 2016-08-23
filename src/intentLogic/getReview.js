@@ -4,6 +4,7 @@ const asJson = require('simple-get-promise').asJson;
 const helpers = require('../helpers');
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
+const randomMsg = require('../helpers').randomMessage;
 
 module.exports = function (review_item) {
     this.event.session.attributes.lastIntent = 'GetReview';
@@ -33,7 +34,7 @@ module.exports = function (review_item) {
         .then(asJson)
         .then(json => {
             if (json.response.results && json.response.results.length > 1 && json.response.results[counter]) {
-                var review_speech = speech.acknowledgement + speech.reviews.latest;
+                var review_speech = randomMsg(speech.acknowledgement) + speech.reviews.latest;
                 var review_counter = counter;
 
                 review_speech += json.response.results[review_counter].fields.headline + ' by ' + json.response.results[review_counter].fields.byline + '. ' + json.response.results[review_counter].blocks.body[0].bodyTextSummary

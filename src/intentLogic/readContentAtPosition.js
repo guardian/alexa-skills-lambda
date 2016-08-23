@@ -5,6 +5,7 @@ const striptags = require('striptags');
 const helpers = require('../helpers');
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
+const randomMsg = require('../helpers').randomMessage;
 
 module.exports = function (position) {
 
@@ -43,7 +44,7 @@ module.exports = function (position) {
 var readArticle = (json) => {
     var articleBody = striptags(json.response.content.fields.body);
 
-    return speech.acknowledgement +
+    return randomMsg(speech.acknowledgement) +
         speech.positionalContent.articleBy + json.response.content.fields.byline +
         speech.positionalContent.timeToReadPref + (json.response.content.fields.wordcount / 3.5 / 60).toFixed(0) +
         speech.positionalContent.timeToReadSuff + sound.break +
