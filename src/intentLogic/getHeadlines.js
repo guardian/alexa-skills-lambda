@@ -31,20 +31,29 @@ module.exports = function (isNewIntentFlag) {
         .then(asJson)
         .then((json) => {
             if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset + PAGE_SIZE) {
-                var headlinesSpeech = randomMsg(speech.acknowledgement) + ((isNewIntent) ? speech.headlines.top : speech.headlines.more);
-
-                json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).forEach(editorsPick => {
-                    headlinesSpeech += editorsPick.fields.headline + sound.transition;
-                    attributes.positionalContent.push(editorsPick.id);
-                });
-
-                headlinesSpeech += sound.break + speech.headlines.question;
-                this.emit(':ask', headlinesSpeech, speech.headlines.reprompt);
+				this.emit(':ask', generateHeadlinesSpeech(json), speech.headlines.reprompt);
             } else {
                 this.emit(':ask', speech.headlines.notfound);
             }
         })
         .catch(function (error) {
-            this.emit(':tell', headlinesSpeech, speech.headlines.notfound);
-        })
+            this.emit(':tell', speech.headlines.notfound);
+        });
+
+
+	var generateHeadlinesSpeech = (json) => {
+		const preamble = randomMsg(speech.acknowledgement) + ((isNewIntent) ? speech.headlines.top : speech.headlines.more);
+		const conclusion = sound.break + speech.headlines.reprompt;
+
+		var getHeadlines = () => {
+			return json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).map(editorsPick =>
+				editorsPick.fields.headline + sound.transition
+			);
+		};
+
+		attributes.positionalContent = json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).map(editorsPick =>
+		 	editorsPick.id );
+
+		return preamble + getHeadlines() + conclusion;
+	}
 };
