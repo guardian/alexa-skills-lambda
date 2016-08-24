@@ -5,31 +5,26 @@ const helpers = require('../helpers');
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
+const getSectionPath = require('../helpers').getSectionPath;
+const getMoreOffset = require('../helpers').getMoreOffset;
+const pageSize = require('../helpers').pageSize;
 
-const PAGE_SIZE = 3;
+module.exports = function (isNewIntentFlag) {
+    // An intent is a new intent unless this is explicitly set to `false`; `undefined` defaults to `true`.
+    const isNewIntent = isNewIntentFlag !== false;
 
-module.exports = function () {
     const attributes = this.event.session.attributes;
     const slots = this.event.request.intent.slots;
 
-    var newIntent = (event) => {
-      return !(event.request.intent.name === "MoreIntent" || event.request.intent.name === event.session.attributes.lastIntent)
-  };
-    const isNewIntent = newIntent(this.event);
-
-    attributes.lastIntent = 'GetHeadlines';
+    attributes.lastIntent = 'GetHeadlinesIntent';
     if (isNewIntent) attributes.sectionType = slots.section_type ? slots.section_type.value : null;
 
-    if (typeof attributes.moreOffset !== 'undefined') {
-        if (isNewIntent) attributes.moreOffset = 0;
-        else attributes.moreOffset += PAGE_SIZE;
-    }
-    else attributes.moreOffset = 0;
+    attributes.moreOffset = getMoreOffset(isNewIntent, attributes.moreOffset)
 
     get(buildCapiQuery(attributes.sectionType))
         .then(asJson)
         .then((json) => {
-            if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset + PAGE_SIZE) {
+            if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset + pageSize) {
               updatePositionalContent(json); // side effects, yay!
               this.emit(':ask', generateHeadlinesSpeech(json), speech.headlines.question);
             } else {
@@ -61,14 +56,11 @@ module.exports = function () {
 
 var buildCapiQuery = (sectionType) => {
 
-    // const location = (sectionType) ? 'uk/' + sectionType : 'uk'; // TODO check location
-
-    const path = getSectionPath(sectionType, 'uk');
+    const path = getSectionPath(sectionType, 'uk'); //TODO - other editions?
     const showEditorsPicks = 'show-editors-picks=true';
     const showFields = '&show-fields=byline,headline&tag=type/article,tone/news,-tone/minutebyminute';
     const filters = showEditorsPicks + showFields;
 
-    console.log(helpers.capiQuery(path, filters));
     return helpers.capiQuery(path, filters);
 
 };
@@ -76,28 +68,12 @@ var buildCapiQuery = (sectionType) => {
 var generatePreamble = (isNewIntent, sectionType) => {
     const ack = randomMsg(speech.acknowledgement);
 
-    var stories = '';
-    if (isNewIntent) stories = speech.headlines.top;
-    else {
-        if (sectionType) stories = 'the next three ' + sectionType + ' stories are: ';
-        else stories = speech.headlines.more
+    const buildStories = () => {
+      if (isNewIntent) return speech.headlines.top;
+      if (sectionType) return 'the next three ' + sectionType + ' stories are: ';
+      return speech.headlines.more;
     }
-    return ack + stories;
-};
 
-const sectionsWithoutEditions = {
-    politics: true,
-    football: true,
-    world: true,
-    fashion: true
-};
-
-var getSectionPath = (section, edition) => {
-    if (section == null) return edition;
-    else if (sectionsWithoutEditions[section]) {
-        return section
-    } else {
-        return edition +"/"+ section
-    }
+    return ack + buildStories();
 };
 

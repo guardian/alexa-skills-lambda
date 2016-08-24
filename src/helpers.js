@@ -12,3 +12,27 @@ exports.capiQuery = function(endpoint, filter, q) {
 exports.randomMessage = function(messages) {
 	return messages[Math.floor(Math.random()*messages.length)]
 };
+
+const sectionsWithoutEditions = {
+    politics: true,
+    football: true,
+    world: true,
+    fashion: true
+};
+
+exports.getSectionPath = (section, edition) => {
+    if (section == null) return edition;
+    if (sectionsWithoutEditions[section]) return section;
+    return edition +"/"+ section;
+};
+
+const PAGE_SIZE = 3;
+exports.pageSize = PAGE_SIZE;
+
+exports.getMoreOffset = (isNewIntent, currentMoreOffset) => {
+  if (typeof currentMoreOffset !== 'undefined') {
+    if (isNewIntent) return 0;
+    else return currentMoreOffset + PAGE_SIZE;
+  } else return 0;
+}
+

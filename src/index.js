@@ -29,42 +29,21 @@ exports.handler = function (event, context, callback) {
 
 var handlers = {
     'LaunchRequest': function() {
-        this.emit('Launch');
-    },
-    'Launch': function(){
         this.event.session.attributes.lastIntent = 'Launch';
         this.emit(':ask', speech.launch.welcome, speech.launch.reprompt);
     },
-    'GetHeadlinesIntent': function() {
-        this.emit('GetHeadlines');
-    },
-    "GetHeadlines": getHeadlines,
 
-    'ReadContentAtPositionIntent': function() {
-        const slots = this.event.request.intent.slots;
-        const position = slots.position ? slots.position.value : null;
-        this.emit('ReadContentAtPosition', position );
-    },
-    "ReadContentAtPosition": readContentAtPosition,
+    'GetHeadlinesIntent': getHeadlines,
+
+    'ReadContentAtPositionIntent': readContentAtPosition,
 
     'MoreIntent': function() {
         // repeat last intent action with increased offSet
-        this.emit(this.event.session.attributes.lastIntent);
+        this.emit(this.event.session.attributes.lastIntent, false);
     },
-    'GetOpinionIntent': function() {
-        const slots = this.event.request.intent.slots;
-        const searchTerm = slots.search_term ? slots.search_term.value : null;
-        this.emit('GetOpinion', searchTerm );
-    },
-    "GetOpinion": getOpinion,
+    'GetOpinionIntent': getOpinion,
 
-    'GetReviewIntent': function() {
-        const slots = this.event.request.intent.slots;
-        const reviewType = slots.review_types ? slots.review_types.value : null;
-        const searchTerm = slots.search_term ? slots.search_term.value : null;
-        this.emit('GetReview',{ review_type : reviewType , search_term : searchTerm } );
-    },
-    "GetReview": getReview,
+    'GetReviewIntent': getReview,
 
     'AMAZON.HelpIntent': function() {
         this.event.session.attributes.lastIntent = 'Help';

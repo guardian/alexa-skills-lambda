@@ -17,7 +17,7 @@ tap.test('Test get headlines intent', test => {
     lambda(
         headLinesJson, {
             succeed: function (response) {
-                test.equal(response.sessionAttributes.lastIntent, "GetHeadlines");
+                test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
                 test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
                 test.end()
@@ -34,7 +34,7 @@ tap.test('Test get headlines intent with a specific section', test => {
     lambda(
         headLineSectionJson, {
             succeed: function (response) {
-                test.equal(response.sessionAttributes.lastIntent, "GetHeadlines");
+                test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
                 test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
                 test.equal(response.sessionAttributes.sectionType, 'travel');
@@ -53,7 +53,7 @@ tap.test('Test the get opinion intent', test => {
         opinionJson, {
             succeed: function (response) {
                 test.ok(response.response.outputSpeech.ssml);
-                test.equal(response.sessionAttributes.lastIntent, "GetOpinion");
+                test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
                 test.end()
             },
             fail: function (error) {
@@ -71,7 +71,7 @@ tap.test('Test the get {type} review on {something} intent', test => {
                     test.ok(response.response.outputSpeech.ssml.indexOf('Houellebecq') != -1);
                     test.match(response, {
                         sessionAttributes: {
-                             lastIntent: 'GetReview',
+                             lastIntent: 'GetReviewIntent',
                             reviewsRead: 1,
                             lastReviewType: 'book',
                             lastSearchTerm: 'houellebecq'
@@ -124,7 +124,6 @@ tap.test('Test more intent after tech headlines', test => {
         lambda(
             moreAfterTechHeadlines, {
                 succeed: function (response) {
-                    console.log(response);
                     test.ok(response.response.outputSpeech.ssml.indexOf("the next three technology stories are") != -1);
                     test.equal(response.sessionAttributes.moreOffset, 3);
                     test.end();
