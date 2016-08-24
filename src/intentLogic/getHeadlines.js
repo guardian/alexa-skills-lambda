@@ -10,15 +10,15 @@ const PAGE_SIZE = 3;
 
 module.exports = function () {
     const attributes = this.event.session.attributes;
-	const slots = this.event.request.intent.slots;
+    const slots = this.event.request.intent.slots;
 
-	var newIntent = (event) => {
-		return !(event.request.intent.name === "MoreIntent" || event.request.intent.name === event.session.attributes.lastIntent)
-	};
-	const isNewIntent = newIntent(this.event);
+    var newIntent = (event) => {
+      return !(event.request.intent.name === "MoreIntent" || event.request.intent.name === event.session.attributes.lastIntent)
+  };
+    const isNewIntent = newIntent(this.event);
 
     attributes.lastIntent = 'GetHeadlines';
-	if (isNewIntent) attributes.sectionType = slots.section_type ? slots.section_type.value : null;
+    if (isNewIntent) attributes.sectionType = slots.section_type ? slots.section_type.value : null;
 
     if (typeof attributes.moreOffset !== 'undefined') {
         if (isNewIntent) attributes.moreOffset = 0;
@@ -30,8 +30,8 @@ module.exports = function () {
         .then(asJson)
         .then((json) => {
             if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset + PAGE_SIZE) {
-            	updatePositionalContent(json); // side effects, yay!
-				this.emit(':ask', generateHeadlinesSpeech(json), speech.headlines.question);
+              updatePositionalContent(json); // side effects, yay!
+              this.emit(':ask', generateHeadlinesSpeech(json), speech.headlines.question);
             } else {
                 this.emit(':ask', speech.headlines.notfound);
             }
@@ -40,64 +40,64 @@ module.exports = function () {
             this.emit(':tell', speech.headlines.notfound);
         });
 
-	var generateHeadlinesSpeech = (json) => {
-		const preamble = generatePreamble(isNewIntent, attributes.sectionType);
-		const conclusion = sound.break + speech.headlines.question;
+    var generateHeadlinesSpeech = (json) => {
+    const preamble = generatePreamble(isNewIntent, attributes.sectionType);
+    const conclusion = sound.break + speech.headlines.question;
 
-		var getHeadlines = () => {
-			return json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).map(editorsPick =>
-				editorsPick.fields.headline + sound.transition
-			);
-		};
+        var getHeadlines = () => {
+            return json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).map(editorsPick =>
+                editorsPick.fields.headline + sound.transition
+            );
+        };
 
-		return preamble + getHeadlines() + conclusion;
-	};
+    return preamble + getHeadlines() + conclusion;
+  };
 
-	var updatePositionalContent = (json) => {
-		attributes.positionalContent = json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).map(editorsPick =>
-			editorsPick.id );
-	};
+  var updatePositionalContent = (json) => {
+    attributes.positionalContent = json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).map(editorsPick =>
+      editorsPick.id );
+  };
 };
 
 var buildCapiQuery = (sectionType) => {
 
-	// const location = (sectionType) ? 'uk/' + sectionType : 'uk'; // TODO check location
+    // const location = (sectionType) ? 'uk/' + sectionType : 'uk'; // TODO check location
 
-	const path = getSectionPath(sectionType, 'uk');
-	const showEditorsPicks = 'show-editors-picks=true';
-	const showFields = '&show-fields=byline,headline&tag=type/article,tone/news,-tone/minutebyminute';
-	const filters = showEditorsPicks + showFields;
+    const path = getSectionPath(sectionType, 'uk');
+    const showEditorsPicks = 'show-editors-picks=true';
+    const showFields = '&show-fields=byline,headline&tag=type/article,tone/news,-tone/minutebyminute';
+    const filters = showEditorsPicks + showFields;
 
-	console.log(helpers.capiQuery(path, filters));
-	return helpers.capiQuery(path, filters);
+    console.log(helpers.capiQuery(path, filters));
+    return helpers.capiQuery(path, filters);
 
 };
 
 var generatePreamble = (isNewIntent, sectionType) => {
-	const ack = randomMsg(speech.acknowledgement);
+    const ack = randomMsg(speech.acknowledgement);
 
-	var stories = '';
-	if (isNewIntent) stories = speech.headlines.top;
-	else {
-		if (sectionType) stories = 'the next three ' + sectionType + ' stories are: ';
-		else stories = speech.headlines.more
-	}
-	return ack + stories;
+    var stories = '';
+    if (isNewIntent) stories = speech.headlines.top;
+    else {
+        if (sectionType) stories = 'the next three ' + sectionType + ' stories are: ';
+        else stories = speech.headlines.more
+    }
+    return ack + stories;
 };
 
 const sectionsWithoutEditions = {
-	politics: true,
-	football: true,
-	world: true,
-	fashion: true
+    politics: true,
+    football: true,
+    world: true,
+    fashion: true
 };
 
 var getSectionPath = (section, edition) => {
-	if (section == null) return edition;
-	else if (sectionsWithoutEditions[section]) {
-		return section
-	} else {
-		return edition +"/"+ section
-	}
+    if (section == null) return edition;
+    else if (sectionsWithoutEditions[section]) {
+        return section
+    } else {
+        return edition +"/"+ section
+    }
 };
 

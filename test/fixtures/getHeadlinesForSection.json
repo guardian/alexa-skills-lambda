@@ -1,34 +1,34 @@
 {
-	"session": {
-		"sessionId": "",
-		"application": {
-			"applicationId": ""
-		},
-		"attributes": {
-			"moreOffset": 0,
-			"lastIntent": "GetHeadlines",
-			"positionalContent": [
-			]
-		},
-		"user": {
-			"userId": ""
-		},
-		"new": false
-	},
-	"request": {
-		"type": "IntentRequest",
-		"requestId": "",
-		"locale": "en-US",
-		"timestamp": "2016-08-23T15:25:17Z",
-		"intent": {
-			"name": "GetHeadlinesIntent",
-			"slots": {
-				"section_type": {
-					"name": "section_type",
-					"value": "travel"
-				}
-			}
-		}
-	},
-	"version": "1.0"
+    "session": {
+        "sessionId": "",
+        "application": {
+            "applicationId": ""
+        },
+        "attributes": {
+            "moreOffset": 0,
+            "lastIntent": "GetHeadlines",
+            "positionalContent": [
+            ]
+        },
+        "user": {
+            "userId": ""
+        },
+        "new": false
+    },
+    "request": {
+        "type": "IntentRequest",
+        "requestId": "",
+        "locale": "en-US",
+        "timestamp": "2016-08-23T15:25:17Z",
+        "intent": {
+            "name": "GetHeadlinesIntent",
+            "slots": {
+                "section_type": {
+                    "name": "section_type",
+                    "value": "travel"
+                }
+            }
+        }
+    },
+    "version": "1.0"
 }
