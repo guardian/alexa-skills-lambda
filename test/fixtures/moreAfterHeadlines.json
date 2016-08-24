@@ -5,7 +5,7 @@
 			"applicationId": ""
 		},
 		"attributes": {
-			"lastIntent": "GetHeadlines",
+			"lastIntent": "GetHeadlinesIntent",
 			"positionalContent": [],
 			"moreOffset": 3
 		},

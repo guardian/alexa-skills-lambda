@@ -5,7 +5,7 @@
 			"applicationId": ""
 		},
 		"attributes": {
-			"lastIntent": "GetHeadlines",
+			"lastIntent": "GetHeadlinesIntent",
 			"positionalContent": [
 				"education/2016/aug/18/a-level-results-show-another-drop-in-a-and-a-grade-students",
 				"politics/2016/aug/18/former-ministers-attack-massive-damp-squib-childhood-obesity-plan",

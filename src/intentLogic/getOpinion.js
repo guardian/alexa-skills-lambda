@@ -5,11 +5,14 @@ const helpers = require('../helpers');
 const speech = require('../speech').speech;
 const randomMsg = require('../helpers').randomMessage;
 
-module.exports = function (search_term) {
-    this.event.session.attributes.lastIntent = 'GetOpinion';
+module.exports = function () {
+    this.event.session.attributes.lastIntent = 'GetOpinionIntent';
+
+    const slots = this.event.request.intent.slots;
+    const searchTerm = slots.search_term ? slots.search_term.value : null;
 
     var capi_filter = 'show-fields=standfirst,byline,headline&show-blocks=all&tag=commentisfree/commentisfree';
-    var capi_query = helpers.capiQuery('search', capi_filter, search_term);
+    var capi_query = helpers.capiQuery('search', capi_filter, searchTerm);
 
     get(capi_query)
         .then(asJson)

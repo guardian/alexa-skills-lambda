@@ -7,7 +7,10 @@ const speech = require('../speech').speech;
 const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 
-module.exports = function (position) {
+module.exports = function () {
+
+    const slots = this.event.request.intent.slots;
+    const position = slots.position ? slots.position.value : null;
 
     var readContentAtPosition = (position) => {
         const contentId = this.event.session.attributes.positionalContent[position];
