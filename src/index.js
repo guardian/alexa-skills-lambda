@@ -33,6 +33,18 @@ var handlers = {
         this.emit(':ask', speech.launch.welcome, speech.launch.reprompt);
     },
 
+    'GetTopNewsIntent': function() {
+        this.emit(':ask', speech.news.explainer, speech.news.reprompt)
+    },
+
+    'GetTopReviewsIntent': function() {
+        this.emit(':ask', speech.reviews.explainer, speech.reviews.reprompt)
+    },
+
+    'GetTopSportIntent': function() {
+        this.emit(':ask', speech.sport.explainer, speech.sport.reprompt)
+    },
+
     'GetHeadlinesIntent': getHeadlines,
 
     'ReadContentAtPositionIntent': readContentAtPosition,

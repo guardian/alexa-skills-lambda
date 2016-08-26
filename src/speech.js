@@ -3,6 +3,16 @@ const speech = {
         welcome: 'Welcome to The Guardian. You can ask for news, opinions, reviews and sport. How can I help?',
         reprompt: 'Sorry, what would you like to hear?'
     },
+    news: {
+        explainer: `'I can give tell you headlines or even headlines by section. For example, simply say 'give me the sport headlines'
+            If you want me to read you stories or opinions on a particular topic. Simple say: 'give me the latest on Brexit'.
+            I think you get the idea. How can I help?`,
+        reprompt: 'How can I help you?'
+    },
+    sport: {
+        explainer: 'I can give you headlines for football, cricket, rugby, tennis, Formula One cycling or golf. ',
+        reprompt: 'How can I help you?'
+    },
     headlines: {
         top: 'the top three stories are: ',
         more: 'the next three stories are: ',
