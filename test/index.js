@@ -37,7 +37,7 @@ tap.test('Test get headlines intent with a specific section', test => {
                 test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
                 test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
-                test.equal(response.sessionAttributes.sectionType, 'travel');
+                test.equal(response.sessionAttributes.sectionType, 'politics');
                 test.end()
             },
             fail: function (error) {
@@ -124,7 +124,7 @@ tap.test('Test more intent after tech headlines', test => {
         lambda(
             moreAfterTechHeadlines, {
                 succeed: function (response) {
-                    test.ok(response.response.outputSpeech.ssml.indexOf("the next three technology stories are") != -1);
+                    test.ok(response.response.outputSpeech.ssml.indexOf("the next 3 technology stories are") != -1);
                     test.equal(response.sessionAttributes.moreOffset, 3);
                     test.end();
                 },

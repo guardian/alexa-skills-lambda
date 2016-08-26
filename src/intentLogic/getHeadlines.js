@@ -7,7 +7,6 @@ const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 const getSectionPath = require('../helpers').getSectionPath;
 const getMoreOffset = require('../helpers').getMoreOffset;
-const pageSize = require('../helpers').pageSize;
 
 module.exports = function (isNewIntentFlag) {
     // An intent is a new intent unless this is explicitly set to `false`; `undefined` defaults to `true`.
@@ -19,14 +18,14 @@ module.exports = function (isNewIntentFlag) {
     attributes.lastIntent = 'GetHeadlinesIntent';
     if (isNewIntent) attributes.sectionType = slots.section_type ? slots.section_type.value : null;
 
-    attributes.moreOffset = getMoreOffset(isNewIntent, attributes.moreOffset)
+    attributes.moreOffset = getMoreOffset(isNewIntent, attributes.moreOffset);
 
     get(buildCapiQuery(attributes.sectionType))
         .then(asJson)
         .then((json) => {
-            if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset + pageSize) {
-              updatePositionalContent(json); // side effects, yay!
-              this.emit(':ask', generateHeadlinesSpeech(json), speech.headlines.question);
+            if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset) {
+                updatePositionalContent(json); // side effects, yay!
+                this.emit(':ask', generateHeadlinesSpeech(json));
             } else {
                 this.emit(':ask', speech.headlines.notfound);
             }
@@ -36,8 +35,8 @@ module.exports = function (isNewIntentFlag) {
         });
 
     var generateHeadlinesSpeech = (json) => {
-    const preamble = generatePreamble(isNewIntent, attributes.sectionType);
-    const conclusion = sound.break + speech.headlines.question;
+    const preamble = generatePreamble(isNewIntent, attributes.sectionType, json.response.editorsPicks.length);
+    const conclusion = sound.strongBreak + followupQuestion(json.response.editorsPicks.length);
 
         var getHeadlines = () => {
             return json.response.editorsPicks.slice(attributes.moreOffset, attributes.moreOffset+3).map(editorsPick =>
@@ -65,15 +64,25 @@ var buildCapiQuery = (sectionType) => {
 
 };
 
-var generatePreamble = (isNewIntent, sectionType) => {
+var generatePreamble = (isNewIntent, sectionType, howManyStories) => {
     const ack = randomMsg(speech.acknowledgement);
+    const numberOfStoriesReturned = howManyStories >= 3 ? 3 : howManyStories;
 
     const buildStories = () => {
-      if (isNewIntent) return speech.headlines.top;
-      if (sectionType) return 'the next three ' + sectionType + ' stories are: ';
-      return speech.headlines.more;
-    }
+        if (sectionType) {
+            if (numberOfStoriesReturned == 1) return `the next story is: `;
+            else return `the next ${numberOfStoriesReturned} ${sectionType} stories are; `
+        }
+        if (isNewIntent) return `the top ${numberOfStoriesReturned} stories are: `;
+        return speech.headlines.more;
+    };
 
     return ack + buildStories();
+};
+
+var followupQuestion = (howManyStories) => {
+    if (howManyStories == 1) return speech.headlines.followup1;
+    if (howManyStories == 2) return speech.headlines.followup2;
+    return speech.headlines.followup3
 };
 
