@@ -7,7 +7,10 @@ const speech = {
         top: 'the top three stories are: ',
         more: 'the next three stories are: ',
         notfound: 'Sorry, I could not find you any headlines.',
-        question: 'Would you like me to read the first, second or third story or would you like more headlines?',
+
+        followup1: 'Would you like me to read the first story or would you like more headlines?',
+        followup2: 'Would you like me to read the first story, the second one or would you like more headlines?',
+        followup3: 'Would you like me to read the first, second or third story or would you like more headlines?',
         reprompt: 'Sorry, Would you like me to read the first, second or third story or would you like more headlines?'
     },
     opinions: {

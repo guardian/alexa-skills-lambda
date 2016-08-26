@@ -1,5 +1,5 @@
-var config = require("../tmp/config.json");
-var CAPI_API_KEY = config.capi_key;
+const config = require("../tmp/config.json");
+const CAPI_API_KEY = config.capi_key;
 
 exports.capiQuery = function(endpoint, filter, q) {
     var capiHost = 'http://content.guardianapis.com/';
@@ -10,7 +10,7 @@ exports.capiQuery = function(endpoint, filter, q) {
 };
 
 exports.randomMessage = function(messages) {
-	return messages[Math.floor(Math.random()*messages.length)]
+    return messages[Math.floor(Math.random()*messages.length)]
 };
 
 const sectionsWithoutEditions = {
