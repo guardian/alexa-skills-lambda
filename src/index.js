@@ -13,6 +13,7 @@ const SKILL_NAME = 'The Guardian';
 const getHeadlines = require('./intentLogic/getHeadlines');
 const getOpinion = require('./intentLogic/getOpinion');
 const getReview = require('./intentLogic/getReview');
+const getLatestReviews = require('./intentLogic/getLatestReviews');
 const readContentAtPosition = require('./intentLogic/readContentAtPosition');
 const yes = require('./intentLogic/yes');
 
@@ -57,6 +58,16 @@ var handlers = {
     'GetOpinionIntent': getOpinion,
 
     'GetReviewIntent': getReview,
+
+    'GetLatestReviewsIntent': getLatestReviews,
+
+    'ReviewTypeIntent': function() {
+        const slots = this.event.request.intent.slots;
+        if (slots.review_type && slots.review_type.value) {
+            this.event.session.attributes.reviewType = slots.review_type.value;
+            this.emit(this.event.session.attributes.lastIntent)
+        }
+    },
 
     'AMAZON.HelpIntent': function() {
         this.event.session.attributes.lastIntent = 'Help'

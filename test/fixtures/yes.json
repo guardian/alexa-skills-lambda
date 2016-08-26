@@ -19,8 +19,8 @@
 		"intent": {
 			"name": "GetReviewIntent",
 			"slots": {
-				"review_types": {
-					"name": "review_types",
+				"review_type": {
+					"name": "review_type",
 					"value": "book"
 				},
 				"search_term": {

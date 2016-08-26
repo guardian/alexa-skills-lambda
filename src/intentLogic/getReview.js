@@ -10,7 +10,7 @@ module.exports = function () {
     this.event.session.attributes.lastIntent = 'GetReviewIntent';
 
     const slots = this.event.request.intent.slots;
-    const reviewType = slots.review_types.value
+    const reviewType = slots.review_type.value
     const searchTerm = slots.search_term.value
 
     var counter = this.event.session.attributes.reviewsRead ? this.event.session.attributes.reviewsRead : 0

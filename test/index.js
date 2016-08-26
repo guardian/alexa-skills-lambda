@@ -5,11 +5,14 @@ const headLineSectionJson = require('./fixtures/getHeadlinesForSection.json');
 const opinionJson = require('./fixtures/getOpinionOn.json');
 const inexistentOpinionJson = require('./fixtures/getInexistentOpinion.json');
 const reviewJson = require('./fixtures/getReview.json');
+const latestReviewsJson = require('./fixtures/getLatestReviews.json');
 const posAfterHeadJson = require('./fixtures/positionalContentAfterHeadlines.json');
 const moreAfterHeadlines = require('./fixtures/moreAfterHeadlines.json');
 const moreAfterTechHeadlines = require('./fixtures/moreAfterTechHeadlines.json');
 const moreAfterBrexitOpinion = require('./fixtures/moreAfterBrexitOpinions.json');
 const localizedHeadlines = require('./fixtures/getLocalizedHeadlines.json');
+const moreAfterLatestReviews = require('./fixtures/moreAfterLatestReviews.json');
+const reviewTypeAfterLatestReviews = require('./fixtures/reviewTypeAfterLatestReviews.json');
 
 const speech = require('../src/speech').speech;
 
@@ -141,6 +144,57 @@ tap.test('Test the get {type} review on {something} intent', test => {
                     test.fail()
                 }
             });
+    }
+);
+
+tap.test('Test get latest reviews intent', test => {
+    test.plan(3);
+    lambda(
+        latestReviewsJson, {
+            succeed: function (response) {
+                test.equal(response.sessionAttributes.lastIntent, "GetLatestReviewsIntent");
+                test.equal(response.sessionAttributes.positionalContent.length, 3);
+                test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                test.end()
+            },
+            fail: function (error) {
+                test.fail()
+            }
+        });
+    }
+);
+
+tap.test('Test get more reviews after latest reviews intent', test => {
+    test.plan(3);
+    lambda(
+        moreAfterLatestReviews, {
+            succeed: function (response) {
+                test.equal(response.sessionAttributes.moreOffset, 3);
+                test.equal(response.sessionAttributes.reviewType, 'film');
+                test.equal(response.sessionAttributes.lastIntent, "GetLatestReviewsIntent");
+                test.end()
+            },
+            fail: function (error) {
+                test.fail()
+            }
+        });
+    }
+);
+
+tap.test('Test review_type after get latest reviews intent', test => {
+    test.plan(3);
+    lambda(
+        reviewTypeAfterLatestReviews, {
+            succeed: function (response) {
+                test.equal(response.sessionAttributes.lastIntent, "GetLatestReviewsIntent");
+                test.equal(response.sessionAttributes.positionalContent.length, 3);
+                test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                test.end()
+            },
+            fail: function (error) {
+                test.fail()
+            }
+        });
     }
 );
 

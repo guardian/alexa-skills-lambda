@@ -50,11 +50,14 @@ const speech = {
         more: 'the next three reviews are:',
         question: 'Would you like me to read the first, second or third review or would you like more {0} reviews?',
         hearAgain: 'OK. Would you like hear the choices again or more reviews?',
-        notfound: 'Sorry, I could not find you a review for you. Is there anything else I can help with?',
-        clarifyType: 'Is it a restaurant, book, film, music review your after?',
+        notfound: 'Sorry, I could not find a review for you. Is there anything else I can help with?',
+        clarifyType: 'Is it a restaurant, book, film, or music review you\'re after?',
         clarifySearch: 'What would you like a {0} review for?',
         reprompt: 'Would you like to hear another review?',
-        explainer: 'I have some great reviews for films, books, music and restaurants. Just say: give me the latest restaurant reviews. If you have a specific title in mind - simply ask: give me a film review for x. ' 
+        explainer: 'I have some great reviews for films, books, music and restaurants. Just say: give me the latest restaurant reviews. If you have a specific title in mind - simply ask: give me a film review for x. ',
+        followup1: 'Would you like me to read this review?',
+        followup2: 'Would you like me to read the first review or the second review?',
+        followup3: 'Would you like me to read the first, second or third review or would you like more reviews?'
     },
     help: {
         explainer: 'Happy to help. With The Guardian skill you can ask for the news, reviews, sports headlines and football scores. In News, you can ask for more headlines or get stories by topic and author. In Reviews, we have some great reviews for films, books, music and restaurants. You can ask for latest reviews and best by type or for a specific title. In Sport, you can ask for the headlines for football, cricket, rugby, tennis, F1, cycling or golf. Additionally for football, you can ask for the live scores, latest scores or fixtures. ',
