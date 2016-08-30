@@ -33,15 +33,15 @@ var handlers = {
         this.emit(':ask', speech.launch.welcome, speech.launch.reprompt);
     },
 
-    'GetTopNewsIntent': function() {
+    'GetIntroNewsIntent': function() {
         this.emit(':ask', speech.news.explainer, speech.news.reprompt)
     },
 
-    'GetTopReviewsIntent': function() {
+    'GetIntroReviewsIntent': function() {
         this.emit(':ask', speech.reviews.explainer, speech.reviews.reprompt)
     },
 
-    'GetTopSportIntent': function() {
+    'GetIntroSportIntent': function() {
         this.emit(':ask', speech.sport.explainer, speech.sport.reprompt)
     },
 
