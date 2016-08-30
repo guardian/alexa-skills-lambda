@@ -25,11 +25,14 @@ const speech = {
     },
     opinions: {
         latest: 'the latest three on opinion stories for {0} are: ',
-        more: 'the next three opinion stories for {0} are:',
+        more: 'the next three opinion stories are: ',
         question: 'Would you like hear the stories again or give you more opinion stories on {0}?',
         hearAgain: 'OK. Would you like hear the stories again or give you more opinion stories on {0}?',
-        notfound: 'Sorry - I don’t have any opinions on {0}. What else could I help you with?',
-        reprompt: 'Would you like to hear another opinion?'
+        notfound: 'Sorry - I don’t have any opinions on that. What else could I help you with?',
+        reprompt: 'Would you like to hear another opinion?',
+        followup1: 'Would you like me to read the first story or would you like more opinions?',
+        followup2: 'Would you like me to read the first story, the second one or would you like more opinions?',
+        followup3: 'Would you like me to read the first, second or third opinion or would you like more opinions?',
     },
     reviews: {
         latest: 'the latest {0} reviews are:',

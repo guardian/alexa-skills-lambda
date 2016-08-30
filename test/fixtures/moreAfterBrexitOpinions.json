@@ -1,0 +1,33 @@
+{
+    "session": {
+        "sessionId": "",
+        "application": {
+            "applicationId": ""
+        },
+        "attributes": {
+            "moreOffset": 0,
+            "searchTerm": "brexit",
+            "lastIntent": "GetOpinionIntent",
+            "positionalContent": [
+                "commentisfree/2016/jul/07/stories-buried-brexit-child-poverty-un-austerity",
+                "commentisfree/picture/2016/aug/28/what-ever-happened-to-the-brexit-campaign",
+                "commentisfree/picture/2016/aug/07/britannia-in-the-dark-about-brexit"
+            ]
+        },
+        "user": {
+            "userId": ""
+        },
+        "new": false
+    },
+    "request": {
+        "type": "IntentRequest",
+        "requestId": "",
+        "locale": "en-GB",
+        "timestamp": "2016-08-30T12:28:05Z",
+        "intent": {
+            "name": "MoreIntent",
+            "slots": {}
+        }
+    },
+    "version": "1.0"
+}

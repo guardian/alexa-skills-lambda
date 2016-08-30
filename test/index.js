@@ -3,10 +3,12 @@ const tap = require('tap');
 const headLinesJson = require('./fixtures/getHeadlines.json');
 const headLineSectionJson = require('./fixtures/getHeadlinesForSection.json');
 const opinionJson = require('./fixtures/getOpinionOn.json');
+const inexistentOpinionJson = require('./fixtures/getInexistentOpinion.json');
 const reviewJson = require('./fixtures/getReview.json');
 const posAfterHeadJson = require('./fixtures/positionalContentAfterHeadlines.json');
 const moreAfterHeadlines = require('./fixtures/moreAfterHeadlines.json');
 const moreAfterTechHeadlines = require('./fixtures/moreAfterTechHeadlines.json');
+const moreAfterBrexitOpinion = require('./fixtures/moreAfterBrexitOpinions.json');
 
 const speech = require('../src/speech').speech;
 
@@ -47,19 +49,56 @@ tap.test('Test get headlines intent with a specific section', test => {
     }
 );
 
-tap.test('Test the get opinion intent', test => {
-    test.plan(2);
+tap.test('Test the get opinion on Brexit intent', test => {
+    test.plan(5);
     lambda(
         opinionJson, {
             succeed: function (response) {
-                test.ok(response.response.outputSpeech.ssml);
                 test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
+                test.ok(response.response.outputSpeech.ssml.indexOf('Brexit') != -1);
+                test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                test.equal(response.sessionAttributes.searchTerm, 'Brexit');
+                test.equal(response.sessionAttributes.positionalContent.length, 3);
                 test.end()
             },
             fail: function (error) {
                 test.fail()
             }
         });
+    }
+);
+
+tap.test('Test more intent after Brexit opinion', test => {
+        test.plan(4);
+        lambda(
+            moreAfterBrexitOpinion, {
+                succeed: function (response) {
+                    test.ok(response.response.outputSpeech.ssml.indexOf("the next 3 brexit stories are") != -1);
+                    test.equal(response.sessionAttributes.moreOffset, 3);
+                    test.equal(response.sessionAttributes.searchTerm, 'brexit');
+                    test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
+                    test.end();
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test opinion intent with a search item that does not return any result', test => {
+        test.plan(2);
+        lambda(
+            inexistentOpinionJson, {
+                succeed: function (response) {
+                    test.ok(response.response.outputSpeech.ssml.indexOf(speech.opinions.notfound) != -1);
+                    test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
+                    test.end();
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
     }
 );
 
