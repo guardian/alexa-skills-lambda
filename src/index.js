@@ -30,8 +30,8 @@ exports.handler = function (event, context, callback) {
 
 var handlers = {
     'LaunchRequest': function() {
-        this.event.session.attributes.lastIntent = 'Launch';
-        this.emit(':ask', speech.launch.welcome + randomMsg(speech.core.questions), speech.launch.reprompt);
+        this.event.session.attributes.lastIntent = 'Launch'
+        this.emit(':ask', speech.launch.welcome + randomMsg(speech.core.questions), speech.launch.reprompt)
     },
 
     'GetIntroNewsIntent': function() {
@@ -59,7 +59,7 @@ var handlers = {
     'GetReviewIntent': getReview,
 
     'AMAZON.HelpIntent': function() {
-        this.event.session.attributes.lastIntent = 'Help';
+        this.event.session.attributes.lastIntent = 'Help'
 
         this.emit(':ask', speech.help.explainer + randomMsg(speech.core.questions), speech.help.reprompt)
     },
