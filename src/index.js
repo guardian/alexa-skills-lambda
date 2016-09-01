@@ -61,6 +61,7 @@ var handlers = {
 
     'GetLatestReviewsIntent': getLatestReviews,
 
+    //The user has specified a review_type. The reviews intents will prompt for one if missing.
     'ReviewTypeIntent': function() {
         const slots = this.event.request.intent.slots;
         if (slots.review_type && slots.review_type.value) {

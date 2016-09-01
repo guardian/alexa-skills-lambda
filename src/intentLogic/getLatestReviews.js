@@ -19,12 +19,7 @@ module.exports = function(isNewIntentFlag) {
     if (attributes.reviewType) {
         attributes.moreOffset = getMoreOffset(isNewIntent, attributes.moreOffset);
 
-        const filter = "page="+ ((attributes.moreOffset / helpers.pageSize) + 1)
-                     + "&page-size="+ helpers.pageSize
-                     + "&tag=tone/reviews,"+ getTagType(attributes.reviewType)
-                     + "&show-fields=standfirst,byline,headline&show-blocks=all";
-
-        const capiQuery = helpers.capiQuery('search', filter);
+        const capiQuery = getCapiQuery(attributes.moreOffset, attributes.reviewType);
         get(capiQuery)
             .then(asJson)
             .then(json => {
@@ -49,6 +44,15 @@ module.exports = function(isNewIntentFlag) {
     }
 }
 
+function getCapiQuery(offset, reviewType) {
+    const filter = "page="+ ((offset / helpers.pageSize) + 1)
+                 + "&page-size="+ helpers.pageSize
+                 + "&tag=tone/reviews,"+ getTagType(reviewType)
+                 + "&show-fields=standfirst,byline,headline&show-blocks=all";
+
+    return helpers.capiQuery('search', filter);
+}
+
 function getTagType(reviewType) {
     switch (reviewType) {
         case 'film':
@@ -67,15 +71,9 @@ function getTagType(reviewType) {
 }
 
 function getPreamble(isNewIntent, reviewCount, reviewType) {
-    if (isNewIntent) {
-        return `Here are the latest ${reviewType} reviews.`;
-    } else {
-        if (reviewCount === 1) {
-            return `The next ${reviewType} review is`;
-        } else {
-            return `The next ${reviewType} reviews are`;
-        }
-    }
+    if (isNewIntent) return `Here are the latest ${reviewType} reviews.`;
+    if (reviewCount === 1) return `The next ${reviewType} review is`;
+    return `The next ${reviewType} reviews are`;
 }
 
 function getConclusion(reviewCount) {
