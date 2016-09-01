@@ -1,17 +1,17 @@
 const speech = {
     launch: {
-        welcome: 'Welcome to The Guardian. You can ask for news, opinions, reviews and sport. How can I help?',
+        welcome: 'Welcome to The Guardian! You can ask me for news, opinions, reviews and sport. ',
         reprompt: 'Sorry, what would you like to hear?'
     },
     news: {
-        explainer: `'I can give tell you headlines or even headlines by section. For example, simply say 'give me the sport headlines'
-            If you want me to read you stories or opinions on a particular topic. Simple say: 'give me the latest on Brexit'.
-            I think you get the idea. How can I help?`,
-        reprompt: 'How can I help you?'
+        explainer: `'OK great. I can give you more than just the headlines. For example, ask: give me the sport headlines.
+        If you want me to read you stories on a topic. Ask: give me the latest on Brexit.
+        And finally, if you want me to hear the latest opinions on a topic. Say: give me the latest opinions on Brexit.'`,
+        reprompt: 'Sorry, what headlines would you like to hear?'
     },
     sport: {
         explainer: 'I can give you headlines for football, cricket, rugby, tennis, Formula One cycling or golf. ',
-        reprompt: 'How can I help you?'
+        reprompt: 'Sorry, what sport would you like the headlines for?'
     },
     headlines: {
         top: 'the top three stories are: ',
@@ -23,7 +23,7 @@ const speech = {
         question: 'Would you like me to read the first, second or third story or would you like more headlines?',
         hearAgain: 'OK. Would you like hear the choices again or more headlines?',
         reprompt: 'Sorry, Would you like me to read the first, second or third story or would you like more headlines?',
-        explainer: 'I can give you more headlines or get stories by topic by saying: "give me the latest on Brexit" or "give me the sport headlines". What can I tell you?'
+        explainer: 'I can give you more headlines or get stories by topic by saying: give me the latest on x, or give me the sport headlines. '
     },
     topic: {
         latest: 'the latest three on opinion stories for {0} are: ',
@@ -51,16 +51,22 @@ const speech = {
         clarifyType: 'Is it a restaurant, book, film, music review your after?',
         clarifySearch: 'What would you like a {0} review for?',
         reprompt: 'Would you like to hear another review?',
-        explainer: 'I have some great reviews for films, books, music and restaurants. I can give you the latest or best reviews by type - just say “give me the latest restaurant reviews. If you have a specific title in mind - say "give me a film review for Star Trek Beyond". What can I tell you?'
+        explainer: 'I have some great reviews for films, books, music and restaurants. Just say: give me the latest restaurant reviews. If you have a specific title in mind - simply ask: give me a film review for x. ' 
     },
     help: {
-        explainer: 'Happy to help. With The Guardian skill you can ask for the news, reviews, sports headlines and football scores. In News, you can ask for more headlines or get stories by topic and author. In Reviews, we have some great reviews for films, books, music and restaurants. You can ask for latest reviews and best by type or for a specific title. In Sport, you can ask for the headlines for football, cricket, rugby, tennis, F1, cycling or golf. Additionally for football, you can ask for the live scores, latest scores or fixtures. How can I help you today?',
+        explainer: 'Happy to help. With The Guardian skill you can ask for the news, reviews, sports headlines and football scores. In News, you can ask for more headlines or get stories by topic and author. In Reviews, we have some great reviews for films, books, music and restaurants. You can ask for latest reviews and best by type or for a specific title. In Sport, you can ask for the headlines for football, cricket, rugby, tennis, F1, cycling or golf. Additionally for football, you can ask for the live scores, latest scores or fixtures. ',
         reprompt: 'Sorry, what would you like to do?'
     },
     core: {
         stop: 'Speak to you again soon.',
         cancel: 'Speak to you again soon.',
-        didNotUnderstand: 'Sorry, I didn\'t catch that'
+        didNotUnderstand: 'Sorry, I didn\'t catch that',
+        questions: [
+            'What would you like to hear?',
+            'How can I help?',
+            'What can I help you with?',
+            'What can I tell you?'
+        ]
     },
     positionalContent: {
         followup: 'Would you like to hear the headlines again, or more headlines?',

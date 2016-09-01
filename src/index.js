@@ -19,6 +19,7 @@ const yes = require('./intentLogic/yes');
 // misc
 const helpers = require('./helpers');
 const speech = require('./speech').speech;
+const randomMsg = require('./helpers').randomMessage;
 
 exports.handler = function (event, context, callback) {
     var alexa = Alexa.handler(event, context);
@@ -30,19 +31,19 @@ exports.handler = function (event, context, callback) {
 var handlers = {
     'LaunchRequest': function() {
         this.event.session.attributes.lastIntent = 'Launch';
-        this.emit(':ask', speech.launch.welcome, speech.launch.reprompt);
+        this.emit(':ask', speech.launch.welcome + randomMsg(speech.core.questions), speech.launch.reprompt);
     },
 
     'GetIntroNewsIntent': function() {
-        this.emit(':ask', speech.news.explainer, speech.news.reprompt)
+        this.emit(':ask', speech.news.explainer + randomMsg(speech.core.questions), speech.news.reprompt)
     },
 
     'GetIntroReviewsIntent': function() {
-        this.emit(':ask', speech.reviews.explainer, speech.reviews.reprompt)
+        this.emit(':ask', speech.reviews.explainer + randomMsg(speech.core.questions), speech.reviews.reprompt)
     },
 
     'GetIntroSportIntent': function() {
-        this.emit(':ask', speech.sport.explainer, speech.sport.reprompt)
+        this.emit(':ask', speech.sport.explainer + randomMsg(speech.core.questions), speech.sport.reprompt)
     },
 
     'GetHeadlinesIntent': getHeadlines,
@@ -60,7 +61,7 @@ var handlers = {
     'AMAZON.HelpIntent': function() {
         this.event.session.attributes.lastIntent = 'Help';
 
-        this.emit(':ask', speech.help.explainer, speech.help.reprompt)
+        this.emit(':ask', speech.help.explainer + randomMsg(speech.core.questions), speech.help.reprompt)
     },
     'AMAZON.CancelIntent': function() {
         this.emit(':tell', speech.core.cancel)
