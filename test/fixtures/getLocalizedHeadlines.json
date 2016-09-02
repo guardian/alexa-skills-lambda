@@ -1,0 +1,25 @@
+{
+    "session": {
+        "sessionId": "",
+        "application": {
+            "applicationId": ""
+        },
+        "attributes": {
+        },
+        "user": {
+            "userId": ""
+        },
+        "new": true
+    },
+    "request": {
+        "type": "IntentRequest",
+        "requestId": "",
+        "locale": "en-AU",
+        "timestamp": "2016-08-08T14:18:45Z",
+        "intent": {
+            "name": "GetHeadlinesIntent",
+            "slots": {}
+        },
+        "version": "1.0"
+    }
+}
