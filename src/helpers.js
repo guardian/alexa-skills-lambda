@@ -5,8 +5,7 @@ exports.capiQuery = function(endpoint, filter, q) {
     var capiHost = 'http://content.guardianapis.com/';
     var key = '&api-key=' + CAPI_API_KEY;
     var query = q ? '&q=' + q : '';
-    var fullQuery = capiHost + endpoint + '?' + filter + query + key;
-    return fullQuery
+    return capiHost + endpoint + '?' + filter + query + key;
 };
 
 exports.randomMessage = function(messages) {
@@ -34,5 +33,14 @@ exports.getMoreOffset = (isNewIntent, currentMoreOffset) => {
     if (isNewIntent) return 0;
     else return currentMoreOffset + PAGE_SIZE;
   } else return 0;
-}
+};
+
+exports.localizeEdition = (locale) => {
+    switch (locale) {
+        case 'en-US': return 'us';
+        case 'en-GB': return 'uk';
+        case 'en-AU': return 'au';
+        default: return 'uk';
+    }
+};
 

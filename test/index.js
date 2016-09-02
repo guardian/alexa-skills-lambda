@@ -9,6 +9,7 @@ const posAfterHeadJson = require('./fixtures/positionalContentAfterHeadlines.jso
 const moreAfterHeadlines = require('./fixtures/moreAfterHeadlines.json');
 const moreAfterTechHeadlines = require('./fixtures/moreAfterTechHeadlines.json');
 const moreAfterBrexitOpinion = require('./fixtures/moreAfterBrexitOpinions.json');
+const localizedHeadlines = require('./fixtures/getLocalizedHeadlines.json');
 
 const speech = require('../src/speech').speech;
 
@@ -28,6 +29,24 @@ tap.test('Test get headlines intent', test => {
                 test.fail()
             }
         });
+    }
+);
+
+tap.test('Test localized headlines intent', test => {
+        test.plan(3);
+        lambda(
+            localizedHeadlines, {
+                succeed: function (response) {
+                    console.log(response);
+                    test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
+                    test.equal(response.sessionAttributes.positionalContent.length, 3);
+                    test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                    test.end()
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
     }
 );
 

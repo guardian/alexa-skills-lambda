@@ -7,6 +7,7 @@ const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 const getSectionPath = require('../helpers').getSectionPath;
 const getMoreOffset = require('../helpers').getMoreOffset;
+const localizeEdition = require('../helpers').localizeEdition;
 
 module.exports = function (isNewIntentFlag) {
     // An intent is a new intent unless this is explicitly set to `false`; `undefined` defaults to `true`.
@@ -20,7 +21,7 @@ module.exports = function (isNewIntentFlag) {
 
     attributes.moreOffset = getMoreOffset(isNewIntent, attributes.moreOffset);
 
-    get(buildCapiQuery(attributes.sectionType))
+    get(buildCapiQuery(attributes.sectionType, this.event.request.locale))
         .then(asJson)
         .then((json) => {
             if (json.response.editorsPicks && json.response.editorsPicks.length >= attributes.moreOffset) {
@@ -53,9 +54,9 @@ module.exports = function (isNewIntentFlag) {
   };
 };
 
-var buildCapiQuery = (sectionType) => {
+var buildCapiQuery = (sectionType, locale) => {
 
-    const path = getSectionPath(sectionType, 'uk'); //TODO - other editions?
+    const path = getSectionPath(sectionType, localizeEdition(locale));
     const showEditorsPicks = 'show-editors-picks=true';
     const showFields = '&show-fields=byline,headline&tag=type/article,tone/news,-tone/minutebyminute';
     const filters = showEditorsPicks + showFields;

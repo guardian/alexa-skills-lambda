@@ -30,7 +30,7 @@ exports.handler = function (event, context, callback) {
 
 var handlers = {
     'LaunchRequest': function() {
-        this.event.session.attributes.lastIntent = 'Launch'
+        this.event.session.attributes.lastIntent = 'Launch';
         this.emit(':ask', speech.launch.welcome + randomMsg(speech.core.questions), speech.launch.reprompt)
     },
 
