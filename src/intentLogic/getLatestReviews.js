@@ -20,37 +20,46 @@ module.exports = function(isNewIntentFlag) {
         attributes.moreOffset = getMoreOffset(isNewIntent, attributes.moreOffset);
 
         const capiQuery = getCapiQuery(attributes.moreOffset, attributes.reviewType);
-        get(capiQuery)
-            .then(asJson)
-            .then(json => {
-                if (json.response.results && json.response.results.length > 1) {
-                    attributes.positionalContent = json.response.results.map(review => review.id);
-                    const preamble = getPreamble(isNewIntent, json.response.results.length, attributes.reviewType);
-                    const reviews = json.response.results.map(review => {
-                        return review.fields.headline + sound.transition;
-                    });
-                    const conclusion = getConclusion(json.response.results.length);
+        if (capiQuery !== null) {
+            get(capiQuery)
+                .then(asJson)
+                .then(json => {
+                    if (json.response.results && json.response.results.length > 1) {
+                        attributes.positionalContent = json.response.results.map(review => review.id);
+                        const preamble = getPreamble(isNewIntent, json.response.results.length, attributes.reviewType);
+                        const reviews = json.response.results.map(review => {
+                            return review.fields.headline + sound.transition;
+                        });
+                        const conclusion = getConclusion(json.response.results.length);
 
-                    this.emit(':ask', `${preamble} ${reviews} ${conclusion}`);
-                } else {
+                        this.emit(':ask', `${preamble} ${reviews} ${conclusion}`);
+                    } else {
+                        this.emit(':tell', speech.reviews.notfound);
+                    }
+                })
+                .catch(error => {
                     this.emit(':tell', speech.reviews.notfound);
-                }
-            })
-            .catch(error => {
-                this.emit(':tell', speech.reviews.notfound);
-            })
+                })
+        } else {
+            this.emit(':ask', speech.reviews.clarifyType);
+        }
     } else {
         this.emit(':ask', speech.reviews.clarifyType);
     }
 }
 
 function getCapiQuery(offset, reviewType) {
-    const filter = "page="+ ((offset / helpers.pageSize) + 1)
-                 + "&page-size="+ helpers.pageSize
-                 + "&tag=tone/reviews,"+ getTagType(reviewType)
-                 + "&show-fields=standfirst,byline,headline&show-blocks=all";
-
-    return helpers.capiQuery('search', filter);
+    const tagType = getTagType(reviewType);
+    if (tagType !== null) {
+        const filter = "page="+ ((offset / helpers.pageSize) + 1)
+                     + "&page-size="+ helpers.pageSize
+                     + "&tag=tone/reviews,"+ tagType
+                     + "&show-fields=standfirst,byline,headline&show-blocks=all";
+        
+        return helpers.capiQuery('search', filter);
+    } else {
+        return null;
+    }
 }
 
 function getTagType(reviewType) {
@@ -67,6 +76,8 @@ function getTagType(reviewType) {
         case 'music':
             return 'music/music';
             break;
+        default:
+            return null
     }
 }
 
