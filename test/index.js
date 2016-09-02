@@ -4,7 +4,6 @@ const headLinesJson = require('./fixtures/getHeadlines.json');
 const headLineSectionJson = require('./fixtures/getHeadlinesForSection.json');
 const opinionJson = require('./fixtures/getOpinionOn.json');
 const inexistentOpinionJson = require('./fixtures/getInexistentOpinion.json');
-const reviewJson = require('./fixtures/getReview.json');
 const latestReviewsJson = require('./fixtures/getLatestReviews.json');
 const posAfterHeadJson = require('./fixtures/positionalContentAfterHeadlines.json');
 const moreAfterHeadlines = require('./fixtures/moreAfterHeadlines.json');
@@ -116,29 +115,6 @@ tap.test('Test opinion intent with a search item that does not return any result
                     test.ok(response.response.outputSpeech.ssml.indexOf(speech.opinions.notfound) != -1);
                     test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
                     test.end();
-                },
-                fail: function (error) {
-                    test.fail()
-                }
-            });
-    }
-);
-
-tap.test('Test the get {type} review on {something} intent', test => {
-        test.plan(2);
-        lambda(
-            reviewJson, {
-                succeed: function (response) {
-                    test.ok(response.response.outputSpeech.ssml.indexOf('Houellebecq') != -1);
-                    test.match(response, {
-                        sessionAttributes: {
-                             lastIntent: 'GetReviewIntent',
-                            reviewsRead: 1,
-                            lastReviewType: 'book',
-                            lastSearchTerm: 'houellebecq'
-                        }
-                    });
-                    test.end()
                 },
                 fail: function (error) {
                     test.fail()

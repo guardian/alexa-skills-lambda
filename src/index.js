@@ -12,7 +12,6 @@ const SKILL_NAME = 'The Guardian';
 // intent logic
 const getHeadlines = require('./intentLogic/getHeadlines');
 const getOpinion = require('./intentLogic/getOpinion');
-const getReview = require('./intentLogic/getReview');
 const getLatestReviews = require('./intentLogic/getLatestReviews');
 const readContentAtPosition = require('./intentLogic/readContentAtPosition');
 const yes = require('./intentLogic/yes');
@@ -56,8 +55,6 @@ var handlers = {
         this.emit(this.event.session.attributes.lastIntent, false);
     },
     'GetOpinionIntent': getOpinion,
-
-    'GetReviewIntent': getReview,
 
     'GetLatestReviewsIntent': getLatestReviews,
 
