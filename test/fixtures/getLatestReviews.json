@@ -1,0 +1,29 @@
+{
+  "session": {
+    "sessionId": "",
+    "application": {
+      "applicationId": ""
+    },
+    "attributes": {},
+    "user": {
+      "userId": ""
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "",
+    "locale": "en-GB",
+    "timestamp": "2016-08-30T16:12:35Z",
+    "intent": {
+      "name": "GetLatestReviewsIntent",
+      "slots": {
+        "review_type": {
+          "name": "review_type",
+          "value": "film"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
