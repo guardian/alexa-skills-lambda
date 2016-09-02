@@ -54,7 +54,7 @@ const speech = {
         clarifyType: 'Is it a restaurant, book, film, or music review you\'re after?',
         clarifySearch: 'What would you like a {0} review for?',
         reprompt: 'Would you like to hear another review?',
-        explainer: 'I have some great reviews for films, books, music and restaurants. Just say: give me the latest restaurant reviews. If you have a specific title in mind - simply ask: give me a film review for x. ',
+        explainer: 'I have reviews for films, books, music and restaurants. Just say: give me the latest restaurant reviews.',
         followup1: 'Would you like me to read this review?',
         followup2: 'Would you like me to read the first review or the second review?',
         followup3: 'Would you like me to read the first, second or third review or would you like more reviews?'
