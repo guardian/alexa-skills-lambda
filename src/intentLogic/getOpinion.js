@@ -1,69 +1,64 @@
 const get = require('simple-get-promise').get;
 const asJson = require('simple-get-promise').asJson;
 
-const helpers = require('../helpers');
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 const getMoreOffset = require('../helpers').getMoreOffset;
+const getTopic = require('../helpers').getTopic;
 
-module.exports = function (isNewIntentFlag) {
-    // An intent is a new intent unless this is explicitly set to `false`; `undefined` defaults to `true`.
-    const isNewIntent = isNewIntentFlag !== false;
+const capiQueryBuilder = require('../capiQueryBuilder');
+
+module.exports = function () {
 
     const attributes = this.event.session.attributes;
     const slots = this.event.request.intent.slots;
 
-    attributes.lastIntent = 'GetOpinionIntent';
-    if (isNewIntent) attributes.searchTerm = slots.search_term ? slots.search_term.value : null;
+    const isNewIntent = attributes.lastIntent !== "MoreIntent";
+
+    attributes.topic = getTopic(attributes, slots);
 
     attributes.moreOffset = getMoreOffset(isNewIntent, attributes.moreOffset);
+    attributes.lastIntent = 'GetOpinionIntent';
 
-    get(buildCapiQuery(attributes.searchTerm))
-        .then(asJson)   
-        .then((json) => {
-            if (json.response.results && json.response.results.length > 0 && json.response.results.length >= attributes.moreOffset) {
-                updatePositionalContent(json); // side effects, yay!
-                this.emit(':ask', generateOpinionSpeech(json));
-            } else {
-                this.emit(':ask', speech.opinions.notfound);
-            }
-        })
-        .catch(function (error) {
-            this.emit(':tell', speech.opinions.notfound);
-        });
-
-    var generateOpinionSpeech = (json) => {
-        const preamble = generatePreamble(isNewIntent, attributes.searchTerm, json.response.results.length);
-        const conclusion = sound.strongBreak + followupQuestion(json.response.results.length);
-
-        var getOpinions = () => {
-            return json.response.results.slice(attributes.moreOffset, attributes.moreOffset+3).map(results =>
-                results.fields.headline + sound.transition
-            );
-        };
-
-        return preamble + getOpinions() + conclusion;
-    };
-
-    var updatePositionalContent = (json) => {
-        attributes.positionalContent = json.response.results.slice(attributes.moreOffset, attributes.moreOffset+3).map(result =>
-            result.id );
-    };
+    const capiQuery = capiQueryBuilder.opinionQuery(attributes.moreOffset, this.event.request.locale, attributes.topic);
+    if (capiQuery !== null) {
+        get(capiQuery)
+            .then(asJson)
+            .then((json) => {
+                if (json.response.results && json.response.results.length > 0 && json.response.results.length > 0) {
+                    attributes.positionalContent = json.response.results.map(result => result.id);
+                    const opinionSpeech = generateOpinionSpeech(json.response.results, isNewIntent, attributes.topic);
+                    this.emit(':ask', opinionSpeech);
+                } else {
+                    this.emit(':ask', speech.opinions.notfound);
+                }
+            })
+            .catch(function (error) {
+                this.emit(':tell', speech.opinions.notfound);
+            });
+    } else {
+        this.emit(':tell', speech.opinions.notfound);
+    }
 };
 
-var buildCapiQuery = (searchTerm) => {
-    return helpers.capiQuery('search', '&show-fields=standfirst,byline,headline&tag=commentisfree/commentisfree', searchTerm);
+const generateOpinionSpeech = (results, isNewIntent, topic) => {
+    const preamble = generatePreamble(isNewIntent, topic, results.length);
+    const conclusion = sound.strongBreak + followupQuestion(results.length);
+    const opinions = results.map(result => result.fields.headline + sound.transition);
+
+    return preamble + opinions + conclusion;
 };
 
-var generatePreamble = (isNewIntent, searchTerm, howManyStories) => {
+const generatePreamble = (isNewIntent, topic, howManyStories) => {
     const ack = randomMsg(speech.acknowledgement);
     const numberOfStoriesReturned = howManyStories >= 3 ? 3 : howManyStories;
 
     const buildStories = () => {
-        if (searchTerm) {
+        if (topic) {
+            if (isNewIntent) return `the top ${numberOfStoriesReturned} ${topic} stories are: `;
             if (numberOfStoriesReturned == 1) return `the next story is: `;
-            else return `the next ${numberOfStoriesReturned} ${searchTerm} stories are; `
+            return `the next ${numberOfStoriesReturned} ${topic} stories are; `
         }
         if (isNewIntent) return `the top ${numberOfStoriesReturned} stories are: `;
         return speech.opinions.more;
@@ -72,7 +67,7 @@ var generatePreamble = (isNewIntent, searchTerm, howManyStories) => {
     return ack + buildStories();
 };
 
-var followupQuestion = (howManyStories) => {
+const followupQuestion = (howManyStories) => {
     if (howManyStories == 1) return speech.opinions.followup1;
     if (howManyStories == 2) return speech.opinions.followup2;
     return speech.opinions.followup3

@@ -2,7 +2,7 @@ const config = require("../tmp/config.json");
 const CAPI_API_KEY = config.capi_key;
 
 exports.capiQuery = function(endpoint, filter, q) {
-    var capiHost = 'http://content.guardianapis.com/';
+    var capiHost = 'https://content.guardianapis.com/';
     var key = '&api-key=' + CAPI_API_KEY;
     var query = q ? '&q=' + q : '';
     return capiHost + endpoint + '?' + filter + query + key;
@@ -44,3 +44,15 @@ exports.localizeEdition = (locale) => {
     }
 };
 
+/**
+ * Set the topic based on the lastIntent.
+ * If it's a new intent then the topic is set using only the slots.
+ * If the last intent was MoreIntent or EntityIntent then only use the attributes.
+ */
+exports.getTopic = (attributes, slots) => {
+    switch (attributes.lastIntent) {
+        case "MoreIntent":
+        case "EntityIntent": return attributes.topic ? attributes.topic : null;
+        default: return (slots.topic && slots.topic.value) ? slots.topic.value : null;
+    }
+};
