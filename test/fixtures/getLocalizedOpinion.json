@@ -5,7 +5,6 @@
       "applicationId": ""
     },
     "attributes": {
-        "lastIntent": "GetLatestReviewsIntent"
     },
     "user": {
       "userId": ""
@@ -15,17 +14,13 @@
   "request": {
     "type": "IntentRequest",
     "requestId": "",
-    "locale": "en-GB",
-    "timestamp": "2016-08-31T09:44:11Z",
+    "locale": "en-US",
+    "timestamp": "2016-08-08T14:18:45Z",
     "intent": {
-      "name": "EntityIntent",
+      "name": "GetOpinionIntent",
       "slots": {
-        "review_type": {
-          "name": "review_type",
-          "value": "film"
-        }
       }
-    }
-  },
-  "version": "1.0"
+    },
+    "version": "1.0"
+  }
 }

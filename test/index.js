@@ -1,14 +1,16 @@
 const tap = require('tap');
 
 const headLinesJson = require('./fixtures/getHeadlines.json');
-const headLineSectionJson = require('./fixtures/getHeadlinesForSection.json');
+const headLineTopicJson = require('./fixtures/getHeadlinesForTopic.json');
+const topicAfterNewsIntro = require('./fixtures/topicAfterNewsIntro.json');
 const opinionJson = require('./fixtures/getOpinionOn.json');
+const localizedOpinion = require('./fixtures/getLocalizedOpinion.json');
 const inexistentOpinionJson = require('./fixtures/getInexistentOpinion.json');
 const latestReviewsJson = require('./fixtures/getLatestReviews.json');
 const posAfterHeadJson = require('./fixtures/positionalContentAfterHeadlines.json');
 const moreAfterHeadlines = require('./fixtures/moreAfterHeadlines.json');
 const moreAfterTechHeadlines = require('./fixtures/moreAfterTechHeadlines.json');
-const moreAfterBrexitOpinion = require('./fixtures/moreAfterBrexitOpinions.json');
+const moreAfterSportOpinion = require('./fixtures/moreAfterSportOpinions.json');
 const localizedHeadlines = require('./fixtures/getLocalizedHeadlines.json');
 const moreAfterLatestReviews = require('./fixtures/moreAfterLatestReviews.json');
 const reviewTypeAfterLatestReviews = require('./fixtures/reviewTypeAfterLatestReviews.json');
@@ -39,7 +41,6 @@ tap.test('Test localized headlines intent', test => {
         lambda(
             localizedHeadlines, {
                 succeed: function (response) {
-                    console.log(response);
                     test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                     test.equal(response.sessionAttributes.positionalContent.length, 3);
                     test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
@@ -52,15 +53,33 @@ tap.test('Test localized headlines intent', test => {
     }
 );
 
-tap.test('Test get headlines intent with a specific section', test => {
+tap.test('Test topic after news intro', test => {
+        test.plan(4);
+        lambda(
+            topicAfterNewsIntro, {
+                succeed: function (response) {
+                    test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
+                    test.equal(response.sessionAttributes.positionalContent.length, 3);
+                    test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                    test.equal(response.sessionAttributes.topic, 'politics');
+                    test.end()
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test get headlines intent with a specific topic', test => {
     test.plan(4);
     lambda(
-        headLineSectionJson, {
+        headLineTopicJson, {
             succeed: function (response) {
                 test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
                 test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
-                test.equal(response.sessionAttributes.sectionType, 'politics');
+                test.equal(response.sessionAttributes.topic, 'politics');
                 test.end()
             },
             fail: function (error) {
@@ -70,15 +89,32 @@ tap.test('Test get headlines intent with a specific section', test => {
     }
 );
 
-tap.test('Test the get opinion on Brexit intent', test => {
+tap.test('Test the get opinion on sport intent', test => {
+        test.plan(3);
+        lambda(
+            localizedOpinion, {
+                succeed: function (response) {
+                    test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
+                    test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                    test.equal(response.sessionAttributes.positionalContent.length, 3);
+                    test.end()
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test the get opinion on sport intent', test => {
     test.plan(5);
     lambda(
         opinionJson, {
             succeed: function (response) {
                 test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
-                test.ok(response.response.outputSpeech.ssml.indexOf('Brexit') != -1);
+                test.ok(response.response.outputSpeech.ssml.indexOf('sport') != -1);
                 test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
-                test.equal(response.sessionAttributes.searchTerm, 'Brexit');
+                test.equal(response.sessionAttributes.topic, 'sport');
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
                 test.end()
             },
@@ -89,14 +125,14 @@ tap.test('Test the get opinion on Brexit intent', test => {
     }
 );
 
-tap.test('Test more intent after Brexit opinion', test => {
+tap.test('Test more intent after sport opinion', test => {
         test.plan(4);
         lambda(
-            moreAfterBrexitOpinion, {
+            moreAfterSportOpinion, {
                 succeed: function (response) {
-                    test.ok(response.response.outputSpeech.ssml.indexOf("the next 3 brexit stories are") != -1);
+                    test.ok(response.response.outputSpeech.ssml.indexOf("the next 3 sport stories are") != -1);
                     test.equal(response.sessionAttributes.moreOffset, 3);
-                    test.equal(response.sessionAttributes.searchTerm, 'brexit');
+                    test.equal(response.sessionAttributes.topic, 'sport');
                     test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
                     test.end();
                 },
@@ -107,7 +143,7 @@ tap.test('Test more intent after Brexit opinion', test => {
     }
 );
 
-tap.test('Test opinion intent with a search item that does not return any result', test => {
+tap.test('Test opinion intent with a topic that does not return any result', test => {
         test.plan(2);
         lambda(
             inexistentOpinionJson, {
@@ -157,12 +193,13 @@ tap.test('Test get more reviews after latest reviews intent', test => {
     }
 );
 
-tap.test('Test review_type after get latest reviews intent', test => {
-    test.plan(3);
+tap.test('Test entity after get latest reviews intent', test => {
+    test.plan(4);
     lambda(
         reviewTypeAfterLatestReviews, {
             succeed: function (response) {
                 test.equal(response.sessionAttributes.lastIntent, "GetLatestReviewsIntent");
+                test.equal(response.sessionAttributes.reviewType, "film");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
                 test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
                 test.end()

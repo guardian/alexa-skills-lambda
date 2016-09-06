@@ -5,24 +5,27 @@
       "applicationId": ""
     },
     "attributes": {
-        "lastIntent": "GetLatestReviewsIntent"
+      "moreOffset": 0,
+      "lastIntent": "GetIntroNewsIntent",
+      "positionalContent": [
+      ]
     },
     "user": {
       "userId": ""
     },
-    "new": true
+    "new": false
   },
   "request": {
     "type": "IntentRequest",
     "requestId": "",
-    "locale": "en-GB",
-    "timestamp": "2016-08-31T09:44:11Z",
+    "locale": "en-US",
+    "timestamp": "2016-08-23T15:25:17Z",
     "intent": {
       "name": "EntityIntent",
       "slots": {
-        "review_type": {
-          "name": "review_type",
-          "value": "film"
+        "topic": {
+          "name": "topic",
+          "value": "politics"
         }
       }
     }

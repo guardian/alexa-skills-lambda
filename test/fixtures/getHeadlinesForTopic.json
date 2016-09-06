@@ -23,8 +23,8 @@
         "intent": {
             "name": "GetHeadlinesIntent",
             "slots": {
-                "section_type": {
-                    "name": "section_type",
+                "topic": {
+                    "name": "topic",
                     "value": "politics"
                 }
             }

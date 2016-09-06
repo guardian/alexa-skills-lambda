@@ -8,7 +8,7 @@
             "moreOffset": 0,
             "lastIntent": "GetHeadlinesIntent",
             "positionalContent": [],
-            "sectionType": "technology"
+            "topic": "technology"
         },
         "user": {
             "userId": ""

@@ -6,7 +6,7 @@ const speech = {
     news: {
         explainer: `'OK great. I can give you more than just the headlines. For example, ask: give me the sport headlines.
         If you want me to read you stories on a topic. Ask: give me the latest on Brexit.
-        And finally, if you want me to hear the latest opinions on a topic. Say: give me the latest opinions on Brexit.'`,
+        And finally, if you want me to hear the latest opinions on a topic. Say: give me the latest opinions on Brexit. '`,
         reprompt: 'Sorry, what headlines would you like to hear?'
     },
     sport: {
@@ -16,7 +16,7 @@ const speech = {
     headlines: {
         top: 'the top three stories are: ',
         more: 'the next three stories are: ',
-        notfound: 'Sorry, I could not find you any headlines.',
+        notfound: 'Sorry, I could not find you any headlines. ',
         followup1: 'Would you like me to read the first story?',
         followup2: 'Would you like me to read the first or second story?',
         followup3: 'Would you like me to read the first, second or third story or would you like more headlines?',
@@ -54,7 +54,7 @@ const speech = {
         clarifyType: 'Is it a restaurant, book, film, or music review you\'re after?',
         clarifySearch: 'What would you like a {0} review for?',
         reprompt: 'Would you like to hear another review?',
-        explainer: 'I have reviews for films, books, music and restaurants. Just say: give me the latest restaurant reviews.',
+        explainer: 'I have reviews for films, books, music and restaurants. Just say: give me the latest restaurant reviews. ',
         followup1: 'Would you like me to read this review?',
         followup2: 'Would you like me to read the first review or the second review?',
         followup3: 'Would you like me to read the first, second or third review or would you like more reviews?'
@@ -64,8 +64,8 @@ const speech = {
         reprompt: 'Sorry, what would you like to do?'
     },
     core: {
-        stop: 'Speak to you again soon.',
-        cancel: 'Speak to you again soon.',
+        stop: 'Speak to you again soon. ',
+        cancel: 'Speak to you again soon. ',
         didNotUnderstand: 'Sorry, I didn\'t catch that',
         questions: [
             'What would you like to hear?',
@@ -78,7 +78,7 @@ const speech = {
         followup: 'Would you like to hear the headlines again, or more headlines?',
         articleBy: 'This article is written by ',
         timeToReadPref: ' and it will take roughly ',
-        timeToReadSuff: ' minutes to read.'
+        timeToReadSuff: ' minutes to read. '
     },
     acknowledgement: [
         'Sure, ',
