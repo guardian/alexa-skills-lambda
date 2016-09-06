@@ -16,6 +16,7 @@ const getLatestReviews = require('./intentLogic/getLatestReviews');
 const readContentAtPosition = require('./intentLogic/readContentAtPosition');
 const yes = require('./intentLogic/yes');
 const launch = require('./intentLogic/launch');
+const getPodcast = require('./intentLogic/getPodcast');
 
 // misc
 const helpers = require('./helpers');
@@ -32,6 +33,16 @@ exports.handler = function (event, context, callback) {
 
 var handlers = {
     'LaunchRequest': launch,
+
+    'PodcastIntent': function() {
+        this.event.session.attributes.lastIntent = 'PodcastIntent';
+        this.emit(':ask', speech.podcasts.intro, speech.launch.reprompt);
+    },
+    'GetPodcastIntent': getPodcast,
+
+    'PlayPodcastIntent': function(jsonObj) {
+        this.context.succeed(jsonObj);
+    },
 
     'GetIntroNewsIntent': function() {
         this.event.session.attributes.lastIntent = 'GetIntroNewsIntent';
@@ -67,7 +78,7 @@ var handlers = {
     'GetLatestReviewsIntent': getLatestReviews,
 
     /**
-     * This may be a topic or a review_type. 
+     * This may be a topic or a review_type.
      * This is because there is some cross-over between the two, so we need a single handler.
      * We let the appropriate intent handler decide if the entity is valid.
      */
@@ -113,7 +124,7 @@ var handlers = {
     },
 
     'AMAZON.HelpIntent': function() {
-        this.event.session.attributes.lastIntent = 'Help'
+        this.event.session.attributes.lastIntent = 'Help';
 
         this.emit(':ask', speech.help.explainer + randomMsg(speech.core.questions), speech.help.reprompt)
     },
@@ -123,9 +134,8 @@ var handlers = {
     'AMAZON.StopIntent': function() {
         this.emit(':tell', speech.core.stop)
     },
-    'AMAZON.YesIntent': function() {
-        return yes
-    },
+    'AMAZON.YesIntent': yes,
+
     'AMAZON.NoIntent': function() {
         this.emit(':tell', speech.core.stop)
     }

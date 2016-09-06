@@ -6,15 +6,15 @@ const speech = require('../speech').speech;
 const sound = require('../speech').sound;
 
 module.exports = function () {
-    if(this.event.session.attributes.lastIntent){
-        switch(this.event.session.attributes.lastIntent) {
-            case "GetReview":
-                var review_type = this.event.session.attributes.lastReviewType;
-                var search_term = this.event.session.attributes.lastSearchTerm;
-                this.emit('GetReview',{ review_type : review_type , search_term : search_term } );
-                break;
-        }
-    } else {
-        this.emit(':tell', speech.core.stop)
+    const attributes = this.event.session.attributes;
+
+    switch (attributes.lastIntent) {
+        case 'GetPodcastIntent':
+            const podcastDirective = helpers.getPodcastDirective(attributes.podcastUrl);
+            this.emit('PlayPodcastIntent', podcastDirective);
+            break;
+        default:
+            this.emit(':ask', speech.help.reprompt);
+            break;
     }
 };

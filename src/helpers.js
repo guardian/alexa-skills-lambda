@@ -56,3 +56,43 @@ exports.getTopic = (attributes, slots) => {
         default: return (slots.topic && slots.topic.value) ? slots.topic.value : null;
     }
 };
+
+exports.getPodcastDirective = (podcastUrl) => {
+    return {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "response": {
+            "outputSpeech": {
+                "type": "PlainText",
+                "text": "Playing the requested podcast."
+            },
+            "card": {
+                "type": "Simple",
+                "title": "Play Audio",
+                "content": "Playing the requested podcast."
+            },
+            "reprompt": {
+                "outputSpeech": {
+                    "type": "PlainText",
+                    "text": null
+                }
+            },
+            "directives": [
+                {
+                    "type": "AudioPlayer.Play",
+                    "playBehavior": "REPLACE_ALL",
+                    "audioItem": {
+                        "stream": {
+                            "token": "token",
+                            "url": podcastUrl,
+                            "offsetInMilliseconds": 0
+                        }
+                    }
+                }
+            ],
+            "shouldEndSession": true
+        }
+    };
+
+};
+
