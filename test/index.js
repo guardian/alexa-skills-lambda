@@ -130,7 +130,7 @@ tap.test('Test more intent after sport opinion', test => {
         lambda(
             moreAfterSportOpinion, {
                 succeed: function (response) {
-                    test.ok(response.response.outputSpeech.ssml.indexOf("the next 3 sport stories are") != -1);
+                    test.ok(response.response.outputSpeech.ssml.indexOf("the next 3 sport opinions are") != -1);
                     test.equal(response.sessionAttributes.moreOffset, 3);
                     test.equal(response.sessionAttributes.topic, 'sport');
                     test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
@@ -148,7 +148,7 @@ tap.test('Test opinion intent with a topic that does not return any result', tes
         lambda(
             inexistentOpinionJson, {
                 succeed: function (response) {
-                    test.ok(response.response.outputSpeech.ssml.indexOf(speech.opinions.notfound) != -1);
+                    test.ok(response.response.outputSpeech.ssml.indexOf(speech.opinions.topicNotFound.slice(0,15)) != -1);
                     test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
                     test.end();
                 },

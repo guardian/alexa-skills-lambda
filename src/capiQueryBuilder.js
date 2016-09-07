@@ -180,6 +180,14 @@ const queryProperties = (topic) => {
                 path: "au/sport"
             }
         };
+        case "us sports":
+        case "us sport": return {
+            default: {
+                toneNews: true,
+                editorsPicks: true,
+                path: "us/sport"
+            }
+        };
         case "football":
         case "soccer": return {
             default: {

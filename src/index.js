@@ -31,22 +31,17 @@ exports.handler = function (event, context, callback) {
 var handlers = {
     'LaunchRequest': function() {
         this.event.session.attributes.lastIntent = 'Launch';
-        this.emit(':ask', speech.launch.welcome + randomMsg(speech.core.questions), speech.launch.reprompt)
+        this.emit(':ask', speech.launch.welcome_1 + randomMsg(speech.core.questions), speech.launch.reprompt)
     },
 
     'GetIntroNewsIntent': function() {
         this.event.session.attributes.lastIntent = 'GetIntroNewsIntent';
-        this.emit(':ask', speech.news.explainer + randomMsg(speech.core.questions), speech.news.reprompt)
-    },
-
-    'GetIntroReviewsIntent': function() {
-        this.event.session.attributes.lastIntent = 'GetIntroReviewsIntent';
-        this.emit(':ask', speech.reviews.explainer + randomMsg(speech.core.questions), speech.reviews.reprompt)
+        this.emit(':ask', randomMsg(speech.acknowledgement) + speech.news.explainer + randomMsg(speech.core.questions), speech.news.reprompt)
     },
 
     'GetIntroSportIntent': function() {
         this.event.session.attributes.lastIntent = 'GetIntroSportIntent';
-        this.emit(':ask', speech.sport.explainer + randomMsg(speech.core.questions), speech.sport.reprompt)
+        this.emit(':ask', randomMsg(speech.acknowledgement) + speech.sport.explainer + randomMsg(speech.core.questions), speech.sport.reprompt)
     },
 
     'GetHeadlinesIntent': getHeadlines,
@@ -76,8 +71,6 @@ var handlers = {
      * This may be a topic or a review_type. 
      * This is because there is some cross-over between the two, so we need a single handler.
      * We let the appropriate intent handler decide if the entity is valid.
-     * Note - we also use the name 'entity' in the attributes. This is because the user may not
-     * yet have told us which intent they want, but we need to store the value now.
      */
     'EntityIntent': function() {
         const attributes = this.event.session.attributes;
@@ -102,6 +95,7 @@ var handlers = {
                         attributes.reviewType = entity;
                         this.emit('GetLatestReviewsIntent');
                         break;
+                    case 'GetIntroSportIntent':
                     case 'GetIntroNewsIntent':
                         attributes.lastIntent = "EntityIntent";
                         attributes.topic = entity;

@@ -1,5 +1,6 @@
 const get = require('simple-get-promise').get;
 const asJson = require('simple-get-promise').asJson;
+const format = require('util').format;
 
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
@@ -32,15 +33,20 @@ module.exports = function () {
                     attributes.positionalContent = results.map(result => result.id);
                     this.emit(':ask', generateHeadlinesSpeech(results, isNewIntent, attributes.topic));
                 } else {
-                    this.emit(':ask', speech.headlines.notfound);
+                    this.emit(':tell', notFoundMessage(attributes.topic));
                 }
             })
             .catch(function (error) {
-                this.emit(':tell', speech.headlines.notfound);
+                this.emit(':tell', notFoundMessage(attributes.topic));
             });
     } else {
-        this.emit(':tell', speech.headlines.notfound);
+        this.emit(':tell', notFoundMessage(attributes.topic));
     }
+};
+
+const notFoundMessage = (topic) => {
+    if (topic) return format(speech.headlines.topicNotFound, topic);
+    else return speech.headlines.headlinesNotFound;
 };
 
 /**

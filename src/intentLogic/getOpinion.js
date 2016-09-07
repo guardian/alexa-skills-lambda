@@ -1,5 +1,6 @@
 const get = require('simple-get-promise').get;
 const asJson = require('simple-get-promise').asJson;
+const format = require('util').format;
 
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
@@ -31,15 +32,20 @@ module.exports = function () {
                     const opinionSpeech = generateOpinionSpeech(json.response.results, isNewIntent, attributes.topic);
                     this.emit(':ask', opinionSpeech);
                 } else {
-                    this.emit(':ask', speech.opinions.notfound);
+                    this.emit(':tell', notFoundMessage(attributes.topic));
                 }
             })
             .catch(function (error) {
-                this.emit(':tell', speech.opinions.notfound);
+                this.emit(':tell', notFoundMessage(attributes.topic));
             });
     } else {
-        this.emit(':tell', speech.opinions.notfound);
+        this.emit(':tell', notFoundMessage(attributes.topic));
     }
+};
+
+const notFoundMessage = (topic) => {
+    if (topic) return format(speech.opinions.topicNotFound, topic);
+    else return speech.headlines.headlinesNotFound;
 };
 
 const generateOpinionSpeech = (results, isNewIntent, topic) => {
@@ -56,11 +62,11 @@ const generatePreamble = (isNewIntent, topic, howManyStories) => {
 
     const buildStories = () => {
         if (topic) {
-            if (isNewIntent) return `the top ${numberOfStoriesReturned} ${topic} stories are: `;
-            if (numberOfStoriesReturned == 1) return `the next story is: `;
-            return `the next ${numberOfStoriesReturned} ${topic} stories are; `
+            if (isNewIntent) return `the top ${numberOfStoriesReturned} ${topic} opinions are: `;
+            if (numberOfStoriesReturned == 1) return `the next opinion is: `;
+            return `the next ${numberOfStoriesReturned} ${topic} opinions are; `
         }
-        if (isNewIntent) return `the top ${numberOfStoriesReturned} stories are: `;
+        if (isNewIntent) return `the top ${numberOfStoriesReturned} opinions are: `;
         return speech.opinions.more;
     };
 
