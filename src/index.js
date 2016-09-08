@@ -15,11 +15,13 @@ const getOpinion = require('./intentLogic/getOpinion');
 const getLatestReviews = require('./intentLogic/getLatestReviews');
 const readContentAtPosition = require('./intentLogic/readContentAtPosition');
 const yes = require('./intentLogic/yes');
+const launch = require('./intentLogic/launch');
 
 // misc
 const helpers = require('./helpers');
 const speech = require('./speech').speech;
 const randomMsg = require('./helpers').randomMessage;
+
 
 exports.handler = function (event, context, callback) {
     var alexa = Alexa.handler(event, context);
@@ -29,10 +31,7 @@ exports.handler = function (event, context, callback) {
 };
 
 var handlers = {
-    'LaunchRequest': function() {
-        this.event.session.attributes.lastIntent = 'Launch';
-        this.emit(':ask', speech.launch.welcome_1 + randomMsg(speech.core.questions), speech.launch.reprompt)
-    },
+    'LaunchRequest': launch,
 
     'GetIntroNewsIntent': function() {
         this.event.session.attributes.lastIntent = 'GetIntroNewsIntent';

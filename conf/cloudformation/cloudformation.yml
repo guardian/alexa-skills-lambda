@@ -20,6 +20,9 @@ Parameters:
         Description: Bucket where RiffRaff uploads artifacts on deploy
         Type: String
         Default: content-api-dist
+    DynamodbTable:
+        Description: ARN of dynamodb table used to store user data
+        Type: String
 Resources:
     ExecutionRole:
         Type: AWS::IAM::Role
@@ -49,6 +52,17 @@ Resources:
                         Action:
                             - "lambda:InvokeFunction"
                         Resource: "*"
+                - PolicyName: dynamo
+                  PolicyDocument:
+                    Statement:
+                        Effect: Allow
+                        Action:
+                            - "dynamodb:GetItem"
+                            - "dynamodb:PutItem"
+                            - "dynamodb:UpdateItem"
+                            - "dynamodb:Query"
+                        Resource: 
+                            Ref: DynamodbTable
     Lambda:
         Type: AWS::Lambda::Function
         Properties:

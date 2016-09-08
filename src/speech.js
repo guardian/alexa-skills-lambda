@@ -4,7 +4,7 @@ const speech = {
         You can ask me for news, reviews, sport and podcasts. `,
         welcome_2: `Welcome back to The Guardian! You can ask me for news, reviews, sport and podcasts. `,
         welcome_3: `Welcome to the Guardian!`,
-        welcome_3_long_time: `Welcome back to the Guardian! You can ask me for news, reviews, sport and podcasts. `,
+        welcome_long_time: `Welcome back to the Guardian! You can ask me for news, reviews, sport and podcasts. `,
         reprompt: "Sorry, what would you like to hear?"
     },
     news: {

@@ -9,7 +9,7 @@ var riffraff = require('node-riffraff-artefact');
 
 var LAMBDA_SOURCE = 'src/*.js';
 var DEPLOY_SOURCE = 'conf/deploy.yml';
-var CLOUDFORMATION_SOURCE = 'conf/cloudformation.yml';
+var CLOUDFORMATION_SOURCE = 'conf/cloudformation/*.yml';
 
 gulp.task('compile', function () {
 	return exec('rollup -c rollup.config.js');
