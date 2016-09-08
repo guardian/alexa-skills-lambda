@@ -80,11 +80,17 @@ const speech = {
         timeToReadSuff: " minutes to read."
     },
     acknowledgement: [
-        "Sure, ",
-        "Certainly, ",
-        "Absolutely, ",
-        "No problem, "
-    ]
+        'Sure, ',
+        'Certainly, ',
+        'Absolutely, ',
+        'No problem, '
+    ],
+    podcasts: {
+        intro: 'Our most popular podcasts this week are: Football Weekly, Science Weekly, Chips with Everything, ' +
+        'and Close Encounters. I’ve sent you the list of podcasts to your Alexa app. ' +
+        'I can tell you the latest available or play you a specific one. What would you like to hear?',
+        notfound: 'Sorry, I could not find any podcast.'
+    }
 };
 
 const sound = {

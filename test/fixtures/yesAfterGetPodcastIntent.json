@@ -1,0 +1,27 @@
+{
+  "session": {
+    "sessionId": "",
+    "application": {
+      "applicationId": ""
+    },
+    "attributes": {
+      "podcastUrl": "https://audio.guim.co.uk/2016/09/05-45824-FW-sept05-2016_mixdown.mp3",
+      "lastIntent": "GetPodcastIntent"
+    },
+    "user": {
+      "userId": ""
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "",
+    "locale": "en-GB",
+    "timestamp": "2016-09-07T14:36:00Z",
+    "intent": {
+      "name": "AMAZON.YesIntent",
+      "slots": {}
+    }
+  },
+  "version": "1.0"
+}

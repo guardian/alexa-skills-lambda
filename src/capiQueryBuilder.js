@@ -4,6 +4,17 @@ const helpers = require('./helpers');
 const CAPI_API_KEY = config.capi_key;
 const BASE_URL = "https://content.guardianapis.com/";
 
+exports.podcastQuery = (podcastName) => {
+    if (podcastName == null) return null;
+    const path = getPodcastCapiUrl(podcastName);
+    if (path !== null) {
+       return BASE_URL + path + '?' + '&api-key=' + CAPI_API_KEY
+    } else {
+        console.log(`podcastQuery: failed to find podcast url for ${podcastName}`);
+        return null;
+    }
+};
+
 exports.newsQuery = (offset, locale, topic) => {
     const props = getQueryProperties(locale, topic);
     if (props !== null) {
@@ -101,6 +112,21 @@ const getQueryProperties = (locale, topic) => {
 
 const getPageParams = (offset) => {
     return "&page-size="+ helpers.pageSize +"&page="+ ((offset / helpers.pageSize) + 1)
+};
+
+/*
+ * Get the capi url given a podcast title. The title should match the set of podcast titles
+ * defined in the Amazon Echo custom slot type 'podcast'.
+ */
+const getPodcastCapiUrl = (podcastName) => {
+    switch(podcastName.toLowerCase()) {
+        case 'football weekly': return 'football/series/footballweekly';
+        case 'politics weekly': return 'politics/series/politicsweekly';
+        case 'close encounters': return 'lifeandstyle/series/close-encounters';
+        case 'science weekly': return 'science/series/science';
+
+        default: return null;
+    }
 };
 
 /**

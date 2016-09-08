@@ -14,6 +14,8 @@ const moreAfterSportOpinion = require('./fixtures/moreAfterSportOpinions.json');
 const localizedHeadlines = require('./fixtures/getLocalizedHeadlines.json');
 const moreAfterLatestReviews = require('./fixtures/moreAfterLatestReviews.json');
 const reviewTypeAfterLatestReviews = require('./fixtures/reviewTypeAfterLatestReviews.json');
+const getFootballWeeklyPodcast = require('./fixtures/getFootballWeeklyPodcast.json');
+const yesAfterGetPodcast = require('./fixtures/yesAfterGetPodcastIntent.json');
 
 const speech = require('../src/speech').speech;
 
@@ -251,6 +253,37 @@ tap.test('Test more intent after tech headlines', test => {
                 succeed: function (response) {
                     test.ok(response.response.outputSpeech.ssml.indexOf("the next 3 technology stories are") != -1);
                     test.equal(response.sessionAttributes.moreOffset, 3);
+                    test.end();
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test get football weekly podcast', test => {
+        test.plan(2);
+        lambda(
+            getFootballWeeklyPodcast, {
+                succeed: function (response) {
+                    test.equal(response.sessionAttributes.lastIntent, 'GetPodcastIntent');
+                    test.equal(response.sessionAttributes.podcastUrl.split('.').pop(), 'mp3');
+                    test.end();
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test yes after a GetPodcastIntent', test => {
+        test.plan(1);
+        lambda(
+            yesAfterGetPodcast, {
+                succeed: function (response) {
+                    test.equal(response.response.outputSpeech.text, 'Playing the requested podcast.');
                     test.end();
                 },
                 fail: function (error) {
