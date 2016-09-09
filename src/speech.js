@@ -60,8 +60,8 @@ const speech = {
         reprompt: "Sorry, what would you like to do?"
     },
     core: {
-        stop: "Goodbye for now",
-        cancel: "Goodbye for now.",
+        stop: "Goodbye.",
+        cancel: "No problem. ",
         didNotUnderstand: "Sorry, I didn't catch that",
         questions: [
             "What would you like to hear?",
