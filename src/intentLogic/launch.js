@@ -1,11 +1,11 @@
 const speech = require('../speech').speech;
+const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 const UserStore = require('../userStore');
 const Moment = require("moment");
 
 module.exports = function () {
     const userStore = new UserStore(getStage(this.context.functionName));
-
     this.event.session.attributes.lastIntent = 'Launch';
 
     const that = this;
@@ -13,7 +13,7 @@ module.exports = function () {
     userStore.getUser(id, (err, dynamoData) => {
         if (err) {
             console.log("Error looking up user " + id + ": " + err);
-            that.emit(':ask', speech.launch.welcome_1 + randomMsg(speech.core.questions), speech.launch.reprompt);
+            that.emit(':ask', sound.intro +"\n"+ speech.launch.welcome_1 + randomMsg(speech.core.questions), speech.launch.reprompt);
         } else {
             const now = Moment.utc();
             if (dynamoData.Item) {
@@ -26,7 +26,7 @@ module.exports = function () {
             } else {
                 userStore.addUser(id, now.format(), (err) => {
                     if (err) console.log("Error adding new user " + id + ": " + err);
-                    that.emit(':ask', speech.launch.welcome_1 + randomMsg(speech.core.questions), speech.launch.reprompt);
+                    that.emit(':ask', sound.intro +"\n"+ speech.launch.welcome_1 + randomMsg(speech.core.questions), speech.launch.reprompt);
                 });
             }
         }
@@ -34,9 +34,9 @@ module.exports = function () {
 };
 
 const getWelcome = (visits, lastVisit, now) => {
-    if (visits < 3) return speech.launch.welcome_2;
-    else if (now.diff(Moment(lastVisit), 'days') < 7) return speech.launch.welcome_3;
-    else return speech.launch.welcome_long_time;
+    if (visits < 3) return sound.intro +"\n"+ speech.launch.welcome_2;
+    else if (now.diff(Moment(lastVisit), 'days') < 7) return sound.intro;
+    else return sound.intro +"\n"+ speech.launch.welcome_long_time;
 };
 
 const getStage = (functionName) => {

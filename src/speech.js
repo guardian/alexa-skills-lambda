@@ -96,7 +96,8 @@ const speech = {
 const sound = {
     transition: "<break time='1s'/>",
     break: "<break strength='medium'/>",
-    strongBreak: "<break strength='x-strong'/>"
+    strongBreak: "<break strength='x-strong'/>",
+    intro: "<audio src='https://s3.amazonaws.com/alexa-config/audio/alexa-intro.mp3'/> "
 };
 
 exports.speech = speech;
