@@ -33,14 +33,14 @@ module.exports = function () {
                     attributes.positionalContent = results.map(result => result.id);
                     this.emit(':ask', generateHeadlinesSpeech(results, isNewIntent, attributes.topic));
                 } else {
-                    this.emit(':tell', notFoundMessage(attributes.topic));
+                    this.emit(':ask', notFoundMessage(attributes.topic));
                 }
             })
             .catch(function (error) {
-                this.emit(':tell', notFoundMessage(attributes.topic));
+                this.emit(':ask', notFoundMessage(attributes.topic));
             });
     } else {
-        this.emit(':tell', notFoundMessage(attributes.topic));
+        this.emit(':ask', notFoundMessage(attributes.topic));
     }
 };
 

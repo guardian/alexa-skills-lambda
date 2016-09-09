@@ -13,8 +13,19 @@ module.exports = function () {
             const podcastDirective = helpers.getPodcastDirective(attributes.podcastUrl);
             this.emit('PlayPodcastIntent', podcastDirective);
             break;
+        case 'GetHeadlinesIntent':
+        case 'GetOpinionIntent':
+            //Assume the user has just been asked if they'd like the list of topics
+            this.emit(
+                ':tellWithCard',
+                'Done - check your Alexa app now.',
+                'Topics',
+                'You can ask for news and opinions on the following topics:\n'+ helpers.topicList,
+                helpers.cardImages
+            );
+            break;
         default:
-            this.emit(':ask', speech.help.reprompt);
+            this.emit(':ask', speech.help.reprompt, speech.help.reprompt);
             break;
     }
 };

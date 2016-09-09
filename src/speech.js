@@ -8,19 +8,17 @@ const speech = {
         reprompt: "Sorry, what would you like to hear?"
     },
     news: {
-        explainer: `I can give you the headlines, or the latest news or opinions for a topic. `,
-        explainer_new_user: `I can give you the headlines, or the latest news or opinions for a topic. I've just sent the list of topics to your companion app. `,
+        explainer: `I can give you the headlines, or the latest news or opinions for a topic. I've just sent the list of topics to your Alexa app. `,
         reprompt: "Sorry, what headlines would you like to hear?"
     },
     sport: {
-        explainer: "I can give you the headlines or opinions for football, cricket, rugby, tennis, formula one, cycling, boxing, golf or US sports. ",
-        explainer_new_user: "I can give you the headlines or opinions for football, cricket, rugby, tennis, formula one, cycling, boxing, golf or US sports. I've just sent the list of topics to your companion app. ",
+        explainer: "I can give you the headlines or opinions for football, cricket, rugby, tennis, formula one, cycling, boxing, golf or US sports. I've just sent the list of topics to your Alexa app. ",
         reprompt: "Sorry, what sport would you like the headlines for?"
     },
     headlines: {
         more: "the next three stories are: ",
         headlinesNotFound: "Sorry, I cannot find you any headlines at the moment. ",
-        topicNotFound: "Sorry - I don't have any news on %s. What else could I help you with?",
+        topicNotFound: "Sorry - I don't have any news on %s. Shall I send a list of topics to your Alexa app?",
         followup1: "Would you like me to read the first story?",
         followup2: "Would you like me to read the first or second story?",
         followup3: "Would you like me to read the first, second or third story or would you like more headlines?",
@@ -31,7 +29,7 @@ const speech = {
     opinions: {
         more: "the next three opinion stories are: ",
         notFound: "Sorry - I can't find you any opinions at the moment. ",
-        topicNotFound: "Sorry - I don’t have any opinions on %s. What else can I help you with?",
+        topicNotFound: "Sorry - I don’t have any opinions on %s. Shall I send a list of topics to your Alexa app?",
         reprompt: "Would you like to hear another opinion?",
         followup1: "Would you like me to read the first story or would you like more opinions?",
         followup2: "Would you like me to read the first story, the second one or would you like more opinions?",
@@ -47,8 +45,7 @@ const speech = {
         clarifyType: "Is it a restaurant, book, film, or music review you're after?",
         clarifySearch: "What would you like a {0} review for?",
         reprompt: "Would you like to hear another review?",
-        explainer: "I have reviews for films, books, music and restaurants. ",
-        explainer_new_user: "I have reviews for films, books, music and restaurants. I've just sent the list of review types to your companion app. ",
+        explainer: "I have reviews for films, books, music and restaurants. I've just sent the list of review types to your Alexa app. ",
         followup1: "Would you like me to read this review?",
         followup2: "Would you like me to read the first review or the second review?",
         followup3: "Would you like me to read the first, second or third review or would you like more reviews?"

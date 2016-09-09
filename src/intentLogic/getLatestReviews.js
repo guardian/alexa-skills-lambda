@@ -58,7 +58,16 @@ module.exports = function() {
         }
     } else {
         //Have they just opened the skill?
-        if (lastIntent === "Launch") this.emit(':ask', speech.reviews.explainer + randomMsg(speech.core.questions));
+        if (lastIntent === "Launch") {
+            this.emit(
+                ':askWithCard',
+                randomMsg(speech.acknowledgement) + speech.reviews.explainer + randomMsg(speech.core.questions),
+                speech.core.reprompt,
+                'Reviews',
+                'You can ask for the latest reviews for the following:\nFilms, books, music and restaurants',
+                helpers.cardImages
+            );
+        }
         else this.emit(':ask', speech.reviews.clarifyType);
     }
 };

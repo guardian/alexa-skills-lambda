@@ -32,14 +32,14 @@ module.exports = function () {
                     const opinionSpeech = generateOpinionSpeech(json.response.results, isNewIntent, attributes.topic);
                     this.emit(':ask', opinionSpeech);
                 } else {
-                    this.emit(':tell', notFoundMessage(attributes.topic));
+                    this.emit(':ask', notFoundMessage(attributes.topic));
                 }
             })
             .catch(function (error) {
-                this.emit(':tell', notFoundMessage(attributes.topic));
+                this.emit(':ask', notFoundMessage(attributes.topic));
             });
     } else {
-        this.emit(':tell', notFoundMessage(attributes.topic));
+        this.emit(':ask', notFoundMessage(attributes.topic));
     }
 };
 

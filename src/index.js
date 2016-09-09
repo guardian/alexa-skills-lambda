@@ -15,9 +15,11 @@ const getOpinion = require('./intentLogic/getOpinion');
 const getLatestReviews = require('./intentLogic/getLatestReviews');
 const readContentAtPosition = require('./intentLogic/readContentAtPosition');
 const yes = require('./intentLogic/yes');
+const no = require('./intentLogic/no');
 const launch = require('./intentLogic/launch');
 const getPodcast = require('./intentLogic/getPodcast');
 const latestPodcast = require('./intentLogic/latestPodcast');
+const entity = require('./intentLogic/entity');
 
 // misc
 const helpers = require('./helpers');
@@ -49,12 +51,26 @@ var handlers = {
 
     'GetIntroNewsIntent': function() {
         this.event.session.attributes.lastIntent = 'GetIntroNewsIntent';
-        this.emit(':ask', randomMsg(speech.acknowledgement) + speech.news.explainer + randomMsg(speech.core.questions), speech.news.reprompt)
+        this.emit(
+            ':askWithCard',
+            randomMsg(speech.acknowledgement) + speech.news.explainer + randomMsg(speech.core.questions),
+            speech.core.reprompt,
+            'Topics',
+            'You can ask for news and opinions on the following topics:\n'+ helpers.topicList,
+            helpers.cardImages
+        );
     },
 
     'GetIntroSportIntent': function() {
         this.event.session.attributes.lastIntent = 'GetIntroSportIntent';
-        this.emit(':ask', randomMsg(speech.acknowledgement) + speech.sport.explainer + randomMsg(speech.core.questions), speech.sport.reprompt)
+        this.emit(
+            ':askWithCard',
+            randomMsg(speech.acknowledgement) + speech.sport.explainer + randomMsg(speech.core.questions),
+            speech.sport.reprompt,
+            'Sport topics',
+            'You can ask for news and opinions on the following topics:\n'+ helpers.sportTopicList,
+            helpers.cardImages
+        );
     },
 
     'GetHeadlinesIntent': getHeadlines,
@@ -81,51 +97,7 @@ var handlers = {
 
     'GetLatestReviewsIntent': getLatestReviews,
 
-    /**
-     * This may be a topic or a review_type.
-     * This is because there is some cross-over between the two, so we need a single handler.
-     * We let the appropriate intent handler decide if the entity is valid.
-     */
-    'EntityIntent': function() {
-        const attributes = this.event.session.attributes;
-        const slots = this.event.request.intent.slots;
-        const getEntity = () => {
-            if (slots.topic && slots.topic.value) return slots.topic.value;
-            if (slots.review_type && slots.review_type.value) return slots.review_type.value;
-            return null;
-        };
-
-        const entity = getEntity();
-
-        if (entity !== null) {
-            if (entity.toLowerCase() === "sport" && attributes.lastIntent === "Launch") {
-                //Special case - show the sports intro if the skill has just been launched
-                this.emit('GetIntroSportIntent')
-            } else {
-                switch (attributes.lastIntent) {
-                    case 'GetLatestReviewsIntent':
-                    case 'GetIntroReviewsIntent' :
-                        attributes.lastIntent = "EntityIntent";
-                        attributes.reviewType = entity;
-                        this.emit('GetLatestReviewsIntent');
-                        break;
-                    case 'GetIntroSportIntent':
-                    case 'GetIntroNewsIntent':
-                        attributes.lastIntent = "EntityIntent";
-                        attributes.topic = entity;
-                        this.emit('GetHeadlinesIntent');
-                        break;
-                    default:
-                        // No last intent or unexpected last intent
-                        this.emit(':ask', speech.help.reprompt)
-                }
-            }
-        } else {
-            //This should never happen
-            console.log(`Missing entity for EntityIntent: ${this.event.request}`);
-            this.emit(':ask', speech.help.reprompt)
-        }
-    },
+    'EntityIntent': entity,
 
     'AMAZON.HelpIntent': function() {
         this.event.session.attributes.lastIntent = 'Help';
@@ -140,8 +112,6 @@ var handlers = {
     },
     'AMAZON.YesIntent': yes,
 
-    'AMAZON.NoIntent': function() {
-        this.emit(':tell', speech.core.stop)
-    }
+    'AMAZON.NoIntent': no
 };
 
