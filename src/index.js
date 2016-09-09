@@ -17,6 +17,7 @@ const readContentAtPosition = require('./intentLogic/readContentAtPosition');
 const yes = require('./intentLogic/yes');
 const launch = require('./intentLogic/launch');
 const getPodcast = require('./intentLogic/getPodcast');
+const latestPodcast = require('./intentLogic/latestPodcast');
 
 // misc
 const helpers = require('./helpers');
@@ -44,6 +45,8 @@ var handlers = {
         this.context.succeed(jsonObj);
     },
 
+    'LatestPodcastIntent': latestPodcast,
+
     'GetIntroNewsIntent': function() {
         this.event.session.attributes.lastIntent = 'GetIntroNewsIntent';
         this.emit(':ask', randomMsg(speech.acknowledgement) + speech.news.explainer + randomMsg(speech.core.questions), speech.news.reprompt)
@@ -64,6 +67,7 @@ var handlers = {
             case 'GetHeadlinesIntent':
             case 'GetLatestReviewsIntent':
             case 'GetOpinionIntent':
+            case 'LatestPodcastIntent':
                 // repeat last intent action with increased offSet
                 this.event.session.attributes.lastIntent = 'MoreIntent';
                 this.emit(lastIntent);

@@ -16,6 +16,9 @@ const moreAfterLatestReviews = require('./fixtures/moreAfterLatestReviews.json')
 const reviewTypeAfterLatestReviews = require('./fixtures/reviewTypeAfterLatestReviews.json');
 const getFootballWeeklyPodcast = require('./fixtures/getFootballWeeklyPodcast.json');
 const yesAfterGetPodcast = require('./fixtures/yesAfterGetPodcastIntent.json');
+const latestPodcast = require('./fixtures/latestPodcast.json');
+const moreAfterLatestPodcast = require('./fixtures/moreAfterLatestPodcast.json');
+const posAfterLatestPodcast = require('./fixtures/posAfterLatestPodcast.json');
 
 const speech = require('../src/speech').speech;
 
@@ -285,6 +288,55 @@ tap.test('Test yes after a GetPodcastIntent', test => {
                 succeed: function (response) {
                     test.equal(response.response.outputSpeech.text, 'Playing the requested podcast.');
                     test.end();
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test LatestPodcastIntent', test => {
+        test.plan(2);
+        lambda(
+            latestPodcast, {
+                succeed: function (response) {
+                    test.equal(response.sessionAttributes.lastIntent, "LatestPodcastIntent");
+                    test.equal(response.sessionAttributes.positionalContent.length, 3);
+                    test.end();
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test MoreIntent after LatestPodcastIntent', test => {
+        test.plan(4);
+        lambda(
+            moreAfterLatestPodcast, {
+                succeed: function (response) {
+                    test.equal(response.sessionAttributes.lastIntent, "LatestPodcastIntent");
+                    test.equal(response.sessionAttributes.positionalContent.length, 3);
+                    test.ok(response.response.outputSpeech.ssml.indexOf("the next 3 podcasts are") != -1);
+                    test.equal(response.sessionAttributes.moreOffset, 3);
+                    test.end();
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test numeric position after latestPodcast', test => {
+        test.plan(1);
+        lambda(
+            posAfterLatestPodcast, {
+                succeed: function (response) {
+                    test.equal(response.response.outputSpeech.text, 'Playing the requested podcast.');
+                    test.end()
                 },
                 fail: function (error) {
                     test.fail()

@@ -15,6 +15,10 @@ exports.podcastQuery = (podcastName) => {
     }
 };
 
+exports.latestPodcastQuery = (offset) => {
+    return BASE_URL + 'search?tag=type/podcast&type=audio' + '&api-key=' + CAPI_API_KEY + getPageParams(offset);
+};
+
 exports.newsQuery = (offset, locale, topic) => {
     const props = getQueryProperties(locale, topic);
     if (props !== null) {

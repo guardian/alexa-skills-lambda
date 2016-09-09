@@ -1,0 +1,32 @@
+{
+  "session": {
+    "sessionId": "",
+    "application": {
+      "applicationId": ""
+    },
+    "attributes": {
+      "moreOffset": 0,
+      "lastIntent": "LatestPodcastIntent",
+      "positionalContent": [
+        "https://content.guardianapis.com/football/blog/audio/2016/sep/08/city-v-united-pep-v-mourinho-and-celtic-v-rangers-football-weekly-extra",
+        "https://content.guardianapis.com/books/audio/2016/sep/08/simon-russell-beale-reads-from-the-spy-who-came-in-from-the-cold-by-john-le-carre-books-podcast",
+        "https://content.guardianapis.com/politics/audio/2016/sep/07/ed-balls-strictly-versus-politics-true-meaning-of-brexit-politics-weekly-podcast"
+      ]
+    },
+    "user": {
+      "userId": ""
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "",
+    "locale": "en-GB",
+    "timestamp": "2016-09-08T14:59:33Z",
+    "intent": {
+      "name": "MoreIntent",
+      "slots": {}
+    }
+  },
+  "version": "1.0"
+}

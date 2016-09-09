@@ -7,25 +7,58 @@ const speech = require('../speech').speech;
 const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 
+const config = require("../../tmp/config.json");
+const CAPI_API_KEY = config.capi_key;
+
 module.exports = function () {
 
     const slots = this.event.request.intent.slots;
     const position = slots.position ? slots.position.value : null;
 
-    var readContentAtPosition = (position) => {
-        const contentId = this.event.session.attributes.positionalContent[position];
+    const playPodcast = (contentId) => {
+        get(contentId + '?api-key=' + CAPI_API_KEY + '&show-elements=audio')
+            .then(asJson)
+            .then((json) => {
+                const podcastUrl = json.response.content.elements[0].assets[0].file;
+
+                if (podcastUrl) {
+                    const podcastDirective = helpers.getPodcastDirective(podcastUrl);
+                    this.emit('PlayPodcastIntent', podcastDirective);
+                } else {
+                    this.emit(':tell', speech.podcasts.notfound);
+                }
+            });
+    };
+
+    const readArticle = (contentId) => {
         const capiQuery = helpers.capiQuery(contentId, '&show-fields=body,byline,wordcount');
         get(capiQuery)
             .then(asJson)
             .then((json) => {
-                this.emit(':ask', readArticle(json));
+                this.emit(':ask', getArticle(json));
             })
             .catch(function (error) {
                 this.emit(':ask', speech.core.didNotUnderstand);
-            })
+            });
     };
 
-    switch(position) {
+    const readContentAtPosition = (position) => {
+        const contentId = this.event.session.attributes.positionalContent[position];
+        if (contentId) {
+            switch (this.event.session.attributes.lastIntent) {
+                case "LatestPodcastIntent":
+                    playPodcast(contentId);
+                    break;
+
+                default:
+                    //Any text article
+                    readArticle(contentId);
+                    break;
+            }
+        } else this.emit(':ask', randomMsg(speech.core.questions), speech.news.reprompt);
+    };
+
+    switch (position) {
         case 'first':
         case '1st':
             readContentAtPosition(0);
@@ -44,7 +77,7 @@ module.exports = function () {
 
 };
 
-var readArticle = (json) => {
+const getArticle = (json) => {
     var articleBody = striptags(json.response.content.fields.body);
 
     return randomMsg(speech.acknowledgement) +

@@ -1,0 +1,24 @@
+{
+  "session": {
+    "sessionId": "",
+    "application": {
+      "applicationId": ""
+    },
+    "attributes": {},
+    "user": {
+      "userId": ""
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "",
+    "locale": "en-GB",
+    "timestamp": "2016-09-08T14:06:04Z",
+    "intent": {
+      "name": "LatestPodcastIntent",
+      "slots": {}
+    }
+  },
+  "version": "1.0"
+}
