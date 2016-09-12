@@ -1,5 +1,6 @@
 const get = require('simple-get-promise').get;
 const asJson = require('simple-get-promise').asJson;
+const xmlescape = require('xml-escape');
 
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
@@ -10,7 +11,6 @@ const helpers = require('../helpers');
 const capiQueryBuilder = require('../capiQueryBuilder');
 
 module.exports = function() {
-
     const attributes = this.event.session.attributes;
     const slots = this.event.request.intent.slots;
 
@@ -41,11 +41,11 @@ module.exports = function() {
                         attributes.positionalContent = json.response.results.map(review => review.id);
                         const preamble = getPreamble(isNewIntent, json.response.results.length, attributes.reviewType);
                         const reviews = json.response.results.map(review => {
-                            return review.fields.headline + sound.transition;
+                            return xmlescape(review.fields.headline) + sound.transition;
                         });
                         const conclusion = getConclusion(json.response.results.length);
 
-                        this.emit(':ask', `${preamble} ${reviews} ${conclusion}`);
+                        this.emit(':ask', `${preamble} ${reviews.join(" ")} ${conclusion}`);
                     } else {
                         this.emit(':tell', speech.reviews.notfound);
                     }

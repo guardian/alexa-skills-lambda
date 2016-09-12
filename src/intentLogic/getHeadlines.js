@@ -1,6 +1,7 @@
 const get = require('simple-get-promise').get;
 const asJson = require('simple-get-promise').asJson;
 const format = require('util').format;
+const xmlescape = require('xml-escape');
 
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
@@ -72,9 +73,9 @@ const getResults = (json, moreOffset) => {
 const generateHeadlinesSpeech = (results, isNewIntent, topic) => {
     const preamble = generatePreamble(isNewIntent, topic, results.length);
     const conclusion = sound.strongBreak + followupQuestion(results.length);
-    const headlines = results.map(result => result.fields.headline + sound.transition);
+    const headlines = results.map(result => xmlescape(result.fields.headline) + sound.transition);
 
-    return preamble + headlines + conclusion;
+    return preamble + headlines.join(" ") + conclusion;
 };
 
 const generatePreamble = (isNewIntent, topic, howManyStories) => {

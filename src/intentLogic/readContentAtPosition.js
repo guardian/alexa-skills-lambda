@@ -1,6 +1,7 @@
 const get = require('simple-get-promise').get;
 const asJson = require('simple-get-promise').asJson;
 const striptags = require('striptags');
+const xmlescape = require('xml-escape');
 
 const helpers = require('../helpers');
 const speech = require('../speech').speech;
@@ -78,7 +79,7 @@ module.exports = function () {
 };
 
 const getArticle = (json) => {
-    var articleBody = striptags(json.response.content.fields.body);
+    var articleBody = xmlescape(striptags(json.response.content.fields.body));
 
     return randomMsg(speech.acknowledgement) +
         speech.positionalContent.articleBy + json.response.content.fields.byline +

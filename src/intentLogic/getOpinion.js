@@ -1,6 +1,7 @@
 const get = require('simple-get-promise').get;
 const asJson = require('simple-get-promise').asJson;
 const format = require('util').format;
+const xmlescape = require('xml-escape');
 
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
@@ -51,9 +52,9 @@ const notFoundMessage = (topic) => {
 const generateOpinionSpeech = (results, isNewIntent, topic) => {
     const preamble = generatePreamble(isNewIntent, topic, results.length);
     const conclusion = sound.strongBreak + followupQuestion(results.length);
-    const opinions = results.map(result => result.fields.headline + sound.transition);
+    const opinions = results.map(result => xmlescape(result.fields.headline) + sound.transition);
 
-    return preamble + opinions + conclusion;
+    return preamble + opinions.join(" ") + conclusion;
 };
 
 const generatePreamble = (isNewIntent, topic, howManyStories) => {

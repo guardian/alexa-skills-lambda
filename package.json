@@ -33,6 +33,7 @@
     "rollup-plugin-json": "^2.0.1",
     "rollup-plugin-node-resolve": "^1.7.1",
     "moment": "^2.14.1",
+    "xml-escape": "^1.1.0",
     "tap": "^6.1.1"
   },
   "peerDependencies": {
