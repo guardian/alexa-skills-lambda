@@ -128,6 +128,20 @@ const getPodcastCapiUrl = (podcastName) => {
         case 'politics weekly': return 'politics/series/politicsweekly';
         case 'close encounters': return 'lifeandstyle/series/close-encounters';
         case 'science weekly': return 'science/series/science';
+        case 'film weekly': return 'film/series/the-dailies-podcast';
+        case 'premier league':
+        case 'premier league: the view from australia': return 'football/series/premier-league-the-view-from-australia';
+        case 'the long read':
+        case 'long read': return 'news/series/the-audio-long-read';
+        case 'the story': return 'news/series/the-story';
+        case 'brain waves': return 'lifeandstyle/series/brain-waves';
+        case 'books podcast': return 'books/series/books';
+        case 'music weekly': return 'music/series/musicweekly';
+        case 'chips with everything': return 'technology/series/chips-with-everything';
+        case 'politics for humans': return 'us-news/series/politics-for-humans';
+        case 'what would a feminist do': return 'commentisfree/series/what-would-a-feminist-do';
+        case 'behind the lines': return 'australia-news/series/behind-the-lines-podcast';
+        case 'the citadel': return 'tv-and-radio/series/game-of-thrones-the-citadel-podcast';
 
         default: return null;
     }
