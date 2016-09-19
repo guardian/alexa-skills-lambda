@@ -25,7 +25,7 @@ exports.newsQuery = (offset, locale, topic) => {
         return BASE_URL + props.path + "?"
             + "&api-key=" + CAPI_API_KEY
             + "&show-fields=byline,headline"
-            + "&tags=type/article,-tone/minutebyminute"
+            + "&tag=type/article,-tone/minutebyminute"
             + (props.toneNews ? ",tone/news" : "")
             + (props.editorsPicks ? "&show-editors-picks=true" : getPageParams(offset))
     } else {
@@ -51,7 +51,7 @@ exports.opinionQuery = (offset, locale, topic) => {
         return BASE_URL + props.path + "?"
             + "&api-key=" + CAPI_API_KEY
             + "&show-fields=byline,headline"
-            + "&tags=type/article,-tone/minutebyminute"
+            + "&tag=type/article,-tone/minutebyminute"
             + ",tone/comment"
             + getPageParams(offset);
     } else {

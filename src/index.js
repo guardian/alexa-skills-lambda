@@ -28,6 +28,7 @@ const randomMsg = require('./helpers').randomMessage;
 
 
 exports.handler = function (event, context, callback) {
+    console.log(event)
     var alexa = Alexa.handler(event, context);
     alexa.APP_ID = APP_ID;
     alexa.registerHandlers(handlers);
@@ -112,6 +113,10 @@ var handlers = {
     },
     'AMAZON.YesIntent': yes,
 
-    'AMAZON.NoIntent': no
+    'AMAZON.NoIntent': no,
+
+    'SessionEndedRequest': function() {
+        this.emit(':tell', speech.core.stop)
+    }
 };
 
