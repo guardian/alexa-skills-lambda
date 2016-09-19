@@ -30,10 +30,10 @@ module.exports = function () {
                 this.emit(':ask', `sure, the latest ${podcastName} was ${episodeTitle}; would you like me to play this now?`);
             })
             .catch(function (error) {
-                this.emit(':tell', speech.podcasts.notfound);
+                this.emit(':ask', speech.podcasts.notfound, speech.launch.reprompt);
             });
     } else {
-        this.emit(':tell', speech.podcasts.notfound);
+        this.emit(':ask', speech.podcasts.notfound, speech.launch.reprompt);
     }
 };
 

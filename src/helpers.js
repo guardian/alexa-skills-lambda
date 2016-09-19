@@ -62,10 +62,6 @@ exports.getPodcastDirective = (podcastUrl) => {
         "version": "1.0",
         "sessionAttributes": {},
         "response": {
-            "outputSpeech": {
-                "type": "PlainText",
-                "text": "Playing the requested podcast."
-            },
             "card": {
                 "type": "Simple",
                 "title": "Play Audio",

@@ -3,7 +3,7 @@ const speech = {
         welcome_1: `Welcome to The Guardian! 
         You can ask me for news, reviews, sport and podcasts. `,
         welcome_2: `Welcome back to The Guardian! You can ask me for news, reviews, sport and podcasts. `,
-        welcome_3: `Welcome to the Guardian!`,
+        welcome_3: `Would you like to hear news, reviews, sport or podcasts?`,
         welcome_long_time: `Welcome back to the Guardian! You can ask me for news, reviews, sport and podcasts. `,
         reprompt: "Sorry, what would you like to hear?"
     },
@@ -55,8 +55,7 @@ const speech = {
         In News, I can give you the headlines, or the latest news or opinions for a topic.
         In Reviews, I have reviews for films, books, music and restaurants.
         In Sport, I can give you the headlines for football, cricket, rugby, tennis, formula one, cycling, boxing, golf.
-        In Podcasts, I have weekly podcasts for football, politics, science, news, film, culture and books.
-        What would you like?`,
+        In Podcasts, I have weekly podcasts for football, politics, science, news, film, culture and books.`,
         reprompt: "Sorry, what would you like to do?"
     },
     core: {
@@ -86,7 +85,7 @@ const speech = {
         intro: 'Our most popular podcasts this week are: Football Weekly, Science Weekly, Chips with Everything, ' +
         'and Close Encounters. I’ve sent you the list of podcasts to your Alexa app. ' +
         'I can tell you the latest available or play you a specific one. What would you like to hear?',
-        notfound: 'Sorry, I could not find any podcast.',
+        notfound: 'Sorry, I could not find that podcast. Can I find you something else?',
         followup1: "Would you like me to play the first podcast?",
         followup2: "Would you like me to play the first or second podcast?",
         followup3: "Would you like me to play the first, second or third podcast or would you like more podcasts?",

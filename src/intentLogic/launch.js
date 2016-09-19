@@ -21,7 +21,7 @@ module.exports = function () {
                 userStore.setVisitCount(id, now.format(), dynamoData.Item.visits + 1, (err, data) => {
                     if (err) console.log("Error updating user " + id + ": " + err);
                     const welcome = getWelcome(dynamoData.Item.visits + 1, dynamoData.Item.lastVisit, now);
-                    that.emit(':ask', welcome + randomMsg(speech.core.questions), speech.launch.reprompt);
+                    that.emit(':ask', welcome, speech.launch.reprompt);
                 });
             } else {
                 userStore.addUser(id, now.format(), (err) => {
@@ -34,9 +34,9 @@ module.exports = function () {
 };
 
 const getWelcome = (visits, lastVisit, now) => {
-    if (visits < 3) return sound.intro +"\n"+ speech.launch.welcome_2;
-    else if (now.diff(Moment(lastVisit), 'days') < 7) return sound.intro;
-    else return sound.intro +"\n"+ speech.launch.welcome_long_time;
+    if (visits < 3) return sound.intro +"\n"+ speech.launch.welcome_2 + randomMsg(speech.core.questions);
+    else if (now.diff(Moment(lastVisit), 'days') < 7) return sound.intro +"\n"+ speech.launch.welcome_3;
+    else return sound.intro +"\n"+ speech.launch.welcome_long_time + randomMsg(speech.core.questions);
 };
 
 const getStage = (functionName) => {
