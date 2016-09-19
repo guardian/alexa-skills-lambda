@@ -28,7 +28,7 @@ const randomMsg = require('./helpers').randomMessage;
 
 
 exports.handler = function (event, context, callback) {
-    console.log(JSON.stringify(event))
+    console.log(JSON.stringify(event));
     var alexa = Alexa.handler(event, context);
     alexa.APP_ID = APP_ID;
     alexa.registerHandlers(handlers);
@@ -124,6 +124,18 @@ var handlers = {
 
     'SessionEndedRequest': function() {
         this.emit(':tell', speech.core.stop)
+    },
+
+    'AMAZON.RepeatIntent': function() {
+        // try to repeat whatever we were doing
+        if (this.event.session.attributes.lastIntent !== undefined) {
+            this.emit(this.event.session.attributes.lastIntent)
+        }
+        // give up
+        else {
+          this.emit(':ask', speech.help.reprompt, speech.help.reprompt);
+        }
     }
+
 };
 

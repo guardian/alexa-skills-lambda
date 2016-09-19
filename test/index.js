@@ -19,6 +19,7 @@ const yesAfterGetPodcast = require('./fixtures/yesAfterGetPodcastIntent.json');
 const latestPodcast = require('./fixtures/latestPodcast.json');
 const moreAfterLatestPodcast = require('./fixtures/moreAfterLatestPodcast.json');
 const posAfterLatestPodcast = require('./fixtures/posAfterLatestPodcast.json');
+const repeat = require('./fixtures/repeat.json');
 
 const speech = require('../src/speech').speech;
 
@@ -336,6 +337,23 @@ tap.test('Test numeric position after latestPodcast', test => {
             posAfterLatestPodcast, {
                 succeed: function (response) {
                   test.equal(response.response.directives[0].audioItem.stream.url, 'https://audio.guim.co.uk/2016/09/05-33499-gnl.books.20160903.st.simonrussellbeale.mp3')
+                    test.end()
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test repeat intent', test => {
+        test.plan(3);
+        lambda(
+            repeat, {
+                succeed: function (response) {
+                    test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
+                    test.equal(response.sessionAttributes.positionalContent.length, 3);
+                    test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
                     test.end()
                 },
                 fail: function (error) {

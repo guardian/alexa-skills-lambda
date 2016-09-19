@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "simple-get-promise": "^1.0.2",
-    "striptags": "^2.1.1"
+    "striptags": "^2.1.1",
+    "xml-escape": "^1.1.0"
   }
 }

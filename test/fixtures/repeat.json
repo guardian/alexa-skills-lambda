@@ -1,0 +1,31 @@
+{
+  "session": {
+    "sessionId": "",
+    "application": {
+      "applicationId": ""
+    },
+    "attributes": {
+      "lastIntent": "GetHeadlinesIntent",
+      "positionalContent": [
+        "world/2016/sep/20/un-suspends-all-aid-convoy-movements-in-syria-after-airstrike",
+        "business/2016/sep/20/glaxosmithkline-names-emma-walmsley-new-ceo-gsk",
+        "us-news/2016/sep/19/new-york-bombing-suspect-ahmad-khan-rahami"
+      ]
+    },
+    "user": {
+      "userId": ""
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "",
+    "locale": "en-GB",
+    "timestamp": "2016-09-20T09:55:34Z",
+    "intent": {
+      "name": "AMAZON.RepeatIntent",
+      "slots": {}
+    }
+  },
+  "version": "1.0"
+}
