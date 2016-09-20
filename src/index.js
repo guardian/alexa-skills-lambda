@@ -28,7 +28,7 @@ const randomMsg = require('./helpers').randomMessage;
 
 
 exports.handler = function (event, context, callback) {
-    console.log(event)
+    console.log(JSON.stringify(event))
     var alexa = Alexa.handler(event, context);
     alexa.APP_ID = APP_ID;
     alexa.registerHandlers(handlers);
@@ -40,7 +40,14 @@ var handlers = {
 
     'PodcastIntent': function() {
         this.event.session.attributes.lastIntent = 'PodcastIntent';
-        this.emit(':ask', speech.podcasts.intro, speech.launch.reprompt);
+        this.emit(
+          ':askWithCard',
+          speech.podcasts.intro,
+          speech.launch.reprompt,
+          'Podcasts',
+          'You can listen to the following podcasts:\n'+ helpers.podcastList,
+          helpers.cardImages
+        );
     },
     'GetPodcastIntent': getPodcast,
 

@@ -99,3 +99,5 @@ exports.cardImages = {
     "smallImageUrl": "https://s3.amazonaws.com/alexa-config/images/alexa-small.png",
     "largeImageUrl": "https://s3.amazonaws.com/alexa-config/images/alexa-large.png"
 };
+
+exports.podcastList = "Film Weekly, Football Weekly, Premier League: the view from Australia, The Long Read, The Story, Brain waves, Science Weekly, Close Encounters, Books podcast, Music Weekly, Chips with everything, Politics for humans, What would a feminist do?, Behind the lines, Politics Weekly, The Citadel";
