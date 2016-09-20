@@ -53,7 +53,7 @@ exports.getTopic = (attributes, slots) => {
     switch (attributes.lastIntent) {
         case "MoreIntent":
         case "EntityIntent": return attributes.topic ? attributes.topic : null;
-        default: return (slots.topic && slots.topic.value) ? slots.topic.value : null;
+        default: return (slots && slots.topic && slots.topic.value) ? slots.topic.value : null;
     }
 };
 
