@@ -41,7 +41,7 @@ module.exports = function() {
                         attributes.positionalContent = json.response.results.map(review => review.id);
                         const preamble = getPreamble(isNewIntent, json.response.results.length, attributes.reviewType);
                         const reviews = json.response.results.map(review => {
-                            return xmlescape(review.fields.headline) + sound.transition;
+                            return xmlescape(getHeadline(review)) + sound.transition;
                         });
                         const conclusion = getConclusion(json.response.results.length);
 
@@ -77,6 +77,11 @@ const getPreamble = (isNewIntent, reviewCount, reviewType) => {
     if (reviewCount === 1) return `The next ${reviewType} review is`;
     return `The next ${reviewType} reviews are`;
 };
+
+const getHeadline = (review) => {
+    if (review.fields.starRating) return `${review.fields.headline}. ${review.fields.starRating} stars. `
+    else return review.fields.headline
+}
 
 const getConclusion = (reviewCount) => {
     if (reviewCount == 1) return speech.reviews.followup1;

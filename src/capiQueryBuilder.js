@@ -67,7 +67,7 @@ exports.reviewQuery = (offset, reviewType) => {
             + "?api-key=" + CAPI_API_KEY
             + getPageParams(offset)
             + "&tag=tone/reviews,"+ tagType
-            + "&show-fields=standfirst,byline,headline&show-blocks=all";
+            + "&show-fields=standfirst,byline,headline,star-rating&show-blocks=all";
     } else {
         console.log(`reviewQuery: invalid review_type: ${reviewType}`);
         return null;
