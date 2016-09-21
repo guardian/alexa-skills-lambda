@@ -418,12 +418,18 @@ const queryProperties = (topic) => {
                 path: "lifeandstyle/health-and-wellbeing"
             }
         };
-        case "sex":
-        case "love": return {
+        case "sex": return {
             default: {
                 toneNews: false,
                 editorsPicks: true,
-                path: "lifeandstyle/love-and-sex"
+                path: "lifeandstyle/sex"
+            }
+        };
+        case "relationships": return {
+            default: {
+                toneNews: false,
+                editorsPicks: true,
+                path: "lifeandstyle/relationships"
             }
         };
         case "family": return {
@@ -441,11 +447,19 @@ const queryProperties = (topic) => {
             }
         };
         case "garden":
-        case "home": return {
+        case "gardens": return {
             default: {
                 toneNews: false,
-                editorsPicks: true,
-                path: "lifeandstyle/home-and-garden"
+                editorsPicks: false,
+                path: "lifeandstyle/gardens"
+            }
+        };
+        case "home":
+        case "homes": return {
+            default: {
+                toneNews: false,
+                editorsPicks: false,
+                path: "lifeandstyle/homes"
             }
         };
         case "fashion": return {
@@ -548,6 +562,24 @@ const queryProperties = (topic) => {
                 toneNews: true,
                 editorsPicks: true,
                 path: "au/money"
+            }
+        };
+        case "us election":
+        case "us elections":
+        case "presidential elections":
+        case "presidential election": return {
+            default: {
+                toneNews: true,
+                editorsPicks: true,
+                path: "us-news/us-elections-2016"
+            }
+        };
+        case "brexit":
+        case "eu referendum": return {
+            default: {
+                toneNews: true,
+                editorsPicks: true,
+                path: "politics/eu-referendum"
             }
         };
 

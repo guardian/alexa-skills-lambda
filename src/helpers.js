@@ -93,7 +93,7 @@ exports.getPodcastDirective = (podcastUrl) => {
 };
 
 exports.sportTopicList = 'US sports, football, soccer, cricket, rugby, rugby union, rugby league, formula one, f1, tennis, cycling, boxing, racing, horse racing';
-exports.topicList = 'UK, US, australia, world, sport, opinion, comment, culture, TV, music, games, art, stage, business, lifestyle, food, health and fitness, wellbeing, love and sex, family, women, fashion, home and garden, environment, climate change, tech, technology, travel, film' + ', '+ exports.sportTopicList;
+exports.topicList = 'UK, US, australia, world, sport, opinion, comment, culture, TV, music, games, art, stage, business, lifestyle, food, health and fitness, wellbeing, relationships, sex, family, women, fashion, home, garden, environment, climate change, tech, technology, travel, film, US elections, Brexit, ' + exports.sportTopicList;
 
 exports.cardImages = {
     "smallImageUrl": "https://s3.amazonaws.com/alexa-config/images/alexa-small.png",
