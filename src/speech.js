@@ -51,11 +51,16 @@ const speech = {
         followup3: "Would you like me to read the first, second or third review or would you like more reviews?"
     },
     help: {
-        explainer: `Happy to help. You can ask for the news, reviews, sport and podcasts.
-        In News, I can give you the headlines, or the latest news or opinions for a topic.
-        In Reviews, I have reviews for films, books, music and restaurants.
-        In Sport, I can give you the headlines for football, cricket, rugby, tennis, formula one, cycling, boxing, golf.
-        In Podcasts, I have weekly podcasts for football, politics, science, news, film, culture and books.`,
+        explainer: `Happy to help! Firstly, I can keep you up-to-date with the latest headlines, and for the topics
+            you're interested in. Simply, ask for the headlines for your topic, and from there, I will read three headlines.
+            You can choose to hear the whole story or hear more.
+            I can give you the latest reviews for films and other topics.
+            Simply ask for me for the latest reviews.
+            Finally, I can play our most popular weekly podcasts.
+            Simply ask for the latest podcasts, and I will give you three options again to choose from.
+            You can ask me to play your favourite, by telling me the name of it.
+            For more information on how to speak to me, read the Guardian skill description on your Alexa app.
+            Now, go ahead, and ask me something. `,
         reprompt: "Sorry, what would you like to do?"
     },
     core: {
