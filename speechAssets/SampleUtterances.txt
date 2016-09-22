@@ -1,31 +1,77 @@
 GetHeadlinesIntent headlines
+GetHeadlinesIntent {topic} headlines
+GetHeadlinesIntent {topic} news
 GetHeadlinesIntent give me the headlines
+GetHeadlinesIntent give me the {topic} headlines
+GetHeadlinesIntent give me the {topic} news
 GetHeadlinesIntent tell me the headlines
+GetHeadlinesIntent tell me the {topic} headlines
 GetHeadlinesIntent read me the headlines
+GetHeadlinesIntent read me the {topic} headlines
+GetHeadlinesIntent give me the top stories
+GetHeadlinesIntent tell me the top stories
+GetHeadlinesIntent read me the top stories
+GetHeadlinesIntent give me the top stories on {topic}
+GetHeadlinesIntent tell me the top stories on {topic}
+GetHeadlinesIntent read me the top stories on {topic}
+GetHeadlinesIntent news on {topic}
+GetHeadlinesIntent news for {topic}
+GetHeadlinesIntent give me the latest news on {topic}
+GetHeadlinesIntent give me news on {topic}
+GetHeadlinesIntent tell me news on {topic}
+GetHeadlinesIntent read me news on {topic}
 
+GetOpinionIntent opinion
+GetOpinionIntent {topic} opinion
 GetOpinionIntent for a latest opinion
-GetOpinionIntent for an opinion on {donald trump|search_item}
-GetOpinionIntent give an opinion on {donald trump|search_item}
-GetOpinionIntent read an opinion on {donald trump|search_item}
-GetOpinionIntent tell an opinion on {donald trump|search_item}
+GetOpinionIntent for an opinion on {topic}
+GetOpinionIntent give an opinion on {topic}
+GetOpinionIntent read an opinion on {topic}
+GetOpinionIntent tell an opinion on {topic}
+GetOpinionIntent give me the latest opinions
+GetOpinionIntent tell me the latest opinions
+GetOpinionIntent read me the latest opinions
 
-GetReviewIntent for a review
-GetReviewIntent give me a review
-GetReviewIntent read me a review
-GetReviewIntent tell me a review
+GetLatestReviewsIntent latest {review_type} reviews
+GetLatestReviewsIntent latest reviews
 
-GetReviewIntent for a {review_types} review
-GetReviewIntent give me a {review_types} review
-GetReviewIntent read me a {review_types} review
-GetReviewIntent tell me a {review_types} review
+ReadContentAtPositionIntent the {position} one
+ReadContentAtPositionIntent {position} story
+ReadContentAtPositionIntent {position} article
+ReadContentAtPositionIntent {position} review
+ReadContentAtPositionIntent {position} podcast
+ReadContentAtPositionIntent {position} opinion
+ReadContentAtPositionIntent {position}
+ReadContentAtPositionIntent read me the {position} one
+ReadContentAtPositionIntent tell me the {position} one
+ReadContentAtPositionIntent read me the {position} article
+ReadContentAtPositionIntent tell me the {position} story
 
-GetReviewIntent for a review for {sausage party|review_search_item}
-GetReviewIntent for a review of {sausage party|review_search_item}
-GetReviewIntent give me a review of {sausage party|review_search_item}
-GetReviewIntent read me a review of {sausage party|review_search_item}
-GetReviewIntent tell me a review of {sausage party|review_search_item}
+MoreIntent more
+MoreIntent more headlines
+MoreIntent more reviews
+MoreIntent more stories
+MoreIntent more articles
+MoreIntent give me more
+MoreIntent tell me more
 
-GetReviewIntent give me a {review_types} review of {sausage party|review_search_item}
-GetReviewIntent read me a {review_types} review of {sausage party|review_search_item}
-GetReviewIntent tell me a {review_types} review of {sausage party|review_search_item}
+GetIntroNewsIntent news
+GetLatestReviewsIntent reviews
 
+EntityIntent {topic}
+EntityIntent {review_type}
+
+PodcastIntent podcast
+
+GetPodcastIntent give me the {podcast} podcast
+GetPodcastIntent give me the {podcast}
+GetPodcastIntent get me the {podcast} podcast
+GetPodcastIntent give me the {podcast}
+GetPodcastIntent play me the {podcast} podcast
+GetPodcastIntent play me the {podcast}
+
+GetPodcastIntent {podcast}
+
+LatestPodcastIntent give me the latest podcasts
+LatestPodcastIntent latest podcasts
+LatestPodcastIntent get me the latest podcasts

@@ -1,44 +1,107 @@
 {
-  "intents": [
-    {
-      "intent": "GetHeadlinesIntent"
-    },
-    {
-      "intent": "GetReviewIntent",
-      "slots": [
-        {
-          "name": "review_types",
-          "type": "REVIEW_TYPES"
-        },
-        {
-          "name": "review_search_item",
-          "type": "AMAZON.LITERAL"
-        }
-      ]
-    },
-    {
-      "intent": "GetOpinionIntent",
-      "slots": [
-        {
-          "name": "search_item",
-          "type": "AMAZON.LITERAL"
-        }
-      ]
-    },
-    {
-      "intent": "AMAZON.YesIntent"
-    },
-    {
-      "intent": "AMAZON.NoIntent"
-    },
-    {
-      "intent": "AMAZON.HelpIntent"
-    },
-    {
-      "intent": "AMAZON.StopIntent"
-    },
-    {
-      "intent": "AMAZON.CancelIntent"
-    }
-  ]
+    "intents": [
+      {
+        "intent": "PodcastIntent"
+      },
+      {
+        "intent": "GetPodcastIntent",
+        "slots": [
+          {
+            "name": "podcast",
+            "type": "PODCAST"
+          }
+        ]
+      },
+      {
+        "intent": "LatestPodcastIntent"
+      },
+      {
+        "intent": "PlayPodcastIntent"
+      },
+      {
+        "intent": "AMAZON.ResumeIntent"
+      },
+      {
+        "intent": "AMAZON.PauseIntent"
+      },
+      {
+        "intent": "GetIntroNewsIntent"
+      },
+      {
+        "intent": "GetIntroReviewsIntent"
+      },
+      {
+        "intent": "GetIntroSportIntent"
+      },
+      {
+        "intent": "GetHeadlinesIntent",
+        "slots": [
+          {
+            "name": "topic",
+            "type": "TOPIC"
+          }
+        ]
+      },
+      {
+        "intent": "GetLatestReviewsIntent",
+        "slots": [
+          {
+            "name": "review_type",
+            "type": "REVIEW_TYPE"
+          }
+        ]
+      },
+      {
+        "intent": "GetOpinionIntent",
+        "slots": [
+          {
+            "name": "topic",
+            "type": "TOPIC"
+          }
+        ]
+      },
+      {
+        "intent": "ReadContentAtPositionIntent",
+        "slots": [
+          {
+            "name": "position",
+            "type": "POSITION"
+          }
+        ]
+      },
+      {
+        "intent": "MoreIntent"
+      },
+      {
+        "intent": "EntityIntent",
+        "slots": [
+          {
+            "name": "topic",
+            "type": "TOPIC"
+          },
+          {
+            "name": "review_type",
+            "type": "REVIEW_TYPE"
+          }
+        ]
+      },
+      {
+        "intent": "AMAZON.YesIntent"
+      },
+      {
+        "intent": "AMAZON.NoIntent"
+      },
+      {
+        "intent": "AMAZON.HelpIntent"
+      },
+      {
+        "intent": "AMAZON.StopIntent"
+      },
+      {
+        "intent": "AMAZON.CancelIntent"
+      },
+      {
+        "intent": "AMAZON.RepeatIntent"
+      }
+    ]
 }
