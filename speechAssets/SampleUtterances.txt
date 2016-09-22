@@ -14,12 +14,18 @@ GetHeadlinesIntent read me the top stories
 GetHeadlinesIntent give me the top stories on {topic}
 GetHeadlinesIntent tell me the top stories on {topic}
 GetHeadlinesIntent read me the top stories on {topic}
+GetHeadlinesIntent give me the top {topic} stories
+GetHeadlinesIntent tell me the top {topic} stories
+GetHeadlinesIntent read me the top {topic} stories
 GetHeadlinesIntent news on {topic}
 GetHeadlinesIntent news for {topic}
 GetHeadlinesIntent give me the latest news on {topic}
 GetHeadlinesIntent give me news on {topic}
 GetHeadlinesIntent tell me news on {topic}
 GetHeadlinesIntent read me news on {topic}
+GetHeadlinesIntent give me the latest news on {topic}
+GetHeadlinesIntent tell me the latest  news on {topic}
+GetHeadlinesIntent read me the latest  news on {topic}
 
 GetOpinionIntent opinion
 GetOpinionIntent {topic} opinion
@@ -28,12 +34,28 @@ GetOpinionIntent for an opinion on {topic}
 GetOpinionIntent give an opinion on {topic}
 GetOpinionIntent read an opinion on {topic}
 GetOpinionIntent tell an opinion on {topic}
+GetOpinionIntent give me opinion stories
+GetOpinionIntent tell me opinion stories
 GetOpinionIntent give me the latest opinions
 GetOpinionIntent tell me the latest opinions
 GetOpinionIntent read me the latest opinions
+GetOpinionIntent give me the latest opinions on {topic}
+GetOpinionIntent tell me the latest opinions on {topic}
+GetOpinionIntent read me the latest opinions on {topic}
 
+GetLatestReviewsIntent {review_type} reviews
+GetLatestReviewsIntent reviews for {review_type}
 GetLatestReviewsIntent latest {review_type} reviews
 GetLatestReviewsIntent latest reviews
+GetLatestReviewsIntent give me the latest {review_type} reviews
+GetLatestReviewsIntent tell me the latest {review_type} reviews
+GetLatestReviewsIntent read me the latest {review_type} reviews
+GetLatestReviewsIntent give me {review_type} reviews
+GetLatestReviewsIntent tell me {review_type} reviews
+GetLatestReviewsIntent read me {review_type} reviews
+GetLatestReviewsIntent give me reviews for {review_type}
+GetLatestReviewsIntent tell me reviews for {review_type}
+GetLatestReviewsIntent read me reviews for {review_type}
 
 ReadContentAtPositionIntent the {position} one
 ReadContentAtPositionIntent {position} story
@@ -41,6 +63,8 @@ ReadContentAtPositionIntent {position} article
 ReadContentAtPositionIntent {position} review
 ReadContentAtPositionIntent {position} podcast
 ReadContentAtPositionIntent {position} opinion
+ReadContentAtPositionIntent {position} opinion story
+ReadContentAtPositionIntent {position} opinion article
 ReadContentAtPositionIntent {position}
 ReadContentAtPositionIntent read me the {position} one
 ReadContentAtPositionIntent tell me the {position} one
@@ -56,6 +80,12 @@ MoreIntent give me more
 MoreIntent tell me more
 
 GetIntroNewsIntent news
+GetIntroNewsIntent give me the news
+GetIntroNewsIntent tell me the news
+GetIntroNewsIntent read me the news
+GetIntroNewsIntent give me news
+GetIntroNewsIntent tell me news
+GetIntroNewsIntent read me news
 GetLatestReviewsIntent reviews
 
 EntityIntent {topic}
@@ -72,6 +102,10 @@ GetPodcastIntent play me the {podcast}
 
 GetPodcastIntent {podcast}
 
-LatestPodcastIntent give me the latest podcasts
 LatestPodcastIntent latest podcasts
+LatestPodcastIntent play me podcasts
+LatestPodcastIntent play me the latest podcasts
+LatestPodcastIntent get me podcasts
 LatestPodcastIntent get me the latest podcasts
+LatestPodcastIntent give me podcasts
+LatestPodcastIntent give me the latest podcasts
