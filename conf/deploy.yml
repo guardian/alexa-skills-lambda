@@ -1,10 +1,10 @@
 defaultStacks:
-    - cms-fronts
+    - content-api
 packages:
     static:
         type: aws-s3
         data:
-            bucket: lambda-boilerplate-dist
+            bucket: content-api-dist
             cacheControl: "public, max-age=315360000"
             prefixPackage: false
             prefixStack: false
@@ -15,10 +15,10 @@ packages:
         data:
             functions:
                 CODE:
-                    name: content-api-alexa-skills-lambda-CODE-Lambda-IA7UKAVHN3O0
+                    name: alexa-lambda-CODE-Lambda-A08A9JCEA18Z
                     filename: artifact.zip
                 PROD:
-                    name: content-api-alexa-skills-lambda-PROD-Lambda-1EEJXT0SZDVHM
+                    name: alexa-lambda-PROD-Lambda-1J60LK2ZLFQEQ
                     filename: artifact.zip
 recipes:
     upload:
