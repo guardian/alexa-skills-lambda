@@ -18,7 +18,7 @@ packages:
                     name: alexa-lambda-CODE-Lambda-A08A9JCEA18Z
                     filename: artifact.zip
                 PROD:
-                    name: alexa-lambda-PROD-Lambda-1J60LK2ZLFQEQ
+                    name: alexa-lambda-PROD-Lambda-6GOP8W2HAUTU
                     filename: artifact.zip
 recipes:
     upload:
