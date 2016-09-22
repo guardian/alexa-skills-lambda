@@ -113,7 +113,7 @@ var handlers = {
         this.emit(':ask', speech.help.explainer + randomMsg(speech.core.questions), speech.help.reprompt)
     },
     'AMAZON.CancelIntent': function() {
-        this.emit(':ask', speech.core.cancel + randomMsg(speech.core.questions), speech.help.reprompt)
+        this.emit(':ask', speech.core.cancel, speech.help.reprompt)
     },
     'AMAZON.StopIntent': function() {
         this.emit(':tell', speech.core.stop)

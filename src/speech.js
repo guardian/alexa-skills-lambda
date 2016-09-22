@@ -65,7 +65,7 @@ const speech = {
     },
     core: {
         stop: "Goodbye.",
-        cancel: "No problem. ",
+        cancel: "OK - I'll cancel that. What would you like to hear next?",
         didNotUnderstand: "Sorry, I didn't catch that",
         questions: [
             "What would you like to hear?",
