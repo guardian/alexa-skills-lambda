@@ -33,7 +33,7 @@ tap.test('Test get headlines intent', test => {
             succeed: function (response) {
                 test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
-                test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                 test.end()
             },
             fail: function (error) {
@@ -50,7 +50,7 @@ tap.test('Test localized headlines intent', test => {
                 succeed: function (response) {
                     test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                     test.equal(response.sessionAttributes.positionalContent.length, 3);
-                    test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                    test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                     test.end()
                 },
                 fail: function (error) {
@@ -67,7 +67,7 @@ tap.test('Test topic after news intro', test => {
                 succeed: function (response) {
                     test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                     test.equal(response.sessionAttributes.positionalContent.length, 3);
-                    test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                    test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                     test.equal(response.sessionAttributes.topic, 'politics');
                     test.end()
                 },
@@ -85,7 +85,7 @@ tap.test('Test get headlines intent with a specific topic', test => {
             succeed: function (response) {
                 test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
-                test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                 test.equal(response.sessionAttributes.topic, 'politics');
                 test.end()
             },
@@ -102,7 +102,7 @@ tap.test('Test the get opinion on sport intent', test => {
             localizedOpinion, {
                 succeed: function (response) {
                     test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
-                    test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                    test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                     test.equal(response.sessionAttributes.positionalContent.length, 3);
                     test.end()
                 },
@@ -120,7 +120,7 @@ tap.test('Test the get opinion on sport intent', test => {
             succeed: function (response) {
                 test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
                 test.ok(response.response.outputSpeech.ssml.indexOf('sport') != -1);
-                test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                 test.equal(response.sessionAttributes.topic, 'sport');
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
                 test.end()
@@ -173,7 +173,7 @@ tap.test('Test get latest reviews intent', test => {
             succeed: function (response) {
                 test.equal(response.sessionAttributes.lastIntent, "GetLatestReviewsIntent");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
-                test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                 test.end()
             },
             fail: function (error) {
@@ -208,7 +208,7 @@ tap.test('Test entity after get latest reviews intent', test => {
                 test.equal(response.sessionAttributes.lastIntent, "GetLatestReviewsIntent");
                 test.equal(response.sessionAttributes.reviewType, "film");
                 test.equal(response.sessionAttributes.positionalContent.length, 3);
-                test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                 test.end()
             },
             fail: function (error) {
@@ -226,7 +226,7 @@ tap.test('Test entity after launch', test => {
           test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
           test.equal(response.sessionAttributes.topic, "film");
           test.equal(response.sessionAttributes.positionalContent.length, 3);
-          test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+            test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
           test.end()
         },
         fail: function (error) {
@@ -372,7 +372,7 @@ tap.test('Test repeat intent', test => {
                 succeed: function (response) {
                     test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
                     test.equal(response.sessionAttributes.positionalContent.length, 3);
-                    test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+                    test.equal((response.response.outputSpeech.ssml.match(/audio src/g) || []).length, 3);
                     test.end()
                 },
                 fail: function (error) {

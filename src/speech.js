@@ -106,10 +106,15 @@ const speech = {
 };
 
 const sound = {
-    transition: "<break time='1s'/>",
+    transition: "<audio src='https://s3.amazonaws.com/alexa-config/audio/Sting.mp3'/> ",
     break: "<break strength='medium'/>",
     strongBreak: "<break strength='x-strong'/>",
-    intro: "<audio src='https://s3.amazonaws.com/alexa-config/audio/alexa-intro.mp3'/> "
+    intro: [
+        "<audio src='https://s3.amazonaws.com/alexa-config/audio/Guardian_1.mp3'/> ",
+        "<audio src='https://s3.amazonaws.com/alexa-config/audio/Guardian_2.mp3'/> ",
+        "<audio src='https://s3.amazonaws.com/alexa-config/audio/Guardian_3.mp3'/> ",
+        "<audio src='https://s3.amazonaws.com/alexa-config/audio/Guardian_4.mp3'/> "
+    ]
 };
 
 exports.speech = speech;

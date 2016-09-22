@@ -13,7 +13,7 @@ module.exports = function () {
     userStore.getUser(id, (err, dynamoData) => {
         if (err) {
             console.log("Error looking up user " + id + ": " + err);
-            that.emit(':ask', sound.intro +"\n"+ speech.launch.welcome_1 + randomMsg(speech.core.questions), speech.launch.reprompt);
+            that.emit(':ask', randomMsg(sound.intro) +"\n"+ speech.launch.welcome_1 + randomMsg(speech.core.questions), speech.launch.reprompt);
         } else {
             const now = Moment.utc();
             if (dynamoData.Item) {
@@ -34,9 +34,9 @@ module.exports = function () {
 };
 
 const getWelcome = (visits, lastVisit, now) => {
-    if (visits < 3) return sound.intro +"\n"+ speech.launch.welcome_2 + randomMsg(speech.core.questions);
-    else if (now.diff(Moment(lastVisit), 'days') < 7) return sound.intro +"\n"+ speech.launch.welcome_3;
-    else return sound.intro +"\n"+ speech.launch.welcome_long_time + randomMsg(speech.core.questions);
+    if (visits < 3) return randomMsg(sound.intro) +"\n"+ speech.launch.welcome_2 + randomMsg(speech.core.questions);
+    else if (now.diff(Moment(lastVisit), 'days') < 7) return randomMsg(sound.intro) +"\n"+ speech.launch.welcome_3;
+    else return randomMsg(sound.intro) +"\n"+ speech.launch.welcome_long_time + randomMsg(speech.core.questions);
 };
 
 const getStage = (functionName) => {
