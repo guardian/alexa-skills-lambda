@@ -36,16 +36,16 @@ module.exports = function () {
         get(capiQuery)
             .then(asJson)
             .then((json) => {
-                this.emit(':ask', getArticle(json));
+                this.emit(':ask', getArticle(json), speech.help.reprompt);
             })
             .catch(function (error) {
-                this.emit(':ask', speech.core.didNotUnderstand);
+                this.emit(':ask', speech.core.didNotUnderstand, speech.help.reprompt);
             });
     };
 
     const readContentAtPosition = (position) => {
-        const contentId = this.event.session.attributes.positionalContent[position];
-        if (contentId) {
+        if (this.event.session.attributes.positionalContent && this.event.session.attributes.positionalContent[position]) {
+            const contentId = this.event.session.attributes.positionalContent[position];
             switch (this.event.session.attributes.lastIntent) {
                 case "LatestPodcastIntent":
                     playPodcast(contentId);
@@ -56,7 +56,7 @@ module.exports = function () {
                     readArticle(contentId);
                     break;
             }
-        } else this.emit(':ask', randomMsg(speech.core.questions), speech.news.reprompt);
+        } else this.emit(':ask', randomMsg(speech.core.questions), speech.help.reprompt);
     };
 
     switch (position) {
@@ -73,7 +73,7 @@ module.exports = function () {
             readContentAtPosition(2);
             break;
         default:
-            this.emit(':ask', speech.core.didNotUnderstand);
+            this.emit(':ask', speech.core.didNotUnderstand, speech.help.reprompt);
     }
 
 };
