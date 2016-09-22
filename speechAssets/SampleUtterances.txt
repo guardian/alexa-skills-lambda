@@ -36,6 +36,7 @@ GetOpinionIntent read an opinion on {topic}
 GetOpinionIntent tell an opinion on {topic}
 GetOpinionIntent give me opinion stories
 GetOpinionIntent tell me opinion stories
+GetOpinionIntent read me opinion stories
 GetOpinionIntent give me the latest opinions
 GetOpinionIntent tell me the latest opinions
 GetOpinionIntent read me the latest opinions
@@ -94,11 +95,15 @@ EntityIntent {review_type}
 PodcastIntent podcast
 
 GetPodcastIntent give me the {podcast} podcast
+GetPodcastIntent give me the latest {podcast} podcast
 GetPodcastIntent give me the {podcast}
+GetPodcastIntent give me {podcast}
 GetPodcastIntent get me the {podcast} podcast
-GetPodcastIntent give me the {podcast}
+GetPodcastIntent get me the latest {podcast} podcast
 GetPodcastIntent play me the {podcast} podcast
+GetPodcastIntent play me the latest {podcast} podcast
 GetPodcastIntent play me the {podcast}
+GetPodcastIntent play me {podcast}
 
 GetPodcastIntent {podcast}
 
