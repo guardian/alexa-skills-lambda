@@ -116,14 +116,14 @@ var handlers = {
         this.emit(':ask', speech.core.cancel, speech.help.reprompt)
     },
     'AMAZON.StopIntent': function() {
-        this.emit(':tell', speech.core.stop)
+        this.emit(':tell', randomMsg(speech.core.stop))
     },
     'AMAZON.YesIntent': yes,
 
     'AMAZON.NoIntent': no,
 
     'SessionEndedRequest': function() {
-        this.emit(':tell', speech.core.stop)
+        this.emit(':tell', randomMsg(speech.core.stop))
     },
 
     'AMAZON.RepeatIntent': function() {

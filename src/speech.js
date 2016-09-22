@@ -1,8 +1,11 @@
 const speech = {
     launch: {
-        welcome_1: `Welcome to The Guardian! 
-        You can ask me for news, reviews, sport and podcasts. `,
-        welcome_2: `Welcome back to The Guardian! You can ask me for news, reviews, sport and podcasts. `,
+        welcome_1: `Welcome to the Guardian! 
+        You can ask me for news, reviews, sport and podcasts.
+        If you need help, just ask. `,
+        welcome_2: `Welcome back! 
+        You can ask me for news, reviews, sport and podcasts. 
+        The Guardian skill is very new, and we would love your feedback. Please send your thoughts and ideas to, alexa.feedback @ the guardian.com. `,
         welcome_3: `Would you like to hear news, reviews, sport or podcasts?`,
         welcome_long_time: `Welcome back to the Guardian! You can ask me for news, reviews, sport and podcasts. `,
         reprompt: "Sorry, what would you like to hear?"
@@ -21,50 +24,52 @@ const speech = {
         topicNotFound: "Sorry - I don't have any news on %s. Shall I send a list of topics to your Alexa app?",
         followup1: "Would you like me to read the first story?",
         followup2: "Would you like me to read the first or second story?",
-        followup3: "Would you like me to read the first, second or third story or would you like more headlines?",
-        question: "Would you like me to read the first, second or third story or would you like more headlines?",
-        hearAgain: "OK. Would you like hear the choices again or more headlines?",
-        reprompt: "Sorry, Would you like me to read the first, second or third story or would you like more headlines?"
+        followup3: "Would you like me to read the first, second or third story? or would you like to hear more?",
+        question: "Would you like me to read the first, second or third story? or would you like to hear more?",
+        reprompt: "Sorry, would you like me to read the first, second or third story? or would you like to hear more?"
     },
     opinions: {
         more: "the next three opinion stories are: ",
-        notFound: "Sorry - I can't find you any opinions at the moment. ",
-        topicNotFound: "Sorry - I don’t have any opinions on %s. Shall I send a list of topics to your Alexa app?",
-        reprompt: "Would you like to hear another opinion?",
-        followup1: "Would you like me to read the first story or would you like more opinions?",
-        followup2: "Would you like me to read the first story, the second one or would you like more opinions?",
-        followup3: "Would you like me to read the first, second or third opinion or would you like more opinions?",
+        notFound: "Sorry - I can't find you any opinion stories at the moment. ",
+        topicNotFound: "Sorry - I don’t have any opinion stories on %s. Shall I send a list of topics to your Alexa app?",
+        followup1: "Would you like me to read the first story?",
+        followup2: "Would you like me to read the first story, the second story?",
+        followup3: "Would you like me to read the first, second or third story? or would you like to hear more?",
+        reprompt: "Sorry, would you like me to read the first, second or third story? or would you like to hear more?"
+
     },
     reviews: {
         latest: "the latest {0} reviews are:",
         specifc: "the latest reviews for {0} are:",
         more: "the next three reviews are:",
-        question: "Would you like me to read the first, second or third review or would you like more {0} reviews?",
-        hearAgain: "OK. Would you like hear the choices again or more reviews?",
+        question: "Would you like me to read the first, second or third review? or would you like to hear more?",
         notfound: "Sorry, I could not find a review for you. Is there anything else I can help with?",
         clarifyType: "Is it a restaurant, book, film, or music review you're after?",
-        clarifySearch: "What would you like a {0} review for?",
-        reprompt: "Would you like to hear another review?",
         explainer: "I have reviews for films, books, music and restaurants. I've just sent the list of review types to your Alexa app. ",
-        followup1: "Would you like me to read this review?",
-        followup2: "Would you like me to read the first review or the second review?",
-        followup3: "Would you like me to read the first, second or third review or would you like more reviews?"
+        followup1: "Would you like me to read the first review?",
+        followup2: "Would you like me to read the first or second review?",
+        followup3: "Would you like me to read the first, second or third review? or would you like to hear more?",
+        reprompt: "Sorry, would you like me to read the first, second or third review? or would you like to hear more?"
     },
     help: {
-        explainer: `Happy to help! Firstly, I can keep you up-to-date with the latest headlines, and for the topics
+        explainer: `Happy to help! Firstly, I can keep you up-to-date with the top stories of the day, and for the topics
             you're interested in. Simply, ask for the headlines for your topic, and from there, I will read three headlines.
             You can choose to hear the whole story or hear more.
             I can give you the latest reviews for films and other topics.
-            Simply ask for me for the latest reviews.
+            Simply ask me for the latest reviews.
             Finally, I can play our most popular weekly podcasts.
-            Simply ask for the latest podcasts, and I will give you three options again to choose from.
+            Simply ask me for the latest podcasts, and again, I will give you three options to choose from.
             You can ask me to play your favourite, by telling me the name of it.
-            For more information on how to speak to me, read the Guardian skill description on your Alexa app.
+            If you have any thoughts or ideas, please send them to, alexa.feedback @ the guardian.com.
             Now, go ahead, and ask me something. `,
         reprompt: "Sorry, what would you like to do?"
     },
     core: {
-        stop: "Goodbye.",
+        stop: [
+            "Goodbye",
+            "Goodbye for now",
+            "See you later"
+        ],
         cancel: "OK - I'll cancel that. What would you like to hear next?",
         didNotUnderstand: "Sorry, I didn't catch that",
         questions: [
@@ -75,7 +80,7 @@ const speech = {
         ]
     },
     positionalContent: {
-        followup: "Would you like to hear the headlines again, or more headlines?",
+        followup: "Would you like to hear them again, or hear more headlines?",
         articleBy: "This article is written by ",
         timeToReadPref: " and it will take roughly ",
         timeToReadSuff: " minutes to read."
@@ -84,16 +89,19 @@ const speech = {
         'Sure, ',
         'Certainly, ',
         'Absolutely, ',
-        'No problem, '
+        'No problem, ',
+        'OK, ',
+        'Very well, ',
+        'Right, '
     ],
     podcasts: {
         intro: 'Our most popular podcasts this week are: Football Weekly, Science Weekly, Chips with Everything, ' +
         'and Close Encounters. I’ve sent you the list of podcasts to your Alexa app. ' +
         'I can tell you the latest available or play you a specific one. What would you like to hear?',
-        notfound: 'Sorry, I could not find that podcast. Can I find you something else?',
+        notfound: 'Sorry, I could not find that podcast. Which podcast would you like me to play?',
         followup1: "Would you like me to play the first podcast?",
         followup2: "Would you like me to play the first or second podcast?",
-        followup3: "Would you like me to play the first, second or third podcast or would you like more podcasts?",
+        followup3: "Would you like me to play the first, second or third podcast? or would you like to hear more?"
     }
 };
 
