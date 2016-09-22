@@ -3,13 +3,13 @@ const AWS = require("aws-sdk");
 module.exports = UserStore;
 
 const tables = {
-    "CODE": "alexa-users-dynamo-CODE-alexaUsersTable-191PUW9ZGV5MO",
-    "PROD": "alexa-users-dynamo-PROD-alexaUsersTable-1U5AJKP0UV2A4"
+   "CODE": "alexa-users-dynamo-CODE-alexaUsersTable-1SCEYY228JBRS",
+   "PROD": "alexa-users-dynamo-PROD-alexaUsersTable-UOUWG0VXB6J2"
 };
 
 function UserStore(stage) {
     this._tableName = tables[stage];
-    this._docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'})
+    this._docClient = new AWS.DynamoDB.DocumentClient({region: 'eu-west-1'})
 }
 
 UserStore.prototype.getUser = function(id, callback) {
