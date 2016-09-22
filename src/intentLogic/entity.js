@@ -28,15 +28,11 @@ module.exports = function () {
                     attributes.reviewType = entity;
                     this.emit('GetLatestReviewsIntent');
                     break;
-                case 'GetIntroSportIntent':
-                case 'GetIntroNewsIntent':
+                default:
+                    //Assume the user wants headlines
                     attributes.lastIntent = "EntityIntent";
                     attributes.topic = entity;
                     this.emit('GetHeadlinesIntent');
-                    break;
-                default:
-                    // No last intent or unexpected last intent
-                    this.emit(':ask', speech.help.reprompt, speech.help.reprompt)
             }
         }
     } else {

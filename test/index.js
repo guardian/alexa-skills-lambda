@@ -20,6 +20,7 @@ const latestPodcast = require('./fixtures/latestPodcast.json');
 const moreAfterLatestPodcast = require('./fixtures/moreAfterLatestPodcast.json');
 const posAfterLatestPodcast = require('./fixtures/posAfterLatestPodcast.json');
 const repeat = require('./fixtures/repeat.json');
+const topicAfterLaunch = require('./fixtures/topicAfterLaunch.json');
 
 const speech = require('../src/speech').speech;
 
@@ -215,6 +216,24 @@ tap.test('Test entity after get latest reviews intent', test => {
             }
         });
     }
+);
+
+tap.test('Test entity after launch', test => {
+    test.plan(4);
+    lambda(
+      topicAfterLaunch, {
+        succeed: function (response) {
+          test.equal(response.sessionAttributes.lastIntent, "GetHeadlinesIntent");
+          test.equal(response.sessionAttributes.topic, "film");
+          test.equal(response.sessionAttributes.positionalContent.length, 3);
+          test.ok(response.response.outputSpeech.ssml.indexOf('break time') != -1);
+          test.end()
+        },
+        fail: function (error) {
+          test.fail()
+        }
+      });
+  }
 );
 
 tap.test('Test numeric position after headlines', test => {
