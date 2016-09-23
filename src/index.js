@@ -20,6 +20,8 @@ const launch = require('./intentLogic/launch');
 const getPodcast = require('./intentLogic/getPodcast');
 const latestPodcast = require('./intentLogic/latestPodcast');
 const entity = require('./intentLogic/entity');
+const playback = require('./intentLogic/playback');
+const resume = require('./intentLogic/resume');
 
 // misc
 const helpers = require('./helpers');
@@ -135,7 +137,21 @@ var handlers = {
         else {
           this.emit(':ask', speech.help.reprompt, speech.help.reprompt);
         }
-    }
+    },
 
+    'PlaybackStarted': function() {
+        this.emit(':responseReady');
+    },
+
+    //"pause" or "stop"
+    'PlaybackStopped': playback,
+
+    'PlaybackFinished': playback,
+
+    //"stop"
+    'AMAZON.PauseIntent': function() {
+        this.emit(':responseReady');
+    },
+    //"play" or "resume"
+    'AMAZON.ResumeIntent': resume
 };
-

@@ -1,6 +1,7 @@
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
+const getStage = require('../helpers').getStage;
 const UserStore = require('../userStore');
 const Moment = require("moment");
 
@@ -39,7 +40,3 @@ const getWelcome = (visits, lastVisit, now) => {
     else return randomMsg(sound.intro) +"\n"+ speech.launch.welcome_long_time + randomMsg(speech.core.questions);
 };
 
-const getStage = (functionName) => {
-    if (functionName && functionName.includes("PROD")) return "PROD";
-    else return "CODE";
-};

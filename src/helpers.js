@@ -57,7 +57,12 @@ exports.getTopic = (attributes, slots) => {
     }
 };
 
-exports.getPodcastDirective = (podcastUrl) => {
+exports.getStage = (functionName) => {
+    if (functionName && functionName.includes("PROD")) return "PROD";
+    else return "CODE";
+};
+
+exports.getPodcastDirective = (podcastUrl, offset) => {
     return {
         "version": "1.0",
         "sessionAttributes": {},
@@ -79,9 +84,9 @@ exports.getPodcastDirective = (podcastUrl) => {
                     "playBehavior": "REPLACE_ALL",
                     "audioItem": {
                         "stream": {
-                            "token": "token",
+                            "token": podcastUrl,
                             "url": podcastUrl,
-                            "offsetInMilliseconds": 0
+                            "offsetInMilliseconds": offset || 0
                         }
                     }
                 }
@@ -90,6 +95,21 @@ exports.getPodcastDirective = (podcastUrl) => {
         }
     };
 
+};
+exports.stopPodcastDirective = {
+    "version": "1.0",
+    "sessionAttributes": {},
+    "response": {
+        "outputSpeech": {},
+        "card": {},
+        "reprompt": {},
+        "directives": [
+            {
+                "type": "AudioPlayer.Stop"
+            }
+        ]
+    },
+    "shouldEndSession": true
 };
 
 exports.sportTopicList = 'US sports, football, soccer, cricket, rugby, rugby union, rugby league, formula one, f1, tennis, cycling, boxing, racing, horse racing';
