@@ -37,6 +37,15 @@ GetOpinionIntent tell an opinion on {topic}
 GetOpinionIntent give me opinion stories
 GetOpinionIntent tell me opinion stories
 GetOpinionIntent read me opinion stories
+GetOpinionIntent give me opinion stories on {topic}
+GetOpinionIntent tell me opinion stories on {topic}
+GetOpinionIntent read me the latest opinion stories on {topic}
+GetOpinionIntent give me the latest opinion stories on {topic}
+GetOpinionIntent tell me the latest opinion stories on {topic}
+GetOpinionIntent read me opinion stories on {topic}
+GetOpinionIntent give me opinion articles on {topic}
+GetOpinionIntent tell me opinion articles on {topic}
+GetOpinionIntent read me opinion articles on {topic}
 GetOpinionIntent give me the latest opinions
 GetOpinionIntent tell me the latest opinions
 GetOpinionIntent read me the latest opinions
@@ -44,10 +53,17 @@ GetOpinionIntent give me the latest opinions on {topic}
 GetOpinionIntent tell me the latest opinions on {topic}
 GetOpinionIntent read me the latest opinions on {topic}
 
+GetLatestReviewsIntent reviews
+GetLatestReviewsIntent latest reviews
+GetLatestReviewsIntent give me reviews
+GetLatestReviewsIntent tell me reviews
+GetLatestReviewsIntent read me reviews
+GetLatestReviewsIntent give me the latest reviews
+GetLatestReviewsIntent tell me the latest reviews
+GetLatestReviewsIntent read me the latest reviews
 GetLatestReviewsIntent {review_type} reviews
 GetLatestReviewsIntent reviews for {review_type}
 GetLatestReviewsIntent latest {review_type} reviews
-GetLatestReviewsIntent latest reviews
 GetLatestReviewsIntent give me the latest {review_type} reviews
 GetLatestReviewsIntent tell me the latest {review_type} reviews
 GetLatestReviewsIntent read me the latest {review_type} reviews
@@ -87,12 +103,18 @@ GetIntroNewsIntent read me the news
 GetIntroNewsIntent give me news
 GetIntroNewsIntent tell me news
 GetIntroNewsIntent read me news
-GetLatestReviewsIntent reviews
 
 EntityIntent {topic}
 EntityIntent {review_type}
 
 PodcastIntent podcast
+
+GetPodcastIntent {podcast}
+GetPodcastIntent play {podcast}
+GetPodcastIntent play me {podcast}
+GetPodcastIntent start {podcast}
+GetPodcastIntent get me {podcast}
+GetPodcastIntent get {podcast}
 
 GetPodcastIntent give me the {podcast} podcast
 GetPodcastIntent give me the latest {podcast} podcast
@@ -103,9 +125,6 @@ GetPodcastIntent get me the latest {podcast} podcast
 GetPodcastIntent play me the {podcast} podcast
 GetPodcastIntent play me the latest {podcast} podcast
 GetPodcastIntent play me the {podcast}
-GetPodcastIntent play me {podcast}
-
-GetPodcastIntent {podcast}
 
 LatestPodcastIntent latest podcasts
 LatestPodcastIntent play me podcasts
@@ -114,3 +133,49 @@ LatestPodcastIntent get me podcasts
 LatestPodcastIntent get me the latest podcasts
 LatestPodcastIntent give me podcasts
 LatestPodcastIntent give me the latest podcasts
+
+AMAZON.YesIntent yes
+AMAZON.YesIntent yep
+AMAZON.YesIntent yeah
+AMAZON.YesIntent yes please
+AMAZON.YesIntent sure
+AMAZON.YesIntent OK
+
+AMAZON.NoIntent no
+AMAZON.NoIntent nope
+AMAZON.NoIntent no thanks
+
+AMAZON.CancelIntent cancel
+AMAZON.CancelIntent forget it
+AMAZON.CancelIntent nevermind
+AMAZON.CancelIntent never mind
+
+AMAZON.StopIntent exit
+AMAZON.StopIntent quit
+AMAZON.StopIntent don't worry
+AMAZON.StopIntent nothing
+AMAZON.StopIntent neither
+AMAZON.StopIntent none
+AMAZON.StopIntent none of them
+AMAZON.StopIntent none of those
+AMAZON.StopIntent shut up
+AMAZON.StopIntent stop
+AMAZON.StopIntent off
+AMAZON.StopIntent stop it
+
+AMAZON.HelpIntent help
+AMAZON.HelpIntent help me
+AMAZON.HelpIntent help please
+AMAZON.HelpIntent can you help
+AMAZON.HelpIntent can you help me
+AMAZON.HelpIntent please help
+AMAZON.HelpIntent please help me
+AMAZON.HelpIntent how does this work
+AMAZON.HelpIntent how does it work
+AMAZON.HelpIntent tell me what I can do
+AMAZON.HelpIntent how do I use this
+
+AMAZON.RepeatIntent repeat
+AMAZON.RepeatIntent say that again
+AMAZON.RepeatIntent repeat that
+AMAZON.RepeatIntent repeat please
