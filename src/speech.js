@@ -113,7 +113,7 @@ const sound = {
         "<audio src='https://s3.amazonaws.com/alexa-config/audio/alexa_intro_1.mp3'/> ",
         "<audio src='https://s3.amazonaws.com/alexa-config/audio/alexa_intro_2.mp3'/> ",
         "<audio src='https://s3.amazonaws.com/alexa-config/audio/alexa_intro_3.mp3'/> ",
-        "<audio src='https://s3.amazonaws.com/alexa-config/audio/alexa_intro_4.mp3/> "
+        "<audio src='https://s3.amazonaws.com/alexa-config/audio/alexa_intro_4.mp3'/> "
     ]
 };
 
