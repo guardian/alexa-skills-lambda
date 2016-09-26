@@ -80,8 +80,10 @@ const getPreamble = (isNewIntent, reviewCount, reviewType) => {
 
 const getHeadline = (review) => {
     const fixed = fixReviewTitle(review.fields.headline);
-    if (review.fields.starRating) return `${fixed}. ${review.fields.starRating} stars. `
-    else return fixed
+    if (review.fields.starRating) {
+        if (review.fields.starRating == 1) return `${fixed}. 1 star. `
+        else return `${fixed}. ${review.fields.starRating} stars. `
+    } else return fixed
 }
 
 const getConclusion = (reviewCount) => {
