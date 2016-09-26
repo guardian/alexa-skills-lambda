@@ -11,6 +11,7 @@ module.exports = function () {
     switch (attributes.lastIntent) {
         case 'GetPodcastIntent':
             const podcastDirective = helpers.getPodcastDirective(attributes.podcastUrl, attributes.podcastTitle);
+            console.log("Playing podcast " + attributes.podcastUrl);
             this.emit('PlayPodcastIntent', podcastDirective);
             break;
         case 'GetHeadlinesIntent':

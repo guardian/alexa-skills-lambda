@@ -8,7 +8,7 @@
         "lastIntent": "GetLatestReviewsIntent"
     },
     "user": {
-      "userId": ""
+      "userId": "test"
     },
     "new": true
   },

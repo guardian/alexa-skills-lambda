@@ -8,7 +8,7 @@ const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 const getMoreOffset = require('../helpers').getMoreOffset;
 const getTopic = require('../helpers').getTopic;
-
+const hitOphan = require('../helpers').hitOphanEndpoint;
 const capiQueryBuilder = require('../capiQueryBuilder');
 
 module.exports = function () {
@@ -28,6 +28,10 @@ module.exports = function () {
         get(capiQuery)
             .then(asJson)
             .then((json) => {
+                if (json.response.tag !== undefined)
+                    hitOphan(json.response.tag.webUrl, this.event.session.user.userId);
+                else if (json.response.section !== undefined)
+                    hitOphan(json.response.section.webUrl, this.event.session.user.userId);
                 if (json.response.results && json.response.results.length > 0 && json.response.results.length > 0) {
                     attributes.positionalContent = json.response.results.map(result => result.id);
                     const opinionSpeech = generateOpinionSpeech(json.response.results, isNewIntent, attributes.topic);

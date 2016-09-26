@@ -96,7 +96,7 @@ tap.test('Test get headlines intent with a specific topic', test => {
     }
 );
 
-tap.test('Test the get opinion on sport intent', test => {
+tap.test('Test the get opinion', test => {
         test.plan(3);
         lambda(
             localizedOpinion, {

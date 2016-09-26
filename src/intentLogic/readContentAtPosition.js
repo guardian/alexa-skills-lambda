@@ -7,9 +7,9 @@ const helpers = require('../helpers');
 const speech = require('../speech').speech;
 const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
-
 const config = require("../../tmp/config.json");
 const CAPI_API_KEY = config.capi_key;
+const hitOphan = require('../helpers').hitOphanEndpoint;
 
 module.exports = function () {
 
@@ -36,6 +36,7 @@ module.exports = function () {
         get(capiQuery)
             .then(asJson)
             .then((json) => {
+                hitOphan(json.response.content.webUrl, this.event.session.user.userId); // single page view
                 this.emit(':ask', getArticle(json), speech.help.reprompt);
             })
             .catch(function (error) {

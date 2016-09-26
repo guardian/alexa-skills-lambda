@@ -54,6 +54,7 @@ var handlers = {
     'GetPodcastIntent': getPodcast,
 
     'PlayPodcastIntent': function(jsonObj) {
+
         this.context.succeed(jsonObj);
     },
 
