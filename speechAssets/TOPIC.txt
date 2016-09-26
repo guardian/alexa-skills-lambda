@@ -4,6 +4,7 @@ australia
 world
 sport
 us sports
+u. s. sports
 football
 soccer
 cricket
@@ -49,6 +50,8 @@ travel
 film
 brexit
 us election
+u. s. election
 us elections
+u. s. elections
 presidential election
 presidential elections

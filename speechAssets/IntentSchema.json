@@ -16,9 +16,6 @@
         "intent": "LatestPodcastIntent"
       },
       {
-        "intent": "PlayPodcastIntent"
-      },
-      {
         "intent": "AMAZON.ResumeIntent"
       },
       {
@@ -26,12 +23,6 @@
       },
       {
         "intent": "GetIntroNewsIntent"
-      },
-      {
-        "intent": "GetIntroReviewsIntent"
-      },
-      {
-        "intent": "GetIntroSportIntent"
       },
       {
         "intent": "GetHeadlinesIntent",

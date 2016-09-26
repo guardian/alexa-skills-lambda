@@ -83,10 +83,13 @@ ReadContentAtPositionIntent {position} opinion
 ReadContentAtPositionIntent {position} opinion story
 ReadContentAtPositionIntent {position} opinion article
 ReadContentAtPositionIntent {position}
+ReadContentAtPositionIntent play me the {position} one
 ReadContentAtPositionIntent read me the {position} one
 ReadContentAtPositionIntent tell me the {position} one
 ReadContentAtPositionIntent read me the {position} article
 ReadContentAtPositionIntent tell me the {position} story
+ReadContentAtPositionIntent play the {position} one
+ReadContentAtPositionIntent read the {position} one
 
 MoreIntent more
 MoreIntent more headlines
