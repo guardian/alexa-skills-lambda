@@ -46,16 +46,17 @@ UserStore.prototype.setVisitCount = function(id, timestamp, count, callback) {
     }, callback)
 };
 
-UserStore.prototype.setAudio = function(id, url, offset, callback) {
+UserStore.prototype.setAudio = function(id, url, title, offset, callback) {
     this._docClient.update({
         TableName: this._tableName,
         Key: {
             "userId": id
         },
-        UpdateExpression: "set podcastUrl = :u, podcastOffset = :o",
+        UpdateExpression: "set podcastUrl = :u, podcastOffset = :o, podcastTitle = :t",
         ExpressionAttributeValues: {
             ":u": url,
-            ":o": offset
+            ":o": offset,
+            ":t": title
         }
     }, callback)
 };

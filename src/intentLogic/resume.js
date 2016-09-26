@@ -13,7 +13,7 @@ module.exports = function () {
                 this.emit(':ask', speech.podcasts.notfound, speech.launch.reprompt);
 
             } else if (data.Item && data.Item.podcastUrl) {
-                const podcastDirective = helpers.getPodcastDirective(data.Item.podcastUrl, data.Item.podcastOffset);
+                const podcastDirective = helpers.getPodcastDirective(data.Item.podcastUrl, data.Item.podcastTitle, data.Item.podcastOffset);
                 that.emit('PlayPodcastIntent', podcastDirective);
 
             } else {

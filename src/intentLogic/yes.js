@@ -10,7 +10,7 @@ module.exports = function () {
 
     switch (attributes.lastIntent) {
         case 'GetPodcastIntent':
-            const podcastDirective = helpers.getPodcastDirective(attributes.podcastUrl);
+            const podcastDirective = helpers.getPodcastDirective(attributes.podcastUrl, attributes.podcastTitle);
             this.emit('PlayPodcastIntent', podcastDirective);
             break;
         case 'GetHeadlinesIntent':

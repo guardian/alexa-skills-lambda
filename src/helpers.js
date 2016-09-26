@@ -62,15 +62,16 @@ exports.getStage = (functionName) => {
     else return "CODE";
 };
 
-exports.getPodcastDirective = (podcastUrl, offset) => {
+exports.getPodcastDirective = (podcastUrl, podcastTitle, offset) => {
     return {
         "version": "1.0",
         "sessionAttributes": {},
         "response": {
             "card": {
-                "type": "Simple",
-                "title": "Play Audio",
-                "content": "Playing the requested podcast."
+                "type": "Standard",
+                "title": "Playing Podcast",
+                "text": podcastTitle,
+                "image": this.cardImages
             },
             "reprompt": {
                 "outputSpeech": {
@@ -84,7 +85,7 @@ exports.getPodcastDirective = (podcastUrl, offset) => {
                     "playBehavior": "REPLACE_ALL",
                     "audioItem": {
                         "stream": {
-                            "token": podcastUrl,
+                            "token": JSON.stringify({ url: podcastUrl, title: podcastTitle }),
                             "url": podcastUrl,
                             "offsetInMilliseconds": offset || 0
                         }
@@ -100,16 +101,12 @@ exports.stopPodcastDirective = {
     "version": "1.0",
     "sessionAttributes": {},
     "response": {
-        "outputSpeech": {},
-        "card": {},
-        "reprompt": {},
         "directives": [
             {
                 "type": "AudioPlayer.Stop"
             }
         ]
-    },
-    "shouldEndSession": true
+    }
 };
 
 exports.sportTopicList = 'US sports, football, soccer, cricket, rugby, rugby union, rugby league, formula one, f1, tennis, cycling, boxing, racing, horse racing';

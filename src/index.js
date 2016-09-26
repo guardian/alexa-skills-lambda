@@ -139,18 +139,16 @@ var handlers = {
         }
     },
 
-    'PlaybackStarted': function() {
-        this.emit(':responseReady');
-    },
+    'PlaybackStarted': playback,
 
     //"pause" or "stop"
     'PlaybackStopped': playback,
 
     'PlaybackFinished': playback,
 
-    //"stop"
+    //"pause" or "stop"
     'AMAZON.PauseIntent': function() {
-        this.emit(':responseReady');
+        this.context.succeed(helpers.stopPodcastDirective);
     },
     //"play" or "resume"
     'AMAZON.ResumeIntent': resume
