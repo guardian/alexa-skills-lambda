@@ -79,11 +79,11 @@ const getPreamble = (isNewIntent, reviewCount, reviewType) => {
 };
 
 const getHeadline = (review) => {
-    const fixed = fixReviewTitle(review.fields.headline);
+    const titleWithoutReview = removeReviewFromTitle(review.fields.headline);
     if (review.fields.starRating) {
-        if (review.fields.starRating == 1) return `${fixed}. 1 star. `
-        else return `${fixed}. ${review.fields.starRating} stars. `
-    } else return fixed
+        if (review.fields.starRating == 1) return `${titleWithoutReview}. 1 star. `
+        else return `${titleWithoutReview}. ${review.fields.starRating} stars. `
+    } else return titleWithoutReview
 }
 
 const getConclusion = (reviewCount) => {
@@ -92,4 +92,4 @@ const getConclusion = (reviewCount) => {
     return speech.reviews.followup3
 };
 
-const fixReviewTitle = (title) => title.replace(/(-|–)?\s?(book|restaurant|film|movie)? review$/, "");
+const removeReviewFromTitle = (title) => title.replace(/(-|–)?\s?(book|restaurant|film|movie)? review$/, "");

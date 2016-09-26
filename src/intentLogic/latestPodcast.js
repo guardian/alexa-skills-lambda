@@ -40,7 +40,7 @@ module.exports = function () {
 
 const generatePodcastSpeech = (results, isNewIntent) => {
     const ack = randomMsg(speech.acknowledgement);
-    const podcastTitles = results.map(result => fixPodcastTitle(result.webTitle) + sound.transition);
+    const podcastTitles = results.map(result => removePodcastFromTitle(result.webTitle) + sound.transition);
 
     const buildLatestPodcastSpeech = () => {
         if (isNewIntent) return `the latest ${results.length} podcasts are: `;
@@ -57,4 +57,4 @@ const generatePodcastSpeech = (results, isNewIntent) => {
     return ack + buildLatestPodcastSpeech() + podcastTitles + followupQuestion();
 };
 
-const fixPodcastTitle = (title) => title.replace(/(-|–)?\s?podcast$/, "");
+const removePodcastFromTitle = (title) => title.replace(/(-|–)?\s?podcast$/, "");
