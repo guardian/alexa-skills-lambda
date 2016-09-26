@@ -27,7 +27,7 @@ module.exports = function () {
         .then((json) => {
             if (json.response.results && json.response.results.length > 0) {
                 attributes.positionalContent = json.response.results.map(result => result.apiUrl);
-                this.emit(':ask', generatePodcastSpeech(json.response.results, isNewIntent));
+                this.emit(':ask', generatePodcastSpeech(json.response.results, isNewIntent), speech.podcasts.reprompt);
             }
             else {
                 this.emit(':tell', speech.podcasts.notfound);
@@ -40,7 +40,7 @@ module.exports = function () {
 
 const generatePodcastSpeech = (results, isNewIntent) => {
     const ack = randomMsg(speech.acknowledgement);
-    const podcastTitles = results.map(result => result.webTitle + sound.transition);
+    const podcastTitles = results.map(result => removePodcastFromTitle(result.webTitle) + sound.transition);
 
     const buildLatestPodcastSpeech = () => {
         if (isNewIntent) return `the latest ${results.length} podcasts are: `;
@@ -57,3 +57,4 @@ const generatePodcastSpeech = (results, isNewIntent) => {
     return ack + buildLatestPodcastSpeech() + podcastTitles + followupQuestion();
 };
 
+const removePodcastFromTitle = (title) => title.replace(/(-|–)?\s?podcast$/, "");
