@@ -1,10 +1,16 @@
 UK
+uk
+u. k.
 US
+us
+u. s.
 australia
 world
 sport
 us sports
+us sport
 u. s. sports
+u. s. sport
 football
 soccer
 cricket
@@ -13,6 +19,7 @@ rugby union
 rugby league
 formula one
 f1
+f. 1
 tennis
 cycling
 boxing
@@ -22,6 +29,7 @@ opinion
 comment
 culture
 TV
+t. v.
 music
 games
 art

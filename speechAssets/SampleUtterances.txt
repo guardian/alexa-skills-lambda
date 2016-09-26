@@ -136,6 +136,13 @@ LatestPodcastIntent get me podcasts
 LatestPodcastIntent get me the latest podcasts
 LatestPodcastIntent give me podcasts
 LatestPodcastIntent give me the latest podcasts
+LatestPodcastIntent latest podcast
+LatestPodcastIntent play me podcast
+LatestPodcastIntent play me the latest podcast
+LatestPodcastIntent get me podcast
+LatestPodcastIntent get me the latest podcast
+LatestPodcastIntent give me podcast
+LatestPodcastIntent give me the latest podcast
 
 AMAZON.YesIntent yes
 AMAZON.YesIntent yep

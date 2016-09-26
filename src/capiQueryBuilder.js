@@ -156,6 +156,7 @@ const getPodcastCapiUrl = (podcastName) => {
 const queryProperties = (topic) => {
     switch (topic.toLowerCase()) {
         case "united kingdom":
+        case "u. k":
         case "uk": return {
             default: {
                 toneNews: true,       //tags=tone/news
@@ -165,6 +166,7 @@ const queryProperties = (topic) => {
         };
         case "united states":
         case "usa":
+        case "u. s.":
         case "us": return {
             default: {
                 toneNews: true,
@@ -225,6 +227,7 @@ const queryProperties = (topic) => {
             }
         };
         case "us sports":
+        case "u. s. sports":
         case "us sport": return {
             default: {
                 toneNews: true,
@@ -256,6 +259,7 @@ const queryProperties = (topic) => {
             }
         };
         case "formula 1":
+        case "f. 1":
         case "f1": return {
             default: {
                 toneNews: true,
@@ -324,6 +328,7 @@ const queryProperties = (topic) => {
             }
         };
         case "tv":
+        case "t. v.":
         case "radio":
         case "tv and radio": return {
             default: {
