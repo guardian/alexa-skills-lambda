@@ -101,7 +101,8 @@ const speech = {
         notfound: 'Sorry, I could not find that podcast. Which podcast would you like me to play?',
         followup1: "Would you like me to play the first podcast?",
         followup2: "Would you like me to play the first or second podcast?",
-        followup3: "Would you like me to play the first, second or third podcast? or would you like to hear more?"
+        followup3: "Would you like me to play the first, second or third podcast? or would you like to hear more?",
+        reprompt: "Sorry, would you like me to play the first, second or third podcast? or would you like to hear more?"
     }
 };
 
