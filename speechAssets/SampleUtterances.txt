@@ -1,6 +1,8 @@
 GetHeadlinesIntent headlines
 GetHeadlinesIntent {topic} headlines
 GetHeadlinesIntent {topic} news
+GetHeadlinesIntent what are the latest headlines
+GetHeadlinesIntent what the latest headlines are
 GetHeadlinesIntent give me the headlines
 GetHeadlinesIntent give me the {topic} headlines
 GetHeadlinesIntent give me the {topic} news
@@ -8,6 +10,14 @@ GetHeadlinesIntent tell me the headlines
 GetHeadlinesIntent tell me the {topic} headlines
 GetHeadlinesIntent read me the headlines
 GetHeadlinesIntent read me the {topic} headlines
+GetHeadlinesIntent give me the latest headlines
+GetHeadlinesIntent tell me the latest headlines
+GetHeadlinesIntent read me the latest headlines
+GetHeadlinesIntent give me the latest {topic} headlines
+GetHeadlinesIntent tell me the latest {topic} headlines
+GetHeadlinesIntent read me the latest {topic} headlines
+GetHeadlinesIntent the top stories
+GetHeadlinesIntent the top stories on {topic}
 GetHeadlinesIntent give me the top stories
 GetHeadlinesIntent tell me the top stories
 GetHeadlinesIntent read me the top stories
@@ -17,20 +27,35 @@ GetHeadlinesIntent read me the top stories on {topic}
 GetHeadlinesIntent give me the top {topic} stories
 GetHeadlinesIntent tell me the top {topic} stories
 GetHeadlinesIntent read me the top {topic} stories
+GetHeadlinesIntent read the top stories
+GetHeadlinesIntent tell me about {topic} news
+GetHeadlinesIntent give me the latest stories on {topic}
 GetHeadlinesIntent news on {topic}
 GetHeadlinesIntent news for {topic}
 GetHeadlinesIntent give me the latest news on {topic}
 GetHeadlinesIntent give me news on {topic}
 GetHeadlinesIntent tell me news on {topic}
 GetHeadlinesIntent read me news on {topic}
+GetHeadlinesIntent give me the latest news
+GetHeadlinesIntent tell me the latest news
+GetHeadlinesIntent read me the latest news
+GetHeadlinesIntent give me the latest news headlines
+GetHeadlinesIntent tell me the latest news headlines
+GetHeadlinesIntent read me the latest news headlines
 GetHeadlinesIntent give me the latest news on {topic}
-GetHeadlinesIntent tell me the latest  news on {topic}
-GetHeadlinesIntent read me the latest  news on {topic}
+GetHeadlinesIntent tell me the latest news on {topic}
+GetHeadlinesIntent read me the latest news on {topic}
 
 GetOpinionIntent opinion
 GetOpinionIntent {topic} opinion
-GetOpinionIntent for a latest opinion
-GetOpinionIntent for an opinion on {topic}
+GetOpinionIntent a latest opinion
+GetOpinionIntent an opinion on {topic}
+GetOpinionIntent latest opinions
+GetOpinionIntent latest opinions on {topic}
+GetOpinionIntent the latest opinion about {topic}
+GetOpinionIntent what's the latest opinion
+GetOpinionIntent what the latest opinions are
+GetOpinionIntent what are the latest opinions on {topic}
 GetOpinionIntent give an opinion on {topic}
 GetOpinionIntent read an opinion on {topic}
 GetOpinionIntent tell an opinion on {topic}
@@ -52,9 +77,13 @@ GetOpinionIntent read me the latest opinions
 GetOpinionIntent give me the latest opinions on {topic}
 GetOpinionIntent tell me the latest opinions on {topic}
 GetOpinionIntent read me the latest opinions on {topic}
+GetOpinionIntent give me the latest opinion on {topic}
+GetOpinionIntent read the latest {topic} opinions
 
 GetLatestReviewsIntent reviews
 GetLatestReviewsIntent latest reviews
+GetLatestReviewsIntent the latest reviews for {review_type}
+GetLatestReviewsIntent reviews on {review_type}
 GetLatestReviewsIntent give me reviews
 GetLatestReviewsIntent tell me reviews
 GetLatestReviewsIntent read me reviews
@@ -90,6 +119,11 @@ ReadContentAtPositionIntent read me the {position} article
 ReadContentAtPositionIntent tell me the {position} story
 ReadContentAtPositionIntent play the {position} one
 ReadContentAtPositionIntent read the {position} one
+ReadContentAtPositionIntent can i hear the {position} article
+ReadContentAtPositionIntent can i hear the {position} story
+ReadContentAtPositionIntent can you read the {position} one
+ReadContentAtPositionIntent read the {position} story
+ReadContentAtPositionIntent give me the {position} one
 
 MoreIntent more
 MoreIntent more headlines
@@ -98,6 +132,7 @@ MoreIntent more stories
 MoreIntent more articles
 MoreIntent give me more
 MoreIntent tell me more
+MoreIntent can i hear more
 
 GetIntroNewsIntent news
 GetIntroNewsIntent give me the news
@@ -118,6 +153,7 @@ GetPodcastIntent play me {podcast}
 GetPodcastIntent start {podcast}
 GetPodcastIntent get me {podcast}
 GetPodcastIntent get {podcast}
+GetPodcastIntent listen to {podcast}
 
 GetPodcastIntent give me the {podcast} podcast
 GetPodcastIntent give me the latest {podcast} podcast
@@ -128,6 +164,9 @@ GetPodcastIntent get me the latest {podcast} podcast
 GetPodcastIntent play me the {podcast} podcast
 GetPodcastIntent play me the latest {podcast} podcast
 GetPodcastIntent play me the {podcast}
+GetPodcastIntent can i hear the {podcast} podcast
+GetPodcastIntent can you play me {podcast}
+GetPodcastIntent can you play me the latest {podcast}
 
 LatestPodcastIntent latest podcasts
 LatestPodcastIntent play me podcasts
@@ -143,6 +182,10 @@ LatestPodcastIntent get me podcast
 LatestPodcastIntent get me the latest podcast
 LatestPodcastIntent give me podcast
 LatestPodcastIntent give me the latest podcast
+LatestPodcastIntent can you play me latest podcast
+LatestPodcastIntent can you play me latest podcasts
+LatestPodcastIntent can you play me podcast
+LatestPodcastIntent can you play me podcasts
 
 AMAZON.YesIntent yes
 AMAZON.YesIntent yep
