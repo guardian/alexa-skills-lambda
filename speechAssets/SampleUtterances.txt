@@ -2,6 +2,7 @@ EntityIntent {topic}
 EntityIntent {review_type}
 
 GetIntroNewsIntent news
+GetIntroNewsIntent the news
 GetIntroNewsIntent give me the news
 GetIntroNewsIntent tell me the news
 GetIntroNewsIntent read me the news
@@ -13,7 +14,6 @@ GetHeadlinesIntent headlines
 GetHeadlinesIntent the headlines
 GetHeadlinesIntent the {topic} headlines
 GetHeadlinesIntent {topic} headlines
-GetHeadlinesIntent the news
 GetHeadlinesIntent the {topic} news
 GetHeadlinesIntent {topic} news
 
