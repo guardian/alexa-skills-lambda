@@ -193,16 +193,18 @@ GetOpinionIntent can you read me opinions for {topic}
 GetLatestReviewsIntent reviews
 GetLatestReviewsIntent {review_type} reviews
 GetLatestReviewsIntent the {review_type} reviews
-GetLatestReviewsIntent latest reviews
-GetLatestReviewsIntent the latest reviews
-GetLatestReviewsIntent latest {review_type} reviews
-GetLatestReviewsIntent the latest {review_type} reviews
-GetLatestReviewsIntent the latest reviews on {review_type}
-GetLatestReviewsIntent the latest reviews for {review_type}
 GetLatestReviewsIntent reviews on {review_type}
 GetLatestReviewsIntent reviews for {review_type}
 GetLatestReviewsIntent the reviews on {review_type}
 GetLatestReviewsIntent the reviews for {review_type}
+GetLatestReviewsIntent latest reviews
+GetLatestReviewsIntent the latest reviews
+GetLatestReviewsIntent latest {review_type} reviews
+GetLatestReviewsIntent latest reviews on {review_type}
+GetLatestReviewsIntent latest reviews for {review_type}
+GetLatestReviewsIntent the latest {review_type} reviews
+GetLatestReviewsIntent the latest reviews on {review_type}
+GetLatestReviewsIntent the latest reviews for {review_type}
 
 GetLatestReviewsIntent give me reviews
 GetLatestReviewsIntent tell me reviews
