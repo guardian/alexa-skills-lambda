@@ -231,7 +231,7 @@ GetLatestReviewsIntent can i hear {review_type} reviews
 GetLatestReviewsIntent can you read me reviews
 GetLatestReviewsIntent can you read me {review_type} reviews
 
-ReadContentAtPositionIntent the {position} one
+ReadContentAtPositionIntent {position}
 ReadContentAtPositionIntent {position} story
 ReadContentAtPositionIntent {position} article
 ReadContentAtPositionIntent {position} review
@@ -239,19 +239,31 @@ ReadContentAtPositionIntent {position} podcast
 ReadContentAtPositionIntent {position} opinion
 ReadContentAtPositionIntent {position} opinion story
 ReadContentAtPositionIntent {position} opinion article
-ReadContentAtPositionIntent {position}
+ReadContentAtPositionIntent the {position} one
+ReadContentAtPositionIntent the {position} story
+ReadContentAtPositionIntent the {position} article
+ReadContentAtPositionIntent the {position} review
+ReadContentAtPositionIntent the {position} podcast
+ReadContentAtPositionIntent the {position} opinion
+ReadContentAtPositionIntent the {position} opinion story
+ReadContentAtPositionIntent the {position} opinion article
 ReadContentAtPositionIntent play me the {position} one
+ReadContentAtPositionIntent give me the {position} one
 ReadContentAtPositionIntent read me the {position} one
 ReadContentAtPositionIntent tell me the {position} one
+ReadContentAtPositionIntent give me the {position} article
 ReadContentAtPositionIntent read me the {position} article
+ReadContentAtPositionIntent give me the {position} story
 ReadContentAtPositionIntent tell me the {position} story
 ReadContentAtPositionIntent play the {position} one
 ReadContentAtPositionIntent read the {position} one
+ReadContentAtPositionIntent give the {position} one
+ReadContentAtPositionIntent read the {position} story
+ReadContentAtPositionIntent give the {position} story
+ReadContentAtPositionIntent read the {position} story
 ReadContentAtPositionIntent can i hear the {position} article
 ReadContentAtPositionIntent can i hear the {position} story
 ReadContentAtPositionIntent can you read the {position} one
-ReadContentAtPositionIntent read the {position} story
-ReadContentAtPositionIntent give me the {position} one
 
 MoreIntent more
 MoreIntent more headlines
