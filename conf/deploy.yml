@@ -1,16 +1,7 @@
 defaultStacks:
-    - content-api
+    - content-api-alexa
 packages:
-    static:
-        type: aws-s3
-        data:
-            bucket: content-api-dist
-            cacheControl: "public, max-age=315360000"
-            prefixPackage: false
-            prefixStack: false
-            prefixStage: true
-            publicReadAcl: false
-    lambda:
+    alexa:
         type: aws-lambda
         data:
             functions:
@@ -20,14 +11,13 @@ packages:
                 PROD:
                     name: alexa-lambda-PROD-Lambda-6GOP8W2HAUTU
                     filename: artifact.zip
+            fileName: artifact.zip
+            bucket: content-api-dist
 recipes:
-    upload:
-        actionsBeforeApp:
-            - static.uploadStaticFiles
     lambda:
         actionsBeforeApp:
-            - lambda.updateLambda
+            - alexa.uploadLambda
+            - alexa.updateLambda
     default:
         depends:
-            - upload
             - lambda
