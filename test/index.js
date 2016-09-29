@@ -355,7 +355,8 @@ tap.test('Test numeric position after latestPodcast', test => {
         lambda(
             posAfterLatestPodcast, {
                 succeed: function (response) {
-                  test.equal(response.response.directives[0].audioItem.stream.url, 'https://audio.guim.co.uk/2016/09/05-33499-gnl.books.20160903.st.simonrussellbeale.mp3')
+                    //token contains both the url and the title
+                    test.equal(response.response.directives[0].audioItem.stream.token, '{\"url\":\"https://audio.guim.co.uk/2016/09/05-33499-gnl.books.20160903.st.simonrussellbeale.mp3\",\"title\":\"Simon Russell-Beale reads from The Spy Who Came in from the Cold by John le Carré – books podcast\"}')
                     test.end()
                 },
                 fail: function (error) {
