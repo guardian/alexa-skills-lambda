@@ -76,7 +76,7 @@ Resources:
                             - content-api-alexa
                             - Ref: Stage
                             - artifact.zip
-            Description: Boilerplate
+            Description: The Guardian's custom skill for the Amazon Echo device.
             Handler: index.handler
             MemorySize: 128
             Role:
