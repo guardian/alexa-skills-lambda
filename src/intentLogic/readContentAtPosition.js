@@ -21,9 +21,9 @@ module.exports = function () {
             .then(asJson)
             .then((json) => {
                 const podcastUrl = json.response.content.elements[0].assets[0].file;
-
                 if (podcastUrl) {
-                    const podcastDirective = helpers.getPodcastDirective(podcastUrl);
+                    const title = json.response.content.webTitle;
+                    const podcastDirective = helpers.getPodcastDirective(podcastUrl, title);
                     this.emit('PlayPodcastIntent', podcastDirective);
                 } else {
                     this.emit(':tell', speech.podcasts.notfound);
