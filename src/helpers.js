@@ -1,4 +1,4 @@
-const config = require("../tmp/config.json");
+const config = require("../conf/config.json");
 const CAPI_API_KEY = config.capi_key;
 const get = require('simple-get-promise').get;
 

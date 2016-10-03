@@ -8,8 +8,8 @@
   "license": "Apache-2.0",
   "main": "src/index.js",
   "scripts": {
-    "presecrets": "mkdir -p tmp",
-    "secrets": "./bin/get-secrets.sh > tmp/config.json",
+    "presecrets": "mkdir -p conf",
+    "secrets": "./bin/get-secrets.sh > conf/config.json",
     "predeploy": "npm run secrets",
     "deploy": "gulp deploy",
     "pretest": "npm run secrets",
