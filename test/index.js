@@ -21,7 +21,7 @@ const moreAfterLatestPodcast = require('./fixtures/moreAfterLatestPodcast.json')
 const posAfterLatestPodcast = require('./fixtures/posAfterLatestPodcast.json');
 const repeat = require('./fixtures/repeat.json');
 const topicAfterLaunch = require('./fixtures/topicAfterLaunch.json');
-
+const positionalContentAfterSportOpinion = require('./fixtures/positionalContentAfterSportOpinion.json');
 const speech = require('../src/speech').speech;
 
 var lambda = require('../src/index').handler;
@@ -141,6 +141,22 @@ tap.test('Test more intent after sport opinion', test => {
                     test.equal(response.sessionAttributes.moreOffset, 3);
                     test.equal(response.sessionAttributes.topic, 'sport');
                     test.equal(response.sessionAttributes.lastIntent, "GetOpinionIntent");
+                    test.end();
+                },
+                fail: function (error) {
+                    test.fail()
+                }
+            });
+    }
+);
+
+tap.test('Test positional content after sport opinion', test => {
+        test.plan(2);
+        lambda(
+            positionalContentAfterSportOpinion, {
+                succeed: function (response) {
+                    test.ok(response.response.outputSpeech.ssml.indexOf("written by") != -1);
+                    test.ok(response.response.outputSpeech.ssml.indexOf("minutes to read") != -1);
                     test.end();
                 },
                 fail: function (error) {
