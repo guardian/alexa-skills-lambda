@@ -1,0 +1,38 @@
+{
+  "session": {
+    "sessionId": "",
+    "application": {
+      "applicationId": ""
+    },
+    "attributes": {
+      "moreOffset": 0,
+      "topic": "sport",
+      "lastIntent": "GetOpinionIntent",
+      "positionalContent": [
+        "sport/blog/2016/oct/02/robert-young-marathon-sponsor-stands-tall",
+        "sport/2016/oct/03/cronullas-nrl-premiership-pays-back-the-loyal-fans-of-the-shire",
+        "sport/blog/2016/oct/01/ryder-cup-empty-heads-lager-atmosphere-fans-behaviour"
+      ]
+    },
+    "user": {
+      "userId": "test"
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "",
+    "locale": "en-GB",
+    "timestamp": "2016-10-03T14:36:11Z",
+    "intent": {
+      "name": "ReadContentAtPositionIntent",
+      "slots": {
+        "position": {
+          "name": "position",
+          "value": "1st"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

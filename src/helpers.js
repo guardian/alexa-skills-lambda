@@ -1,11 +1,30 @@
 const config = require("../tmp/config.json");
 const CAPI_API_KEY = config.capi_key;
+const get = require('simple-get-promise').get;
 
 exports.capiQuery = function(endpoint, filter, q) {
     var capiHost = 'https://content.guardianapis.com/';
     var key = '&api-key=' + CAPI_API_KEY;
     var query = q ? '&q=' + q : '';
     return capiHost + endpoint + '?' + filter + query + key;
+};
+
+exports.hitOphanEndpoint = function(url, userId, addUrl) {
+    addUrl = addUrl || false;
+    var viewId = new Date().getTime().toString(36) + 'xxxxxxxxxxxx'.replace(/x/g, function () {
+        return Math.floor(Math.random() * 36).toString(36);
+    });
+
+    const ophanUrl = 'https://ophan.theguardian.com/i.gif';
+    const platform = "amazon-echo";
+    const baseUrl = encodeURIComponent('https://www.theguardian.com/');
+
+    if (addUrl) url = baseUrl + url;
+    url = encodeURIComponent(url);
+    const query = `${ophanUrl}?platform=${platform}&url=${url}&viewId=${viewId}&bwid=${userId}`;
+
+    if (userId !== 'test')
+        get(query); // Ophan doesn't have callbacks or anything so that's it.
 };
 
 exports.randomMessage = function(messages) {

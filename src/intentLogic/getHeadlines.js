@@ -8,8 +8,9 @@ const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 const getMoreOffset = require('../helpers').getMoreOffset;
 const getTopic = require('../helpers').getTopic;
-
 const capiQueryBuilder = require('../capiQueryBuilder');
+const hitOphan = require('../helpers').hitOphanEndpoint;
+const localizeEdition = require('../helpers').localizeEdition;
 
 module.exports = function () {
 
@@ -29,6 +30,14 @@ module.exports = function () {
         get(capiQuery)
             .then(asJson)
             .then((json) => {
+                if (json.response.tag !== undefined)
+                    hitOphan(json.response.tag.webUrl, this.event.session.user.userId);
+                else if (json.response.section !== undefined)
+                    hitOphan(json.response.section.webUrl, this.event.session.user.userId);
+                else {
+                    hitOphan('https://www.theguardian.com/' + capiQuery.split('?')[0].split('/').reverse()[0], this.event.session.user.userId); // front view (uk, us, au, international)
+                }
+
                 const results = getResults(json, attributes.moreOffset);
                 if (results !== null) {
                     attributes.positionalContent = results.map(result => result.id);

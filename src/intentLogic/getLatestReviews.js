@@ -7,6 +7,7 @@ const sound = require('../speech').sound;
 const randomMsg = require('../helpers').randomMessage;
 const getMoreOffset = require('../helpers').getMoreOffset;
 const helpers = require('../helpers');
+const hitOphan = require('../helpers').hitOphanEndpoint;
 
 const capiQueryBuilder = require('../capiQueryBuilder');
 
@@ -38,6 +39,8 @@ module.exports = function() {
                 .then(asJson)
                 .then(json => {
                     if (json.response.results && json.response.results.length > 1) {
+                        hitOphan(getReviewPath(attributes.reviewType), this.event.session.user.userId, true); // review fronts
+
                         attributes.positionalContent = json.response.results.map(review => review.id);
                         const preamble = getPreamble(isNewIntent, json.response.results.length, attributes.reviewType);
                         const reviews = json.response.results.map(review => {
@@ -84,7 +87,7 @@ const getHeadline = (review) => {
         if (review.fields.starRating == 1) return `${titleWithoutReview}. 1 star. `
         else return `${titleWithoutReview}. ${review.fields.starRating} stars. `
     } else return titleWithoutReview
-}
+};
 
 const getConclusion = (reviewCount) => {
     if (reviewCount == 1) return speech.reviews.followup1;
@@ -93,3 +96,12 @@ const getConclusion = (reviewCount) => {
 };
 
 const removeReviewFromTitle = (title) => title.replace(/(-|–)?\s?(book|restaurant|film|movie)? review$/, "");
+
+const getReviewPath = (reviewType) => {
+    switch (reviewType) {
+        case "film": return "film+tone/reviews";
+        case "restaurant": return "lifeandstyle/restaurants+tone/reviews";
+        case "music": return "music/music+tone/reviews";
+        case "book": return "books/books+tone/reviews";
+    }
+};

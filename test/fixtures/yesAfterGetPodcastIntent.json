@@ -9,7 +9,7 @@
       "lastIntent": "GetPodcastIntent"
     },
     "user": {
-      "userId": ""
+      "userId": "test"
     },
     "new": false
   },
