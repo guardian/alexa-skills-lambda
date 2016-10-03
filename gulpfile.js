@@ -1,14 +1,13 @@
 var gulp = require('gulp');
 var zip = require('gulp-zip');
 var exec  = require('exec-chainable');
-var yaml = require('gulp-yaml');
 var eslint = require('gulp-eslint');
 var path = require('path');
 process.env.ARTEFACT_PATH = __dirname;
 var riffraff = require('node-riffraff-artefact');
 
 var LAMBDA_SOURCE = 'src/*.js';
-var DEPLOY_SOURCE = 'conf/deploy.yml';
+var DEPLOY_SOURCE = 'conf/deploy.json';
 var CLOUDFORMATION_SOURCE = 'conf/cloudformation/*.yml';
 
 gulp.task('compile', function () {
@@ -21,7 +20,6 @@ gulp.task('compile-dev', ['compile'], function () {
 
 gulp.task('cloudformation', function () {
 	return gulp.src(CLOUDFORMATION_SOURCE)
-		.pipe(yaml({ space: 4 }))
 		.pipe(gulp.dest('./tmp/riffraff/packages/cloudformation'));
 });
 gulp.task('cfn', ['cloudformation']);
@@ -46,8 +44,7 @@ gulp.task('lint-dev', ['lint'], function () {
 
 gulp.task('riffraff-deploy', function () {
 	return gulp.src(DEPLOY_SOURCE)
-		.pipe(yaml({ space: 4 }))
-		.pipe(gulp.dest('tmp/riffraff'));
+			.pipe(gulp.dest('tmp/riffraff'));
 });
 
 gulp.task('riffraff-deploy-dev', ['riffraff-deploy'], function () {

@@ -1,5 +1,5 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Description: Alexa skills for the Guardian
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'Alexa skills for the Guardian'
 Parameters:
     Stack:
         Description: Stack name
@@ -23,35 +23,33 @@ Parameters:
     DynamodbTable:
         Description: ARN of dynamodb table used to store user data
         Type: String
+
 Resources:
     ExecutionRole:
         Type: AWS::IAM::Role
         Properties:
+            Path: /
             AssumeRolePolicyDocument:
                 Statement:
                     - Effect: Allow
-                      Principal:
-                        Service:
-                            - lambda.amazonaws.com
-                      Action: "sts:AssumeRole"
-            Path: /
+                      Principal: { Service: ['lambda.amazonaws.com'] }
+                      Action: [ 'sts:AssumeRole' ]
             Policies:
                 - PolicyName: logs
                   PolicyDocument:
                     Statement:
                         Effect: Allow
                         Action:
-                            - "logs:CreateLogGroup"
-                            - "logs:CreateLogStream"
-                            - "logs:PutLogEvents"
-                        Resource: "arn:aws:logs:*:*:*"
+                            - logs:CreateLogGroup
+                            - logs:CreateLogStream
+                            - logs:PutLogEvents
+                        Resource: [ 'arn:aws:logs:*:*:*' ]
                 - PolicyName: lambda
                   PolicyDocument:
                     Statement:
                         Effect: Allow
-                        Action:
-                            - "lambda:InvokeFunction"
-                        Resource: "*"
+                        Action: [ 'lambda:InvokeFunction' ]
+                        Resource: [ '*' ]
                 - PolicyName: dynamo
                   PolicyDocument:
                     Statement:
@@ -61,25 +59,17 @@ Resources:
                             - "dynamodb:PutItem"
                             - "dynamodb:UpdateItem"
                             - "dynamodb:Query"
-                        Resource: 
-                            Ref: DynamodbTable
+                        Resource: !Ref DynamodbTable
+
     Lambda:
         Type: AWS::Lambda::Function
         Properties:
             Code:
-                S3Bucket:
-                    Ref: DeployBucket
-                S3Key:
-                    "Fn::Join":
-                        - "/"
-                        -
-                            - content-api-alexa
-                            - Ref: Stage
-                            - artifact.zip
-            Description: The Guardian's custom skill for the Amazon Echo device.
+                S3Bucket: !Ref DeployBucket
+                S3Key: !Sub content-api-alexa/${Stage}/artifact.zip
+            Description: 'The Guardian's custom skill for the Amazon Echo device.'
             Handler: index.handler
             MemorySize: 128
-            Role:
-                "Fn::GetAtt": ["ExecutionRole", "Arn"]
+            Role: !GetAtt ExecutionRole.Arn
             Runtime: nodejs4.3
             Timeout: 60
