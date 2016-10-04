@@ -24,7 +24,8 @@ exports.newsQuery = (offset, locale, topic) => {
     if (props !== null) {
         return BASE_URL + props.path + "?"
             + "&api-key=" + CAPI_API_KEY
-            + "&show-fields=byline,headline"
+            + "&show-fields=byline,headline,charCount"
+            + "&max-char-count="+ helpers.maxCharCount
             + "&tag=type/article,-tone/minutebyminute"
             + (props.toneNews ? ",tone/news" : "")
             + (props.editorsPicks ? "&show-editors-picks=true" : getPageParams(offset))
@@ -51,6 +52,7 @@ exports.opinionQuery = (offset, locale, topic) => {
         return BASE_URL + props.path + "?"
             + "&api-key=" + CAPI_API_KEY
             + "&show-fields=byline,headline"
+            + "&max-char-count="+ helpers.maxCharCount
             + "&tag=type/article,-tone/minutebyminute"
             + ",tone/comment"
             + getPageParams(offset);
@@ -67,6 +69,7 @@ exports.reviewQuery = (offset, reviewType) => {
             + "?api-key=" + CAPI_API_KEY
             + getPageParams(offset)
             + "&tag=tone/reviews,"+ tagType
+            + "&max-char-count="+ helpers.maxCharCount
             + "&show-fields=standfirst,byline,headline,star-rating&show-blocks=all";
     } else {
         console.log(`reviewQuery: invalid review_type: ${reviewType}`);
