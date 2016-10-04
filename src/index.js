@@ -2,7 +2,7 @@
 
 // dependencies
 const get = require('simple-get-promise').get;
-const config = require('../tmp/config.json');
+const config = require('../conf/config.json');
 const Alexa = require('alexa-sdk');
 
 // config

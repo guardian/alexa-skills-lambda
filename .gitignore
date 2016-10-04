@@ -6,3 +6,5 @@ src/config.json
 .idea
 target
 *.iml
+npm-debug.log
+
