@@ -19,7 +19,7 @@ Parameters:
     DeployBucket:
         Description: Bucket where RiffRaff uploads artifacts on deploy
         Type: String
-        Default: content-api-dist
+        Default: 'content-api-dist'
     DynamodbTable:
         Description: ARN of dynamodb table used to store user data
         Type: String
@@ -67,7 +67,7 @@ Resources:
             Code:
                 S3Bucket: !Ref DeployBucket
                 S3Key: !Sub content-api-alexa/${Stage}/artifact.zip
-            Description: 'The Guardian's custom skill for the Amazon Echo device.'
+            Description: "The Guardian's custom skill for the Amazon Echo device."
             Handler: index.handler
             MemorySize: 128
             Role: !GetAtt ExecutionRole.Arn
