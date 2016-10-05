@@ -44,6 +44,17 @@ exports.getSectionPath = (section, edition) => {
     return edition +"/"+ section;
 };
 
+/**
+ * - amazonMaxChars: Amazon's char-limit for the outputSpeech field.
+ * - extraChars: Extra chars added at start/end of the article, including byline for which we generously allow 100 chars.
+ *
+ * e.g. -
+ *  "<speak> Absolutely, This article is written by Larry Elliott in Washington and it will take roughly 3 minutes to read.<break strength='x-strong'/> ...article body... <break strength='medium'/>Would you like to hear them again, or hear more headlines? </speak>"
+ */
+const amazonMaxChars = 8000;
+const extraChars = 315;
+exports.maxCharCount = amazonMaxChars - extraChars;
+
 const PAGE_SIZE = 3;
 exports.pageSize = PAGE_SIZE;
 

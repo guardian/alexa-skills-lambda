@@ -32,7 +32,7 @@ module.exports = function () {
     };
 
     const readArticle = (contentId) => {
-        const capiQuery = helpers.capiQuery(contentId, '&show-fields=body,byline,wordcount');
+        const capiQuery = helpers.capiQuery(contentId, '&show-fields=body,bodyText,byline,wordcount');
         get(capiQuery)
             .then(asJson)
             .then((json) => {
@@ -79,8 +79,13 @@ module.exports = function () {
 
 };
 
+const getBody = (json) => {
+    if (json.response.content.fields.bodyText) return json.response.content.fields.bodyText;
+    else return striptags(json.response.content.fields.body);   //body field may contain html tags
+};
+
 const getArticle = (json) => {
-    var articleBody = xmlescape(striptags(json.response.content.fields.body));
+    var articleBody = xmlescape(getBody(json));
 
     return randomMsg(speech.acknowledgement) +
         speech.positionalContent.articleBy + json.response.content.fields.byline +

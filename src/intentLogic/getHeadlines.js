@@ -11,6 +11,7 @@ const getTopic = require('../helpers').getTopic;
 const capiQueryBuilder = require('../capiQueryBuilder');
 const hitOphan = require('../helpers').hitOphanEndpoint;
 const localizeEdition = require('../helpers').localizeEdition;
+const maxCharCount = require('../helpers').maxCharCount;
 
 module.exports = function () {
 
@@ -65,8 +66,10 @@ const notFoundMessage = (topic) => {
  */
 const getResults = (json, moreOffset) => {
     if (json.response.editorsPicks) {
-        if (json.response.editorsPicks.length >= moreOffset) {
-            return json.response.editorsPicks.slice(moreOffset, moreOffset+3);
+        //We have to manually filter out long articles when we use editors-picks
+        const filteredPicks = json.response.editorsPicks.filter(pick => pick.fields.charCount && pick.fields.charCount < maxCharCount);
+        if (filteredPicks.length >= moreOffset) {
+            return filteredPicks.slice(moreOffset, moreOffset+3);
         } else {
             return null;
         }
