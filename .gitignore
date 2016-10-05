@@ -1,8 +1,8 @@
-tmp
-node_modules
-src/config.json
 .DS_Store
 */.DS_Store
+tmp
+node_modules
+conf/config.json
 .idea
 target
 *.iml
