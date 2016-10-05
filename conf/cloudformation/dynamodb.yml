@@ -1,5 +1,5 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Description: DynamoDB Tables Template
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'DynamoDB Tables Template'
 Resources:
   alexaUsersTable:
     Type: AWS::DynamoDB::Table
@@ -11,5 +11,5 @@ Resources:
         - AttributeName: userId
           KeyType: HASH
       ProvisionedThroughput:
-        ReadCapacityUnits: '1'
-        WriteCapacityUnits: '1'
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
