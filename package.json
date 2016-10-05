@@ -34,7 +34,8 @@
     "rollup-plugin-node-resolve": "^1.7.1",
     "moment": "^2.14.1",
     "xml-escape": "^1.1.0",
-    "tap": "^6.1.1"
+    "tap": "^6.1.1",
+    "standard": "*"
   },
   "peerDependencies": {
     "aws-sdk": "2.x"

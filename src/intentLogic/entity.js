@@ -1,4 +1,4 @@
-const speech = require('../speech').speech;
+const speech = require('../speech').speech
 
 /**
  * This may be a topic or a review_type.
@@ -6,38 +6,38 @@ const speech = require('../speech').speech;
  * We let the appropriate intent handler decide if the entity is valid.
  */
 module.exports = function () {
-    const attributes = this.event.session.attributes;
-    const slots = this.event.request.intent.slots;
-    const getEntity = () => {
-        if (slots.topic && slots.topic.value) return slots.topic.value;
-        if (slots.review_type && slots.review_type.value) return slots.review_type.value;
-        return null;
-    };
+  const attributes = this.event.session.attributes
+  const slots = this.event.request.intent.slots
+  const getEntity = () => {
+    if (slots.topic && slots.topic.value) return slots.topic.value
+    if (slots.review_type && slots.review_type.value) return slots.review_type.value
+    return null
+  }
 
-    const entity = getEntity();
+  const entity = getEntity()
 
-    if (entity !== null) {
-        if (entity.toLowerCase() === "sport" && attributes.lastIntent === "Launch") {
-            //Special case - show the sports intro if the skill has just been launched
-            this.emit('GetIntroSportIntent')
-        } else {
-            switch (attributes.lastIntent) {
-                case 'GetLatestReviewsIntent':
-                case 'GetIntroReviewsIntent' :
-                    attributes.lastIntent = "EntityIntent";
-                    attributes.reviewType = entity;
-                    this.emit('GetLatestReviewsIntent');
-                    break;
-                default:
-                    //Assume the user wants headlines
-                    attributes.lastIntent = "EntityIntent";
-                    attributes.topic = entity;
-                    this.emit('GetHeadlinesIntent');
-            }
-        }
+  if (entity !== null) {
+    if (entity.toLowerCase() === 'sport' && attributes.lastIntent === 'Launch') {
+            // Special case - show the sports intro if the skill has just been launched
+      this.emit('GetIntroSportIntent')
     } else {
-        //This should never happen
-        console.log(`Missing entity for EntityIntent: ${this.event.request}`);
-        this.emit(':ask', speech.help.reprompt, speech.help.reprompt)
+      switch (attributes.lastIntent) {
+        case 'GetLatestReviewsIntent':
+        case 'GetIntroReviewsIntent' :
+          attributes.lastIntent = 'EntityIntent'
+          attributes.reviewType = entity
+          this.emit('GetLatestReviewsIntent')
+          break
+        default:
+                    // Assume the user wants headlines
+          attributes.lastIntent = 'EntityIntent'
+          attributes.topic = entity
+          this.emit('GetHeadlinesIntent')
+      }
     }
-};
+  } else {
+        // This should never happen
+    console.log(`Missing entity for EntityIntent: ${this.event.request}`)
+    this.emit(':ask', speech.help.reprompt, speech.help.reprompt)
+  }
+}
