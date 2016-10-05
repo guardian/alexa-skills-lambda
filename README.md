@@ -117,6 +117,8 @@ Current Limitations
 
 4. The Amazon Certification process doesn't work well with the team's workflow. We typically deliver incremental changes fast which directly conflicts with Amazon's desire to test and screen all of our changes prior to them being released.
 
+5. Amazon imposes a limit of 8000 chars on articles. We get capi to filter using max-char-count. Where we use editors-picks, we have to manually filter out results based on their charCount.
+
 
 Updating Intents, Slot Types and Utterances
 -------------------------------------------
