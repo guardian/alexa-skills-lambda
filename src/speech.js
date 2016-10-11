@@ -83,12 +83,7 @@ const speech = {
     timeToReadSuff: ' minutes to read.'
   },
   acknowledgement: [
-    'Sure, ',
-    'Certainly, ',
-    'Absolutely, ',
-    'No problem, ',
-    'OK, ',
-    'Right, '
+    'OK, '
   ],
   podcasts: {
     intro: 'The most popular podcasts this week are: Football Weekly, Science Weekly, Chips with Everything, ' +
