@@ -52,9 +52,9 @@ const speech = {
     reprompt: 'Sorry, would you like the first, second or third review? or would you like more reviews?'
   },
   help: {
-    explainer: `You can keep up-to-date with the top stories of the day, and for topics you're interested in. Ask for the headlines for your topic and you'll hear three headlines for a that topic. You can choose to hear the whole story or get more headlines. 
+    explainer: `You can keep up-to-date with the top stories of the day, and for topics you're interested in. Ask for the headlines for a topic and you'll hear three headlines for that topic. You can then choose to hear the whole story, or get more headlines. 
     
-    You can also get reviews for films and other topics. Simply ask for the latest reviews. 
+    You can also get reviews for films, restaurants, books and music. Simply ask for the latest reviews. 
     
     You can also listen to podcasts. Simply ask for the latest podcasts and you hear the most recent three. You can ask me to play your favourite, by telling me the name of it. 
     
@@ -73,7 +73,6 @@ const speech = {
     didNotUnderstand: "Sorry, could you repeat that?",
     questions: [
       'What would you like to hear?',
-      'How can I help?',
       'What do you need help with?',
     ]
   },
