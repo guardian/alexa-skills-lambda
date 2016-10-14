@@ -22,20 +22,20 @@ const speech = {
     more: 'the next three stories are: ',
     headlinesNotFound: 'Sorry, I cannot find you any headlines at the moment. ',
     topicNotFound: "Sorry - I don't have any news on %s. Shall I send a list of topics to your Alexa app?",
-    followup1: 'Would you like me to read the first story?',
-    followup2: 'Would you like me to read the first or second story?',
-    followup3: 'Would you like me to read the first, second or third story? or would you like to hear more?',
-    question: 'Would you like me to read the first, second or third story? or would you like to hear more?',
-    reprompt: 'Sorry, would you like me to read the first, second or third story? or would you like to hear more?'
+    followup1: 'Would you like me to read the first story',
+    followup2: 'Would you like me to read the first or second story',
+    followup3: 'Would you like me to read the first, second or third story, or would you like to hear more?',
+    question: 'Would you like me to read the first, second or third story, or would you like to hear more?',
+    reprompt: 'Sorry, would you like me to read the first, second or third story, or would you like to hear more?'
   },
   opinions: {
     more: 'the next three opinion stories are: ',
     notFound: "Sorry - I can't find you any opinion stories at the moment. ",
     topicNotFound: 'Sorry - I don’t have any opinion stories on %s. Shall I send a list of topics to your Alexa app?',
-    followup1: 'Would you like me to read the first story?',
-    followup2: 'Would you like me to read the first story, the second story?',
-    followup3: 'Would you like me to read the first, second or third story? or would you like to hear more?',
-    reprompt: 'Sorry, would you like me to read the first, second or third story? or would you like to hear more?'
+    followup1: 'Would you like me to read the first story',
+    followup2: 'Would you like me to read the first story, the second story',
+    followup3: 'Would you like me to read the first, second or third story, or would you like to hear more?',
+    reprompt: 'Sorry, would you like me to read the first, second or third story, or would you like to hear more?'
 
   },
   reviews: {
