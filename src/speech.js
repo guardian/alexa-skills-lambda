@@ -108,6 +108,7 @@ const speech = {
 
 const sound = {
   transition: "<break time='1s'/>",
+  halfASecond: "<break time='500ms' />",
   break: "<break strength='medium'/>",
   strongBreak: "<break strength='x-strong'/>",
   intro: [

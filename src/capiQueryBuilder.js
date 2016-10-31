@@ -16,7 +16,7 @@ exports.podcastQuery = (podcastName) => {
 }
 
 exports.latestPodcastQuery = (offset) => {
-  return BASE_URL + 'search?tag=type/podcast&type=audio' + '&api-key=' + CAPI_API_KEY + getPageParams(offset)
+  return BASE_URL + 'search?tag=type/podcast&type=audio&show-tags=all' + '&api-key=' + CAPI_API_KEY + getPageParams(offset)
 }
 
 exports.newsQuery = (offset, locale, topic) => {

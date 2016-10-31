@@ -1,8 +1,5 @@
 const get = require('simple-get-promise').get
 const asJson = require('simple-get-promise').asJson
-// const config = require('../../conf/config.json')
-// const CAPI_API_KEY = config.capi_key
-// const BASE_URL = 'https://content.guardianapis.com/'
 const speech = require('../speech').speech
 const getMoreOffset = require('../helpers').getMoreOffset
 const capiQueryBuilder = require('../capiQueryBuilder')
@@ -18,7 +15,6 @@ module.exports = function () {
   attributes.lastIntent = 'LatestPodcastIntent'
 
   const capiQuery = capiQueryBuilder.latestPodcastQuery(attributes.moreOffset)
-
   get(capiQuery)
     .then(asJson)
     .then((json) => {
@@ -36,7 +32,7 @@ module.exports = function () {
 
 const generatePodcastSpeech = (results, isNewIntent) => {
   const ack = randomMsg(speech.acknowledgement)
-  const podcastTitles = results.map(result => removePodcastFromTitle(result.webTitle) + sound.transition)
+  const podcastTitles = results.map(result => getPodcastSeriesName(result.tags) + "<break time='300ms' />" + result.webTitle.split(/[-–]/)[0] + sound.transition)
 
   const buildLatestPodcastSpeech = () => {
     if (isNewIntent) return `the latest ${results.length} podcasts are: `
@@ -53,4 +49,6 @@ const generatePodcastSpeech = (results, isNewIntent) => {
   return ack + buildLatestPodcastSpeech() + podcastTitles + followupQuestion()
 }
 
-const removePodcastFromTitle = (title) => title.replace(/(-|–)?\s?podcast$/, '')
+const getPodcastSeriesName = (tags) => {
+  return tags.find(tag => tag.podcast).webTitle.split(/[-–]/)[0]
+}
