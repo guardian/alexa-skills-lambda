@@ -20,7 +20,7 @@ module.exports = function () {
     get(capiQuery)
             .then(asJson)
             .then((seriesJson) => {
-              episodeTitle = seriesJson.response.results[0].webTitle
+              episodeTitle = seriesJson.response.results[0].webTitle.split(/[-–]/)[0] // strip the podcast series name, assuming it comes after a dash
               return get(seriesJson.response.results[0].apiUrl + '?api-key=' + CAPI_API_KEY + '&show-elements=audio')
             })
             .then(asJson)
