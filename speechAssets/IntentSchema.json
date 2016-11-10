@@ -22,9 +22,6 @@
         "intent": "AMAZON.PauseIntent"
       },
       {
-        "intent": "GetIntroNewsIntent"
-      },
-      {
         "intent": "GetHeadlinesIntent",
         "slots": [
           {

@@ -125,14 +125,6 @@ MoreIntent more articles
 MoreIntent give me more
 MoreIntent tell me more
 
-GetIntroNewsIntent news
-GetIntroNewsIntent give me the news
-GetIntroNewsIntent tell me the news
-GetIntroNewsIntent read me the news
-GetIntroNewsIntent give me news
-GetIntroNewsIntent tell me news
-GetIntroNewsIntent read me news
-
 EntityIntent {topic}
 EntityIntent {review_type}
 
