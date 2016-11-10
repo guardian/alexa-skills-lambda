@@ -1,4 +1,5 @@
 GetHeadlinesIntent headlines
+GetHeadlinesIntent news
 GetHeadlinesIntent {topic} headlines
 GetHeadlinesIntent {topic} news
 GetHeadlinesIntent give me the headlines
@@ -28,30 +29,55 @@ GetHeadlinesIntent tell me the latest  news on {topic}
 GetHeadlinesIntent read me the latest  news on {topic}
 
 GetOpinionIntent opinion
+GetOpinionIntent comment
 GetOpinionIntent {topic} opinion
+GetOpinionIntent {topic} comment
 GetOpinionIntent for a latest opinion
+GetOpinionIntent for a latest comment
 GetOpinionIntent for an opinion on {topic}
+GetOpinionIntent for an comment on {topic}
 GetOpinionIntent give an opinion on {topic}
+GetOpinionIntent give an comment on {topic}
 GetOpinionIntent read an opinion on {topic}
+GetOpinionIntent read an comment on {topic}
 GetOpinionIntent tell an opinion on {topic}
+GetOpinionIntent tell an comment on {topic}
 GetOpinionIntent give me opinion stories
+GetOpinionIntent give me comment stories
 GetOpinionIntent tell me opinion stories
+GetOpinionIntent tell me comment stories
 GetOpinionIntent read me opinion stories
+GetOpinionIntent read me comment stories
 GetOpinionIntent give me opinion stories on {topic}
+GetOpinionIntent give me comment stories on {topic}
 GetOpinionIntent tell me opinion stories on {topic}
+GetOpinionIntent tell me comment stories on {topic}
 GetOpinionIntent read me the latest opinion stories on {topic}
+GetOpinionIntent read me the latest comment stories on {topic}
 GetOpinionIntent give me the latest opinion stories on {topic}
+GetOpinionIntent give me the latest comment stories on {topic}
 GetOpinionIntent tell me the latest opinion stories on {topic}
+GetOpinionIntent tell me the latest comment stories on {topic}
 GetOpinionIntent read me opinion stories on {topic}
+GetOpinionIntent read me comment stories on {topic}
 GetOpinionIntent give me opinion articles on {topic}
+GetOpinionIntent give me comment articles on {topic}
 GetOpinionIntent tell me opinion articles on {topic}
+GetOpinionIntent tell me comment articles on {topic}
 GetOpinionIntent read me opinion articles on {topic}
+GetOpinionIntent read me comment articles on {topic}
 GetOpinionIntent give me the latest opinions
+GetOpinionIntent give me the latest comment
 GetOpinionIntent tell me the latest opinions
+GetOpinionIntent tell me the latest comment
 GetOpinionIntent read me the latest opinions
+GetOpinionIntent read me the latest comment
 GetOpinionIntent give me the latest opinions on {topic}
+GetOpinionIntent give me the latest comment on {topic}
 GetOpinionIntent tell me the latest opinions on {topic}
+GetOpinionIntent tell me the latest comment on {topic}
 GetOpinionIntent read me the latest opinions on {topic}
+GetOpinionIntent read me the latest comment on {topic}
 
 GetLatestReviewsIntent reviews
 GetLatestReviewsIntent latest reviews

@@ -58,18 +58,6 @@ var handlers = {
 
   'LatestPodcastIntent': latestPodcast,
 
-  'GetIntroNewsIntent': function () {
-    this.event.session.attributes.lastIntent = 'GetIntroNewsIntent'
-    this.emit(
-            ':askWithCard',
-            randomMsg(speech.acknowledgement) + speech.news.explainer + randomMsg(speech.core.questions),
-            speech.core.reprompt,
-            'Topics',
-            'You can ask for news and opinions on the following topics:\n' + helpers.topicList,
-            helpers.cardImages
-        )
-  },
-
   'GetIntroSportIntent': function () {
     this.event.session.attributes.lastIntent = 'GetIntroSportIntent'
     this.emit(
