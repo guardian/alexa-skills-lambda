@@ -1,6 +1,7 @@
 const config = require('../conf/config.json')
 const CAPI_API_KEY = config.capi_key
 const get = require('simple-get-promise').get
+const UserStore = require('./userStore')
 
 exports.capiQuery = function (endpoint, filter, q) {
   var capiHost = 'https://content.guardianapis.com/'
@@ -91,6 +92,24 @@ exports.getTopic = (attributes, slots) => {
 exports.getStage = (functionName) => {
   if (functionName && functionName.includes('PROD')) return 'PROD'
   else return 'CODE'
+}
+
+exports.playPodcast = function(podcastUrl, podcastTitle) {
+  const playPodcast = offset => {
+    const podcastDirective = exports.getPodcastDirective(podcastUrl, podcastTitle, offset)
+    console.log('Playing podcast ' + podcastUrl)
+    this.emit('PlayPodcastIntent', podcastDirective)
+  }
+
+  //Check if the user has already started this podcast
+  if (this.context.functionName) {
+    const userStore = new UserStore(exports.getStage(this.context.functionName))
+    userStore.getAudioOffset(
+      this.event.context.System.user.userId,
+      podcastUrl,
+      playPodcast
+    )
+  } else playPodcast(0)  //Do not use dynamo for tests
 }
 
 exports.getPodcastDirective = (podcastUrl, podcastTitle, offset) => {
