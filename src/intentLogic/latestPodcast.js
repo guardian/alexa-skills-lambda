@@ -32,7 +32,7 @@ module.exports = function () {
 
 const generatePodcastSpeech = (results, isNewIntent) => {
   const ack = randomMsg(speech.acknowledgement)
-  const podcastTitles = results.map(result => getPodcastSeriesName(result.tags) + "<break time='300ms' />" + result.webTitle.split(/[-–]/)[0] + sound.transition)
+  const podcastTitles = results.map(result => getPodcastSeriesName(result.tags) + result.webTitle.split(/[-–]/)[0] + sound.transition)
 
   const buildLatestPodcastSpeech = () => {
     if (isNewIntent) return `the latest ${results.length} podcasts are: `
@@ -50,5 +50,7 @@ const generatePodcastSpeech = (results, isNewIntent) => {
 }
 
 const getPodcastSeriesName = (tags) => {
-  return tags.find(tag => tag.podcast).webTitle.split(/[-–]/)[0]
+  const podcastTag = tags.find(tag => tag.podcast)
+  if (podcastTag) return podcastTag.webTitle.split(/[-–]/)[0] + "<break time='300ms' />"
+  else return ""
 }
