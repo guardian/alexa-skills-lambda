@@ -1,18 +1,14 @@
-// const get = require('simple-get-promise').get
-// const asJson = require('simple-get-promise').asJson
 const helpers = require('../helpers')
 const speech = require('../speech').speech
-// const sound = require('../speech').sound
 
 module.exports = function () {
   const attributes = this.event.session.attributes
 
   switch (attributes.lastIntent) {
     case 'GetPodcastIntent':
-      const podcastDirective = helpers.getPodcastDirective(attributes.podcastUrl, attributes.podcastTitle)
-      console.log('Playing podcast ' + attributes.podcastUrl)
-      this.emit('PlayPodcastIntent', podcastDirective)
+      helpers.playPodcast.call(this, attributes.podcastUrl, attributes.podcastTitle)
       break
+
     case 'GetHeadlinesIntent':
     case 'GetOpinionIntent':
       // Assume the user has just been asked if they'd like the list of topics

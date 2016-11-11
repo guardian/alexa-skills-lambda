@@ -60,3 +60,22 @@ UserStore.prototype.setAudio = function (id, url, title, offset, callback) {
     }
   }, callback)
 }
+
+//If the user last listened to the podcast at url, return the milliseconds offset
+UserStore.prototype.getAudioOffset = function(id, url, callback) {
+  this._docClient.get({
+    TableName: this._tableName,
+    Key: {
+      'userId': id
+    }
+  }, (err, data) => {
+    const offset = getPodcastOffset(data, url)
+    callback(offset)
+  })
+}
+
+const getPodcastOffset = (data, url) => {
+  if (data && data.Item && data.Item.podcastOffset && data.Item.podcastUrl == url) {
+    return data.Item.podcastOffset
+  } else return 0
+}

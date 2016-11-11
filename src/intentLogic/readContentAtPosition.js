@@ -20,9 +20,7 @@ module.exports = function () {
       .then((json) => {
         const podcastUrl = json.response.content.elements[0].assets[0].file
         if (podcastUrl) {
-          const title = json.response.content.webTitle
-          const podcastDirective = helpers.getPodcastDirective(podcastUrl, title)
-          this.emit('PlayPodcastIntent', podcastDirective)
+          helpers.playPodcast.call(this, podcastUrl, json.response.content.webTitle)
         } else {
           this.emit(':tell', speech.podcasts.notfound)
         }
