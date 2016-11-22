@@ -22,6 +22,7 @@ const latestPodcast = require('./intentLogic/latestPodcast')
 const entity = require('./intentLogic/entity')
 const playback = require('./intentLogic/playback')
 const resume = require('./intentLogic/resume')
+const cards = require('./cards')
 
 // misc
 const helpers = require('./helpers')
@@ -46,8 +47,8 @@ var handlers = {
           speech.podcasts.intro,
           speech.launch.reprompt,
           'Podcasts',
-          'You can listen to the following podcasts:\n' + helpers.podcastList,
-          helpers.cardImages
+          cards.podcastsCard,
+          cards.cardImages
         )
   },
   'GetPodcastIntent': getPodcast,
@@ -65,8 +66,8 @@ var handlers = {
             randomMsg(speech.acknowledgement) + speech.news.explainer + randomMsg(speech.core.questions),
             speech.core.reprompt,
             'Topics',
-            'You can ask for news and opinions on the following topics:\n' + helpers.topicList,
-            helpers.cardImages
+            cards.topicsCard,
+            cards.cardImages
         )
   },
 
@@ -77,8 +78,8 @@ var handlers = {
             randomMsg(speech.acknowledgement) + speech.sport.explainer + randomMsg(speech.core.questions),
             speech.sport.reprompt,
             'Sport topics',
-            'You can ask for news and opinions on the following topics:\n' + helpers.sportTopicList,
-            helpers.cardImages
+            cards.sportsCard,
+            cards.cardImages
         )
   },
 

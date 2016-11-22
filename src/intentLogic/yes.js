@@ -1,5 +1,6 @@
 const helpers = require('../helpers')
 const speech = require('../speech').speech
+const cards = require('../cards')
 
 module.exports = function () {
   const attributes = this.event.session.attributes
@@ -16,8 +17,8 @@ module.exports = function () {
         ':tellWithCard',
         'Done - check your Alexa app now.',
         'Topics',
-        'You can ask for news and opinions on the following topics:\n' + helpers.topicList,
-        helpers.cardImages
+        cards.topicsCard,
+        cards.cardImages
       )
       break
     default:

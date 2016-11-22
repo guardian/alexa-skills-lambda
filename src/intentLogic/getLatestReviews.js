@@ -8,6 +8,7 @@ const randomMsg = require('../helpers').randomMessage
 const getMoreOffset = require('../helpers').getMoreOffset
 const helpers = require('../helpers')
 const hitOphan = require('../helpers').hitOphanEndpoint
+const cards = require('../cards')
 
 const capiQueryBuilder = require('../capiQueryBuilder')
 
@@ -67,7 +68,7 @@ module.exports = function () {
         speech.core.reprompt,
         'Reviews',
         'You can ask for the latest reviews for the following:\nFilms, books, music and restaurants',
-        helpers.cardImages
+        cards.cardImages
       )
     } else {
       this.emit(':ask', speech.reviews.clarifyType)
