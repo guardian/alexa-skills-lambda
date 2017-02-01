@@ -18,7 +18,7 @@ module.exports = function () {
     get(contentId + '?api-key=' + CAPI_API_KEY + '&show-elements=audio')
       .then(asJson)
       .then((json) => {
-        const podcastUrl = json.response.content.elements[0].assets[0].file
+        const podcastUrl = json.response.content.elements[0].assets[0].file + '?platform=amazon-echo'
         if (podcastUrl) {
           helpers.playPodcast.call(this, podcastUrl, json.response.content.webTitle)
         } else {
