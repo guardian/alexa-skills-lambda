@@ -25,7 +25,7 @@ module.exports = function () {
             })
             .then(asJson)
             .then((podcastJson) => {
-              attributes.podcastUrl = podcastJson.response.content.elements[0].assets[0].file
+              attributes.podcastUrl = podcastJson.response.content.elements[0].assets[0].file + '?platform=amazon-echo'
               attributes.podcastTitle = podcastJson.response.content.webTitle
               this.emit(':ask', `sure, the latest ${podcastName} was ${episodeTitle}; would you like me to play this now?`)
             })

@@ -307,7 +307,7 @@ tap.test('Test get football weekly podcast', test => {
             getFootballWeeklyPodcast, {
               succeed: function (response) {
                 test.equal(response.sessionAttributes.lastIntent, 'GetPodcastIntent')
-                test.equal(response.sessionAttributes.podcastUrl.split('.').pop(), 'mp3')
+                test.equal(response.sessionAttributes.podcastUrl.split('.').pop(), 'mp3?platform=amazon-echo')
                 test.end()
               },
               fail: function (error) {
@@ -322,7 +322,7 @@ tap.test('Test yes after a GetPodcastIntent', test => {
   lambda(
             yesAfterGetPodcast, {
               succeed: function (response) {
-                test.equal(response.response.directives[0].audioItem.stream.url, 'https://audio.guim.co.uk/2016/09/05-45824-FW-sept05-2016_mixdown.mp3')
+                test.equal(response.response.directives[0].audioItem.stream.url, 'https://audio.guim.co.uk/2016/09/05-45824-FW-sept05-2016_mixdown.mp3?platform=amazon-echo')
                 test.end()
               },
               fail: function (error) {
@@ -372,7 +372,7 @@ tap.test('Test numeric position after latestPodcast', test => {
             posAfterLatestPodcast, {
               succeed: function (response) {
                     // token contains both the url and the title
-                test.equal(response.response.directives[0].audioItem.stream.token, "{\"url\":\"https://audio.guim.co.uk/2016/09/05-33499-gnl.books.20160903.st.simonrussellbeale.mp3\",\"title\":\"Simon Russell-Beale reads from The Spy Who Came in from the Cold by John le Carré – books podcast\"}")
+                test.equal(response.response.directives[0].audioItem.stream.token, "{\"url\":\"https://audio.guim.co.uk/2016/09/05-33499-gnl.books.20160903.st.simonrussellbeale.mp3?platform=amazon-echo\",\"title\":\"Simon Russell-Beale reads from The Spy Who Came in from the Cold by John le Carré – books podcast\"}")
                 test.end()
               },
               fail: function (error) {
