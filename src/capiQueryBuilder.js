@@ -123,6 +123,7 @@ const getPageParams = (offset) => {
  */
 const getPodcastCapiUrl = (podcastName) => {
   switch (podcastName.toLowerCase()) {
+    case 'today in focus': return 'news/series/todayinfocus'
     case 'football weekly': return 'football/series/footballweekly'
     case 'politics weekly': return 'politics/series/politicsweekly'
     case 'close encounters': return 'lifeandstyle/series/close-encounters'
